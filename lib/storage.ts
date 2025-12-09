@@ -127,3 +127,39 @@ export const saveExpandedInsight = (
   insights[`${tripId}_${resortId}`] = content;
   localStorage.setItem(INSIGHTS_KEY, JSON.stringify(insights));
 };
+
+const BRIEF_KEY = "snowbunnies_trip_briefs";
+import { type TripBrief } from "@/lib/types/insights";
+
+export const getTripBrief = (
+  tripId: string,
+  resortId: string
+): TripBrief | null => {
+  if (typeof window === "undefined") return null;
+  const stored = localStorage.getItem(BRIEF_KEY);
+  if (!stored) return null;
+  try {
+    const briefs = JSON.parse(stored);
+    return briefs[`${tripId}_${resortId}`] || null;
+  } catch (e) {
+    console.error("Failed to parse trip briefs from local storage", e);
+    return null;
+  }
+};
+
+export const saveTripBrief = (
+  tripId: string,
+  resortId: string,
+  brief: TripBrief
+): void => {
+  if (typeof window === "undefined") return;
+  const stored = localStorage.getItem(BRIEF_KEY);
+  let briefs: Record<string, TripBrief> = {};
+  if (stored) {
+    try {
+      briefs = JSON.parse(stored);
+    } catch (e) {}
+  }
+  briefs[`${tripId}_${resortId}`] = brief;
+  localStorage.setItem(BRIEF_KEY, JSON.stringify(briefs));
+};

@@ -10,7 +10,13 @@ import { WeatherForecast } from "./WeatherForecast";
 import { WeatherPrediction } from "./WeatherPrediction";
 import { CrowdChart } from "./CrowdChart";
 import { getResortForecast } from "@/lib/services/open-meteo";
-import { getExpandedInsight, saveExpandedInsight } from "@/lib/storage";
+import {
+  getExpandedInsight,
+  saveExpandedInsight,
+  getTripBrief,
+  saveTripBrief,
+} from "@/lib/storage";
+import { type TripBrief } from "@/lib/types/insights";
 import { useUnits } from "@/components/TemperatureContext";
 import {
   Pencil,
@@ -20,6 +26,7 @@ import {
   Lightbulb,
   CalendarPlus,
   Sparkles,
+  Zap,
 } from "lucide-react";
 import {
   Dialog,
@@ -131,6 +138,12 @@ export function ResortCard({
   const [isExpanding, setIsExpanding] = useState(false);
   const [expandError, setExpandError] = useState<string | null>(null);
   const [showCommunityInsights, setShowCommunityInsights] = useState(false);
+
+  const [tripBrief, setTripBrief] = useState<TripBrief | null>(null);
+  const [briefLoading, setBriefLoading] = useState(false);
+  const [briefError, setBriefError] = useState<string | null>(null);
+  const [showBrief, setShowBrief] = useState(false);
+  const [showPredictionModal, setShowPredictionModal] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -308,6 +321,50 @@ export function ResortCard({
     }
   };
 
+  const handleGetTripBrief = async () => {
+    if (isHistorical) {
+      setShowPredictionModal(true);
+      return;
+    }
+
+    try {
+      setBriefLoading(true);
+      setBriefError(null);
+
+      const cached = getTripBrief(trip.id, resort.id);
+      if (cached) {
+        setTripBrief(cached);
+        setShowBrief(true);
+        setBriefLoading(false);
+        return;
+      }
+
+      const res = await fetch("/api/insights/trip", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tripConfig: trip,
+          weatherData: forecast,
+          crowdData: crowdData,
+          resortInsights: insights,
+          historicalComparison: [], // Pass empty if not available
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to generate trip brief");
+
+      const data: TripBrief = await res.json();
+      saveTripBrief(trip.id, resort.id, data);
+      setTripBrief(data);
+      setShowBrief(true);
+    } catch (e) {
+      console.error(e);
+      setBriefError("Failed to generate trip brief.");
+    } finally {
+      setBriefLoading(false);
+    }
+  };
+
   const handleAddToCalendar = () => {
     const start = formatDateForICS(trip.dateRange.start);
     const end = formatDateForICS(trip.dateRange.end, 1);
@@ -479,8 +536,8 @@ export function ResortCard({
                 </li>
               ))}
             </ul>
-            <div className="p-2 border-t-2 border-primary bg-background">
-              <Button
+            <div className="p-2 border-t-2 border-primary bg-background grid grid-cols-1 gap-2">
+              {/* <Button
                 variant="default"
                 size="sm"
                 className="w-full rounded-none font-bold uppercase tracking-wide gap-2 text-xs h-8"
@@ -493,10 +550,25 @@ export function ResortCard({
                   <Sparkles className="h-3.5 w-3.5" />
                 )}
                 {isExpanding ? "Analyzing..." : "Get Local's Deep Dive"}
+              </Button> */}
+
+              <Button
+                variant="default"
+                size="sm"
+                className="w-full rounded-none font-bold uppercase tracking-wide gap-2 text-xs h-8"
+                onClick={handleGetTripBrief}
+                disabled={briefLoading}
+              >
+                {briefLoading ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : (
+                  <Zap className="h-3.5 w-3.5 fill-current" />
+                )}
+                {briefLoading ? "Generating..." : "Get Trip Brief"}
               </Button>
-              {expandError && (
+              {briefError && (
                 <p className="text-[10px] text-destructive font-mono mt-1 text-center font-bold">
-                  {expandError}
+                  {briefError}
                 </p>
               )}
             </div>
@@ -692,6 +764,125 @@ export function ResortCard({
                 </div>
               </div>
             )}
+          </DialogContent>
+        </Dialog>
+
+        <Dialog open={showBrief} onOpenChange={setShowBrief}>
+          <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto rounded-none border-4 border-primary">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2 font-mono uppercase tracking-tight text-xl">
+                <Zap className="h-5 w-5 text-primary fill-current" />
+                Trip Brief
+              </DialogTitle>
+              <DialogDescription className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                Your personalized action plan
+              </DialogDescription>
+            </DialogHeader>
+
+            {tripBrief && (
+              <div className="mt-4 space-y-6">
+                <div className="p-4 bg-muted border-l-4 border-primary">
+                  <p className="text-sm font-medium leading-relaxed">
+                    {tripBrief.summary}
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-mono font-bold uppercase text-sm mb-3 flex items-center gap-2">
+                    <CalendarPlus className="h-4 w-4" />
+                    Daily Game Plan
+                  </h3>
+                  <div className="space-y-4">
+                    {tripBrief.dailyGamePlan.map((plan, i) => (
+                      <div
+                        key={i}
+                        className="border-2 border-primary p-3 relative"
+                      >
+                        <div className="absolute -top-3 left-3 bg-background px-2 text-xs font-mono font-bold border-2 border-primary">
+                          {plan.date}
+                        </div>
+                        <div className="mt-2 space-y-2">
+                          <p className="text-sm font-bold">
+                            {plan.recommendation}
+                          </p>
+                          <div className="flex flex-wrap gap-2 text-xs">
+                            <span className="bg-primary text-primary-foreground px-2 py-0.5 font-bold">
+                              {plan.bestTimeSlot}
+                            </span>
+                            {plan.targetZones.map((zone, z) => (
+                              <span
+                                key={z}
+                                className="border border-primary px-2 py-0.5"
+                              >
+                                {zone}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="border-2 border-primary p-3">
+                    <h3 className="font-mono font-bold uppercase text-xs mb-2 bg-primary text-primary-foreground inline-block px-1">
+                      Gear Check
+                    </h3>
+                    <ul className="list-disc list-inside text-sm space-y-1">
+                      {tripBrief.gearConsiderations.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {tripBrief.warningsAndAlerts.length > 0 && (
+                    <div className="border-2 border-red-500 bg-red-500/10 p-3 text-red-600">
+                      <h3 className="font-mono font-bold uppercase text-xs mb-2 flex items-center gap-1">
+                        <AlertCircle className="h-3 w-3" />
+                        Alerts
+                      </h3>
+                      <ul className="list-disc list-inside text-sm space-y-1">
+                        {tripBrief.warningsAndAlerts.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
+
+        <Dialog
+          open={showPredictionModal}
+          onOpenChange={setShowPredictionModal}
+        >
+          <DialogContent className="max-w-md rounded-none border-4 border-primary bg-background shadow-[8px_8px_0px_0px_var(--foreground)]">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2 font-mono uppercase tracking-tight text-xl">
+                <CalendarPlus className="h-5 w-5 text-primary" />
+                Come Back Later
+              </DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4 py-2">
+              <p className="text-sm leading-relaxed">
+                Trip Briefs rely on live weather patterns and crowd tracking to
+                give you accurate, actionable advice.
+              </p>
+              <p className="text-sm font-medium border-l-4 border-primary pl-3 py-1 bg-muted">
+                Please return when your trip is within{" "}
+                <span className="text-primary font-bold">16 days</span> for a
+                full report.
+              </p>
+              <Button
+                onClick={() => setShowPredictionModal(false)}
+                className="w-full rounded-none font-bold uppercase"
+              >
+                Understood
+              </Button>
+            </div>
           </DialogContent>
         </Dialog>
       </CardContent>
