@@ -11,7 +11,7 @@ import { type TripConfig } from "@/lib/types/trip";
 import { getTrips, deleteTrip } from "@/lib/storage";
 import resortsData from "@/lib/data/resorts.json";
 import { type Resort } from "@/lib/types/resort";
-import { Plus, Sparkles } from "lucide-react";
+import { Plus, Sparkles, Info } from "lucide-react";
 
 export default function Home() {
   const [trips, setTrips] = React.useState<TripConfig[]>([]);
@@ -63,6 +63,11 @@ export default function Home() {
             Snow Bunnies
           </h1>
           <div className="flex items-center gap-2 flex-wrap justify-center md:flex-nowrap md:justify-end">
+            <Link href="/about">
+              <Button variant="ghost" size="sm">
+                <Info className="mr-2 h-4 w-4" /> What is this?
+              </Button>
+            </Link>
             <Link href="/upcoming">
               <Button variant="ghost" size="sm">
                 <Sparkles className="mr-2 h-4 w-4" /> Upcoming
