@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TemperatureProvider } from "@/components/TemperatureContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { PasswordProtection } from "@/components/PasswordProtection";
 
 const recursive = Recursive({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
           recursive.variable
         )}
       >
+        <PasswordProtection />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
