@@ -3,7 +3,7 @@ import { Recursive } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TemperatureProvider } from "@/components/TemperatureContext";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const recursive = Recursive({
   subsets: ["latin"],

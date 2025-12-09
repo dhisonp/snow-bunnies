@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { TripForm } from "@/components/TripForm";
 import { ResortCard } from "@/components/ResortCard";
 import { TemperatureToggle } from "@/components/TemperatureToggle";
-import { ModeToggle } from "@/components/mode-toggle";
+import { ModeToggle } from "@/components/ModeToggle";
 import { type TripConfig } from "@/lib/types/trip";
 import { getTrips, deleteTrip } from "@/lib/storage";
 import resortsData from "@/lib/data/resorts.json";
