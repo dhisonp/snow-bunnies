@@ -13,6 +13,12 @@ export function PasswordProtection() {
 
   useEffect(() => {
     setIsClient(true);
+
+    if (!process.env.NEXT_PUBLIC_SITE_PASSWORD) {
+      setIsAuthenticated(true);
+      return;
+    }
+
     const auth = localStorage.getItem("isAuthenticated");
     if (auth === "true") {
       setIsAuthenticated(true);
@@ -21,9 +27,9 @@ export function PasswordProtection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const sitePassword = process.env.NEXT_PUBLIC_SITE_PASSWORD || "snowbunnies";
+    const sitePassword = process.env.NEXT_PUBLIC_SITE_PASSWORD;
 
-    if (password === sitePassword) {
+    if (!sitePassword || password === sitePassword) {
       localStorage.setItem("isAuthenticated", "true");
       setIsAuthenticated(true);
       setError(false);
