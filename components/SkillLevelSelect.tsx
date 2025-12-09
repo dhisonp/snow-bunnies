@@ -5,15 +5,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { type SkillLevel } from "@/lib/types/trip";
 
 interface SkillLevelSelectProps {
-  value: string;
-  onChange: (value: string) => void;
+  value: SkillLevel;
+  onChange: (value: SkillLevel) => void;
 }
 
 export function SkillLevelSelect({ value, onChange }: SkillLevelSelectProps) {
   return (
-    <Select value={value} onValueChange={onChange}>
+    <Select value={value} onValueChange={(val) => onChange(val as SkillLevel)}>
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Select skill level" />
       </SelectTrigger>

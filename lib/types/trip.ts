@@ -1,3 +1,5 @@
+export type SkillLevel = "beginner" | "intermediate" | "advanced" | "expert";
+
 export interface TripConfig {
   id: string; // UUID
   resortId: string;
@@ -7,7 +9,7 @@ export interface TripConfig {
   };
   userProfile: {
     discipline: "ski" | "snowboard";
-    skillLevel: "beginner" | "intermediate" | "advanced" | "expert";
+    skillLevel: SkillLevel;
   };
   createdAt: string;
   updatedAt: string;

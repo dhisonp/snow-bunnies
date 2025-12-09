@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 // import { zodResolver } from "@hookform/resolvers/zod" // shadcn form usually uses zod
 // import * as z from "zod"
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label"; // Need to install label
 import { ResortPicker } from "@/components/ResortPicker";
 import { SkillLevelSelect } from "@/components/SkillLevelSelect";
-import { type TripConfig } from "@/lib/types/trip";
+import { type TripConfig, type SkillLevel } from "@/lib/types/trip";
 import { saveTrip } from "@/lib/storage";
 
 // Simple validation manually for now to save installing zod/hookform overhead if not strictly needed
@@ -38,13 +38,70 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
   const [discipline, setDiscipline] = React.useState<"ski" | "snowboard">(
     trip?.userProfile.discipline || "ski"
   );
-  const [skillLevel, setSkillLevel] = React.useState(
+  const [skillLevel, setSkillLevel] = React.useState<SkillLevel>(
     trip?.userProfile.skillLevel || "intermediate"
   );
+  const [error, setError] = React.useState<string | null>(null);
+
+  // Reset state when opening/closing or changing trip
+  React.useEffect(() => {
+    if (open) {
+      setResortId(trip?.resortId || "");
+      setDateStart(trip?.dateRange.start || "");
+      setDateEnd(trip?.dateRange.end || "");
+      setDiscipline(trip?.userProfile.discipline || "ski");
+      setSkillLevel(trip?.userProfile.skillLevel || "intermediate");
+      setError(null);
+    }
+  }, [open, trip]);
+
+  const validateDates = (start: string, end: string) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const parseDate = (dateStr: string) => {
+      const [y, m, d] = dateStr.split("-").map(Number);
+      return new Date(y, m - 1, d);
+    };
+
+    const startDate = parseDate(start);
+    const endDate = parseDate(end);
+
+    if (startDate < today) {
+      return "Trip start date cannot be in the past.";
+    }
+
+    if (endDate < startDate) {
+      return "End date cannot be before start date.";
+    }
+
+    // OpenMeteo usually has a 16-day forecast limit.
+    // We check if the end date is within 16 days from today.
+    // 16 days includes today: indices 0 to 15.
+    const maxForecastDate = new Date(today);
+    maxForecastDate.setDate(today.getDate() + 15);
+
+    if (endDate > maxForecastDate) {
+      return "Trip dates available only within next 16 days due to weather forecast limits.";
+    }
+
+    return null;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!resortId || !dateStart || !dateEnd) return; // Basic validation
+    setError(null);
+
+    if (!resortId || !dateStart || !dateEnd) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    const validationError = validateDates(dateStart, dateEnd);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
 
     const newTrip: TripConfig = {
       id: trip?.id || crypto.randomUUID(),
@@ -55,7 +112,7 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
       },
       userProfile: {
         discipline,
-        skillLevel: skillLevel as any,
+        skillLevel: skillLevel,
       },
       createdAt: trip?.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -87,7 +144,10 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
                 id="start"
                 type="date"
                 value={dateStart}
-                onChange={(e) => setDateStart(e.target.value)}
+                onChange={(e) => {
+                  setDateStart(e.target.value);
+                  setError(null);
+                }}
                 required
               />
             </div>
@@ -97,7 +157,10 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
                 id="end"
                 type="date"
                 value={dateEnd}
-                onChange={(e) => setDateEnd(e.target.value)}
+                onChange={(e) => {
+                  setDateEnd(e.target.value);
+                  setError(null);
+                }}
                 required
               />
             </div>
@@ -125,11 +188,13 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="skill">Skill Level</Label>
-            <SkillLevelSelect
-              value={skillLevel}
-              onChange={setSkillLevel as any}
-            />
+            <SkillLevelSelect value={skillLevel} onChange={setSkillLevel} />
           </div>
+
+          {error && (
+            <div className="text-sm text-destructive font-medium">{error}</div>
+          )}
+
           <DialogFooter>
             <Button type="submit">Save Trip</Button>
           </DialogFooter>
