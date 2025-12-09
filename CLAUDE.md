@@ -40,6 +40,9 @@ npm run lint            # Lint code
 - Weather data cached 1 hour, crowd data 6 hours, AI insights 7 days
 - Crowd levels use 1-5 scale with color coding (green→red)
 - Use `file:line` references when discussing code locations
+- Prioritize code correctness over anything
+- Reduce verbose comments
+- Run `npm run format` after making final changes
 
 ## Reference
 
