@@ -66,13 +66,13 @@ snowbunnies/
 
 ### ⚠️ Missing Directories/Files
 
-| Item | Status | Impact |
-|------|--------|--------|
-| `/api/weather` route | Missing | Low - client-side fetch works |
-| `/trip/[id]/page.tsx` | Missing | Low - all data on main page |
-| `lib/constants.ts` | Missing | Low - constants inline |
-| `lib/scrapers/*.ts` | Empty | Medium - manual scraping unavailable |
-| `scripts/` directory | Empty | Low - seed data already present |
+| Item                  | Status  | Impact                               |
+| --------------------- | ------- | ------------------------------------ |
+| `/api/weather` route  | Missing | Low - client-side fetch works        |
+| `/trip/[id]/page.tsx` | Missing | Low - all data on main page          |
+| `lib/constants.ts`    | Missing | Low - constants inline               |
+| `lib/scrapers/*.ts`   | Empty   | Medium - manual scraping unavailable |
+| `scripts/` directory  | Empty   | Low - seed data already present      |
 
 ---
 
@@ -81,7 +81,9 @@ snowbunnies/
 All TypeScript interfaces match SPEC.md exactly:
 
 ### Resort Type ✓
+
 **Location**: `lib/types/resort.ts`
+
 ```typescript
 interface Resort {
   id: string;
@@ -92,17 +94,25 @@ interface Resort {
   elevation: { base: number; summit: number };
   trailCount: number;
   liftCount: number;
-  terrainPct: { beginner: number; intermediate: number; advanced: number; expert: number };
+  terrainPct: {
+    beginner: number;
+    intermediate: number;
+    advanced: number;
+    expert: number;
+  };
   googlePlaceId?: string;
   subreddit?: string;
   forumUrls?: string[];
 }
 ```
+
 ✅ All required fields present
 ✅ Optional fields correctly typed
 
 ### TripConfig Type ✓
+
 **Location**: `lib/types/trip.ts`
+
 ```typescript
 interface TripConfig {
   id: string;
@@ -113,21 +123,28 @@ interface TripConfig {
   updatedAt: string;
 }
 ```
+
 ✅ Matches spec exactly
 ✅ SkillLevel union type defined
 
 ### Weather Types ✓
+
 **Location**: `lib/types/weather.ts`
+
 - `DailyWeather` - All 8 required fields present
 - `HistoricalComparison` - Complete with confidence levels
 
 ### Crowd Types ✓
+
 **Location**: `lib/types/crowd.ts`
+
 - `HourlyCrowd` - hour, crowdLevel, source fields
 - `DailyCrowd` - All required fields including hourlyBreakdown array
 
 ### Insights Types ✓
+
 **Location**: `lib/types/insights.ts`
+
 - `ResortInsights` - Complete with all nested objects
 - `TripBrief` - dailyGamePlan array properly structured
 
@@ -138,7 +155,9 @@ interface TripConfig {
 ## 3. Static Data Verification
 
 ### resorts.json ✅
+
 **Location**: `lib/data/resorts.json`
+
 - **Count**: 5 resorts (Heavenly, Kirkwood, Okemo, Mount Snow, Hunter Mountain)
 - **Structure**: Matches Resort interface exactly
 - **Coordinates**: Verified accurate for each location
@@ -146,7 +165,9 @@ interface TripConfig {
 - ✅ All required fields populated
 
 ### holidays.json ✅
+
 **Location**: `lib/data/holidays.json`
+
 - **Coverage**: 2025-2026 ski season
 - **Holidays included**: Thanksgiving, Christmas Week, New Year, MLK, Presidents Week
 - **Data structure**: `{ date, name, crowdImpact }`
@@ -154,7 +175,9 @@ interface TripConfig {
 - ✅ Complete and accurate
 
 ### community-insights.json ✅
+
 **Location**: `lib/data/cache/community-insights.json`
+
 - **Resorts cached**: Heavenly Tahoe
 - **Structure**: Matches ResortInsights interface
 - **Content quality**: Specific run names, actionable tips
@@ -166,13 +189,16 @@ interface TripConfig {
 ## 4. API Routes Implementation
 
 ### ❌ GET /api/weather - MISSING
+
 **Expected**: Open-Meteo proxy for forecast data
 **Actual**: Weather data fetched client-side via `getResortForecast()` service
 **Impact**: Low - functionality works, just not through dedicated API route
 **Recommendation**: Consider adding route for consistency with spec
 
 ### ✅ GET /api/weather-historical
+
 **Location**: `app/api/weather-historical/route.ts`
+
 - ✅ Fetches 5 years of historical data (2020-2024)
 - ✅ Calculates averages for snowfall and temperature
 - ✅ Returns column-oriented data for easy comparison
@@ -180,7 +206,9 @@ interface TripConfig {
 - ✅ TypeScript types on all parameters
 
 ### ⚠️ POST /api/crowd (Should be GET)
+
 **Location**: `app/api/crowd/route.ts`
+
 - ⚠️ Implemented as POST instead of GET
 - ✅ Takes dates array in request body
 - ✅ Calls `estimateCrowds()` service correctly
@@ -189,7 +217,9 @@ interface TripConfig {
 - **Recommendation**: Refactor to GET with query parameters
 
 ### ✅ POST /api/insights/resort
+
 **Location**: `app/api/insights/resort/route.ts`
+
 - ✅ Implements cache layer with 7-day TTL
 - ✅ Uses Gemini 2.5 Flash for generation
 - ✅ Reads from and writes to cache file
@@ -198,7 +228,9 @@ interface TripConfig {
 - ✅ Error handling for missing resort
 
 ### ✅ POST /api/insights/trip
+
 **Location**: `app/api/insights/trip/route.ts`
+
 - ✅ Takes tripConfig, weatherData, crowdData, resortInsights
 - ✅ Calls `generateTripBrief()` service
 - ✅ Returns personalized trip recommendations
@@ -206,21 +238,24 @@ interface TripConfig {
 - ✅ Matches spec exactly
 
 ### API Routes Summary
-| Route | Spec | Status | Notes |
-|-------|------|--------|-------|
-| GET /api/weather | Required | ❌ Missing | Client-side instead |
-| GET /api/weather-historical | Required | ✅ Complete | Fully functional |
-| GET /api/crowd | Required | ⚠️ POST method | Works but wrong HTTP method |
-| POST /api/insights/resort | Required | ✅ Complete | Cache + Gemini working |
-| POST /api/insights/trip | Required | ✅ Complete | Personalized briefs working |
-| POST /api/scrape | Optional | ❌ Not implemented | Dev-only feature |
+
+| Route                       | Spec     | Status             | Notes                       |
+| --------------------------- | -------- | ------------------ | --------------------------- |
+| GET /api/weather            | Required | ❌ Missing         | Client-side instead         |
+| GET /api/weather-historical | Required | ✅ Complete        | Fully functional            |
+| GET /api/crowd              | Required | ⚠️ POST method     | Works but wrong HTTP method |
+| POST /api/insights/resort   | Required | ✅ Complete        | Cache + Gemini working      |
+| POST /api/insights/trip     | Required | ✅ Complete        | Personalized briefs working |
+| POST /api/scrape            | Optional | ❌ Not implemented | Dev-only feature            |
 
 ---
 
 ## 5. Services Layer Quality
 
 ### open-meteo.ts ✅
+
 **Location**: `lib/services/open-meteo.ts`
+
 - ✅ `getResortForecast()` function implemented
 - ✅ Uses Open-Meteo API v1
 - ✅ Fetches all required daily parameters:
@@ -235,7 +270,9 @@ interface TripConfig {
 **Code Quality**: Excellent
 
 ### crowd-estimator.ts ✅
+
 **Location**: `lib/services/crowd-estimator.ts`
+
 - ✅ `estimateCrowds()` function implemented
 - ✅ Uses holidays.json for holiday detection
 - ✅ Base crowd calculation:
@@ -251,7 +288,9 @@ interface TripConfig {
 **Algorithm**: Matches spec heuristics exactly
 
 ### ai-insights.ts ✅
+
 **Location**: `lib/services/ai-insights.ts`
+
 - ✅ `generateResortInsights()` using Gemini 2.5 Flash
 - ✅ `generateTripBrief()` for personalized recommendations
 - ✅ JSON response mode with proper schema
@@ -269,7 +308,9 @@ interface TripConfig {
 ### Core Components
 
 #### ResortCard ✅
+
 **Location**: `components/ResortCard.tsx`
+
 - ✅ Fetches weather data on mount
 - ✅ Displays 4-day weather forecast
 - ✅ Shows crowd indicators with color coding
@@ -280,7 +321,9 @@ interface TripConfig {
 - **Code Quality**: Well-structured with proper state management
 
 #### WeatherForecast ✅
+
 **Location**: `components/WeatherForecast.tsx`
+
 - ✅ Grid layout for multiple days
 - ✅ Day of week abbreviations
 - ✅ Weather icons (Sun/CloudSnow from Lucide)
@@ -289,7 +332,9 @@ interface TripConfig {
 - **Code Quality**: Clean, presentational component
 
 #### CrowdChart ✅
+
 **Location**: `components/CrowdChart.tsx`
+
 - ✅ Hourly bar chart (7am-5pm)
 - ✅ Color scale: Green (1) → Yellow (3) → Red (5)
 - ✅ Peak hours highlighted
@@ -298,7 +343,9 @@ interface TripConfig {
 - **Code Quality**: Good visualization implementation
 
 #### TripForm ✅
+
 **Location**: `components/TripForm.tsx`
+
 - ✅ Resort picker (searchable combobox)
 - ✅ Date range picker (start + end date)
 - ✅ Discipline toggle (Ski/Snowboard)
@@ -311,18 +358,23 @@ interface TripConfig {
 ### Supporting Components
 
 #### ResortPicker ✅
+
 **Location**: `components/ResortPicker.tsx`
+
 - Searchable combobox using shadcn/ui
 - Filters resorts as user types
 - Good accessibility support
 
 #### SkillLevelSelect ✅
+
 **Location**: `components/SkillLevelSelect.tsx`
+
 - Select dropdown with 4 skill levels
 - Proper TypeScript types
 - Clean implementation
 
 ### Extra Components (Not in Spec)
+
 - `ModeToggle.tsx` - Dark/light theme toggle ➕
 - `TemperatureToggle.tsx` - Celsius/Fahrenheit switcher ➕
 - `TemperatureContext.tsx` - Temperature unit state ➕
@@ -332,6 +384,7 @@ interface TripConfig {
 **Impact**: Positive - enhances user experience
 
 ### Missing Components
+
 - `CrowdCalendar.tsx` - Date range crowd overview ❌
 - `EmptyState.tsx` - Inline in page.tsx instead ⚠️
 
@@ -340,9 +393,11 @@ interface TripConfig {
 ## 7. Storage Implementation
 
 ### storage.ts ✅
+
 **Location**: `lib/storage.ts`
 
 **Implemented Functions**:
+
 - ✅ `getTrips()` - Reads all trips from localStorage
 - ✅ `saveTrip()` - Adds or updates a trip
 - ✅ `deleteTrip()` - Removes trip by ID
@@ -351,6 +406,7 @@ interface TripConfig {
 **Storage Key**: `"snowbunnies_trips"`
 
 **Data Structure**:
+
 ```typescript
 interface StoredData {
   version: 1;
@@ -360,6 +416,7 @@ interface StoredData {
 ```
 
 **Code Quality**:
+
 - ✅ Proper error handling for localStorage access
 - ✅ JSON serialization/deserialization
 - ✅ Type-safe return values
@@ -370,9 +427,11 @@ interface StoredData {
 ## 8. Styling & Design Compliance
 
 ### Design Tokens ✅
+
 **Location**: `app/globals.css`
 
 **Color Variables**:
+
 ```css
 --background: #fafafa;
 --foreground: #0a0a0a;
@@ -385,17 +444,21 @@ interface StoredData {
 --crowd-4: #f97316; (Orange)
 --crowd-5: #ef4444; (Red)
 ```
+
 ✅ All crowd level colors match spec
 ✅ Light and dark mode support
 ✅ High contrast borders
 
 ### Typography ⚠️
+
 **Expected**: Helvetica Neue → IBM Plex Sans
 **Actual**: Google Fonts "Recursive"
+
 - **Impact**: Low - still maintains clean, readable typography
 - **Note**: Acceptable deviation for aesthetic choice
 
 ### Component Styling ✅
+
 - ✅ Cards: `rounded-lg border bg-card shadow-sm`
 - ✅ Buttons: `rounded-md px-4 py-2 font-medium transition-colors`
 - ✅ Generous whitespace (p-4, gap-4)
@@ -408,12 +471,14 @@ interface StoredData {
 ## 9. Configuration Quality
 
 ### package.json ✅
+
 **Dependencies**:
+
 - ✅ Next.js 16.0.8 (Latest)
 - ✅ React 19.2.1 (Latest)
 - ✅ TypeScript 5
 - ✅ Tailwind CSS 4
-- ✅ @radix-ui/* for shadcn/ui components
+- ✅ @radix-ui/\* for shadcn/ui components
 - ✅ @google/generative-ai for Gemini API
 - ✅ react-hook-form for form management
 - ✅ lucide-react for icons
@@ -421,11 +486,13 @@ interface StoredData {
 - ✅ next-themes for theme management
 
 **Dev Dependencies**:
+
 - ✅ ESLint with next.js config
 - ✅ Prettier for code formatting
 - ✅ TypeScript compiler
 
 ### tsconfig.json ✅
+
 ```json
 {
   "compilerOptions": {
@@ -437,11 +504,13 @@ interface StoredData {
   }
 }
 ```
+
 ✅ Strict mode enabled as required
 ✅ Path aliases configured
 ✅ Modern module resolution
 
 ### next.config.ts ✅
+
 - ✅ TypeScript configuration
 - ✅ Proper export structure
 - No experimental flags - stable configuration
@@ -523,6 +592,7 @@ interface StoredData {
    - Could centralize configuration
 
 ### Code Smells 🔴 (None Found)
+
 - No obvious anti-patterns detected
 - No performance bottlenecks identified
 - No security vulnerabilities apparent
@@ -550,14 +620,15 @@ interface StoredData {
    - ✅ No large images (text-only UI)
 
 ### Performance Requirements from Spec
-| Requirement | Target | Status |
-|-------------|--------|--------|
-| Initial Load | < 2s on 3G | ⚠️ Not measured |
-| Weather API Cache | 1 hour | ⚠️ Not implemented |
-| Crowd Data Cache | 6 hours | ⚠️ Not implemented |
-| AI Insights Cache | 7 days | ✅ Implemented |
-| Trip Brief Cache | Trip lifetime | ✅ Generated on-demand |
-| No Images | Text-only | ✅ Confirmed |
+
+| Requirement       | Target        | Status                 |
+| ----------------- | ------------- | ---------------------- |
+| Initial Load      | < 2s on 3G    | ⚠️ Not measured        |
+| Weather API Cache | 1 hour        | ⚠️ Not implemented     |
+| Crowd Data Cache  | 6 hours       | ⚠️ Not implemented     |
+| AI Insights Cache | 7 days        | ✅ Implemented         |
+| Trip Brief Cache  | Trip lifetime | ✅ Generated on-demand |
+| No Images         | Text-only     | ✅ Confirmed           |
 
 **Recommendation**: Add cache-control headers or SWR for weather/crowd data
 
@@ -597,6 +668,7 @@ interface StoredData {
 ### Production Checklist
 
 #### Ready for Deploy ✅
+
 - [x] Next.js configuration complete
 - [x] TypeScript compilation successful
 - [x] No build errors
@@ -606,6 +678,7 @@ interface StoredData {
 - [x] Core features functional
 
 #### Needs Attention ⚠️
+
 - [ ] Add cache-control headers for API routes
 - [ ] Implement rate limiting
 - [ ] Add monitoring/error tracking (e.g., Sentry)
@@ -614,6 +687,7 @@ interface StoredData {
 - [ ] Performance audit with Lighthouse
 
 #### Optional Enhancements 🔵
+
 - [ ] PWA setup (service workers, manifest)
 - [ ] SEO optimization (meta tags, OG images)
 - [ ] Add /api/weather route for consistency
@@ -626,28 +700,29 @@ interface StoredData {
 
 ### By Category
 
-| Category | Compliance | Grade |
-|----------|-----------|-------|
-| Directory Structure | 90% | A- |
-| Type Definitions | 100% | A+ |
-| Static Data | 100% | A+ |
-| API Routes | 70% | C+ |
-| Services Layer | 100% | A+ |
-| Components | 85% | B+ |
-| Storage | 100% | A+ |
-| Styling & Design | 95% | A |
-| Configuration | 100% | A+ |
-| Code Quality | 90% | A- |
-| Performance | 80% | B |
-| Security | 85% | B+ |
-| Testing | 0% | F |
-| Documentation | 70% | C+ |
+| Category            | Compliance | Grade |
+| ------------------- | ---------- | ----- |
+| Directory Structure | 90%        | A-    |
+| Type Definitions    | 100%       | A+    |
+| Static Data         | 100%       | A+    |
+| API Routes          | 70%        | C+    |
+| Services Layer      | 100%       | A+    |
+| Components          | 85%        | B+    |
+| Storage             | 100%       | A+    |
+| Styling & Design    | 95%        | A     |
+| Configuration       | 100%       | A+    |
+| Code Quality        | 90%        | A-    |
+| Performance         | 80%        | B     |
+| Security            | 85%        | B+    |
+| Testing             | 0%         | F     |
+| Documentation       | 70%        | C+    |
 
 **Overall Grade: B+ (85%)**
 
 ### Spec Alignment Breakdown
 
 #### Fully Implemented (100%)
+
 - TypeScript type definitions (5/5)
 - Static data files (3/3)
 - Core services (3/3)
@@ -658,12 +733,14 @@ interface StoredData {
 - Dark mode support
 
 #### Partially Implemented (50-99%)
+
 - API routes (4/6 routes, 1 wrong method)
 - React components (8/11 spec components)
 - Configuration files (3/4)
 - Styling tokens (95% match)
 
 #### Not Implemented (0%)
+
 - Scrapers (0/3)
 - CLI scripts (0/2)
 - Unit tests (0)
@@ -753,6 +830,7 @@ interface StoredData {
 The Snow Bunnies ski trip planner demonstrates **solid engineering practices** with a well-structured codebase that achieves **85% compliance** with SPEC.md. The application is **functionally complete for MVP deployment** with the following highlights:
 
 ### Key Strengths
+
 - ✅ Comprehensive TypeScript type system
 - ✅ Clean service layer architecture
 - ✅ Proper React component composition
@@ -761,21 +839,25 @@ The Snow Bunnies ski trip planner demonstrates **solid engineering practices** w
 - ✅ LocalStorage persistence working correctly
 
 ### Critical Gaps
+
 - ❌ Missing weather API route (works client-side)
 - ❌ Incorrect HTTP method for crowd API (POST vs GET)
 - ❌ No test coverage
 - ❌ Scraper implementations absent
 
 ### Deployment Verdict
+
 **Status**: ✅ **APPROVED FOR MVP DEPLOYMENT**
 
 The application is production-ready for initial launch with the understanding that:
+
 1. Core features work correctly
 2. User experience is smooth and responsive
 3. Minor spec deviations don't impact functionality
 4. Gaps documented and prioritized for future sprints
 
 ### Next Steps
+
 1. Address high-priority recommendations before production launch
 2. Set up monitoring and error tracking
 3. Plan medium-priority enhancements for Phase 2
