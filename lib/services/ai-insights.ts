@@ -135,3 +135,38 @@ Tailor all recommendations to a ${trip.userProfile.skillLevel} ${trip.userProfil
     throw new Error("Failed to generate trip brief");
   }
 }
+
+export async function generateExpandedInsight(
+  resort: Resort,
+  trip: TripConfig
+): Promise<string> {
+  const prompt = `
+You are a local ski expert providing a deep-dive analysis for ${resort.name}.
+
+User Profile:
+- Skill Level: ${trip.userProfile.skillLevel}
+- Discipline: ${trip.userProfile.discipline}
+- Dates: ${trip.dateRange.start} to ${trip.dateRange.end}
+
+Provide a comprehensive, "local's only" guide for this specific user. Focus on:
+1. **Specific Run Progressions**: Suggested sequences of runs for their skill level.
+2. **Hidden Stashes**: Where to find the best conditions given the time of year (${trip.dateRange.start}).
+3. **Logistics Hacks**: Best parking, lunch spots to avoid crowds, bathroom breaks.
+4. **Après & Culture**: Authentic spots, not just the main tourist bars.
+
+Format the response in Markdown. Be conversational, authoritative, and encouraging.
+`;
+
+  try {
+    const result = await model.generateContent({
+      contents: [{ role: "user", parts: [{ text: prompt }] }],
+      generationConfig: {
+        responseMimeType: "text/plain",
+      },
+    });
+    return result.response.text();
+  } catch (error) {
+    console.error("Error generating expanded insight:", error);
+    throw new Error("Failed to generate expanded insight");
+  }
+}

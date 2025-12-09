@@ -10,6 +10,7 @@ import { WeatherForecast } from "./WeatherForecast";
 import { WeatherPrediction } from "./WeatherPrediction";
 import { CrowdChart } from "./CrowdChart";
 import { getResortForecast } from "@/lib/services/open-meteo";
+import { getExpandedInsight, saveExpandedInsight } from "@/lib/storage";
 import {
   Pencil,
   Trash2,
@@ -17,7 +18,16 @@ import {
   AlertCircle,
   Lightbulb,
   CalendarPlus,
+  Sparkles,
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import ReactMarkdown from "react-markdown";
 
 interface ResortCardProps {
   trip: TripConfig;
@@ -108,6 +118,10 @@ export function ResortCard({
   const [insights, setInsights] = useState<ResortInsights | null>(null);
   const [insightsLoading, setInsightsLoading] = useState(false);
   const [insightsError, setInsightsError] = useState<string | null>(null);
+
+  const [expandedInsight, setExpandedInsight] = useState<string | null>(null);
+  const [isExpanding, setIsExpanding] = useState(false);
+  const [expandError, setExpandError] = useState<string | null>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -254,6 +268,37 @@ export function ResortCard({
 
   const firstDayCrowd = crowdData[0];
 
+  const handleExpandInsight = async () => {
+    try {
+      setIsExpanding(true);
+      setExpandError(null);
+
+      const cached = getExpandedInsight(trip.id, resort.id);
+      if (cached) {
+        setExpandedInsight(cached);
+        setIsExpanding(false);
+        return;
+      }
+
+      const res = await fetch("/api/insights/expand", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ resortId: resort.id, tripConfig: trip }),
+      });
+
+      if (!res.ok) throw new Error("Failed to expand insights");
+
+      const data = await res.json();
+      saveExpandedInsight(trip.id, resort.id, data.insight);
+      setExpandedInsight(data.insight);
+    } catch (e) {
+      console.error(e);
+      setExpandError("Failed to generate deep dive.");
+    } finally {
+      setIsExpanding(false);
+    }
+  };
+
   const handleAddToCalendar = () => {
     const start = formatDateForICS(trip.dateRange.start);
     const end = formatDateForICS(trip.dateRange.end, 1);
@@ -386,11 +431,13 @@ export function ResortCard({
           </div>
         ) : insights && insights.localTips.length > 0 ? (
           <div className="border-2 border-primary p-0 rounded-none bg-muted mt-auto">
-            <div className="flex items-center gap-2 p-3 border-b-2 border-primary bg-background">
-              <Lightbulb className="h-5 w-5 text-primary" strokeWidth={2.5} />
-              <span className="font-mono font-bold text-sm uppercase tracking-tight">
-                Resort Insights
-              </span>
+            <div className="flex items-center justify-between p-3 border-b-2 border-primary bg-background">
+              <div className="flex items-center gap-2">
+                <Lightbulb className="h-5 w-5 text-primary" strokeWidth={2.5} />
+                <span className="font-mono font-bold text-sm uppercase tracking-tight">
+                  AI Resort Insights
+                </span>
+              </div>
             </div>
             <ul className="divide-y-2 divide-primary">
               {insights.localTips.slice(0, 3).map((tip, i) => (
@@ -405,8 +452,50 @@ export function ResortCard({
                 </li>
               ))}
             </ul>
+            <div className="p-2 border-t-2 border-primary bg-background">
+              <Button
+                variant="default"
+                size="sm"
+                className="w-full rounded-none font-bold uppercase tracking-wide gap-2 text-xs h-8"
+                onClick={handleExpandInsight}
+                disabled={isExpanding}
+              >
+                {isExpanding ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : (
+                  <Sparkles className="h-3.5 w-3.5" />
+                )}
+                {isExpanding ? "Analyzing..." : "Get Local's Deep Dive"}
+              </Button>
+              {expandError && (
+                <p className="text-[10px] text-destructive font-mono mt-1 text-center font-bold">
+                  {expandError}
+                </p>
+              )}
+            </div>
           </div>
         ) : null}
+
+        <Dialog
+          open={!!expandedInsight}
+          onOpenChange={(open) => !open && setExpandedInsight(null)}
+        >
+          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto rounded-none border-4 border-primary">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2 font-mono uppercase tracking-tight text-xl">
+                <Sparkles className="h-5 w-5 text-primary" />
+                Variable Conditions Report
+              </DialogTitle>
+              <DialogDescription className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                Generated exclusively for {trip.userProfile.skillLevel}{" "}
+                {trip.userProfile.discipline}
+              </DialogDescription>
+            </DialogHeader>
+            <div className="mt-4 prose prose-sm prose-slate dark:prose-invert max-w-none">
+              <ReactMarkdown>{expandedInsight || ""}</ReactMarkdown>
+            </div>
+          </DialogContent>
+        </Dialog>
       </CardContent>
 
       {isGlobalLoading && (
