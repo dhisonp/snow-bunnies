@@ -29,7 +29,6 @@ export default function RootLayout({
           recursive.variable
         )}
       >
-        <PasswordProtection />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
