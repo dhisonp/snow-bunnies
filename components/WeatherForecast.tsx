@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { type DailyWeather } from "@/lib/types/weather";
 import { useTemperature } from "@/components/TemperatureContext";
-import { Sun, CloudSnow } from "lucide-react";
+import { Sun, CloudSnow, Wind } from "lucide-react";
 
 interface WeatherForecastProps {
   forecast: DailyWeather[];
@@ -15,6 +15,13 @@ export function WeatherForecast({ forecast }: WeatherForecastProps) {
       return Math.round((temp * 9) / 5 + 32);
     }
     return Math.round(temp);
+  };
+
+  const formatWind = (speed: number) => {
+    if (unit === "fahrenheit") {
+      return Math.round(speed * 0.621371);
+    }
+    return Math.round(speed);
   };
 
   return (
@@ -46,6 +53,13 @@ export function WeatherForecast({ forecast }: WeatherForecastProps) {
           </div>
           <div className="text-sm text-blue-600 font-bold">
             {day.snowfallSum > 0 ? `${day.snowfallSum}cm` : "-"}
+          </div>
+          <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
+            <Wind className="h-3 w-3" strokeWidth={2.5} />
+            <span>
+              {formatWind(day.windSpeedMax)}
+              {unit === "fahrenheit" ? "mph" : "km/h"}
+            </span>
           </div>
         </Card>
       ))}
