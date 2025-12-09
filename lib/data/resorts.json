@@ -18,39 +18,71 @@
     "subreddit": "tahoe"
   },
   {
-    "id": "palisades-tahoe",
-    "name": "Palisades Tahoe",
+    "id": "kirkwood",
+    "name": "Kirkwood",
     "region": "Lake Tahoe",
     "state": "CA",
-    "coordinates": { "lat": 39.1969, "lon": -120.2358 },
-    "elevation": { "base": 6200, "summit": 9050 },
-    "trailCount": 270,
-    "liftCount": 37,
+    "coordinates": { "lat": 38.6839, "lon": -120.0681 },
+    "elevation": { "base": 7800, "summit": 9800 },
+    "trailCount": 86,
+    "liftCount": 15,
     "terrainPct": {
-      "beginner": 25,
-      "intermediate": 45,
-      "advanced": 30,
-      "expert": 0
+      "beginner": 12,
+      "intermediate": 30,
+      "advanced": 38,
+      "expert": 20
     },
-    "googlePlaceId": "ChIJn6YCOWB1mYARGd-4eTMPxuE",
     "subreddit": "tahoe"
   },
   {
-    "id": "vail",
-    "name": "Vail",
-    "region": "Vail Valley",
-    "state": "CO",
-    "coordinates": { "lat": 39.6061, "lon": -106.355 },
-    "elevation": { "base": 8120, "summit": 11570 },
-    "trailCount": 195,
-    "liftCount": 31,
+    "id": "okemo",
+    "name": "Okemo",
+    "region": "Vermont",
+    "state": "VT",
+    "coordinates": { "lat": 43.4014, "lon": -72.7167 },
+    "elevation": { "base": 1144, "summit": 3344 },
+    "trailCount": 121,
+    "liftCount": 20,
     "terrainPct": {
-      "beginner": 18,
-      "intermediate": 29,
-      "advanced": 53,
+      "beginner": 33,
+      "intermediate": 37,
+      "advanced": 30,
       "expert": 0
     },
-    "googlePlaceId": "ChIJz4rt_dJwaocRjM8fG7jXy1g",
-    "subreddit": "vail"
+    "subreddit": "icecoast"
+  },
+  {
+    "id": "mount-snow",
+    "name": "Mount Snow",
+    "region": "Vermont",
+    "state": "VT",
+    "coordinates": { "lat": 42.9589, "lon": -72.9219 },
+    "elevation": { "base": 1900, "summit": 3600 },
+    "trailCount": 86,
+    "liftCount": 20,
+    "terrainPct": {
+      "beginner": 16,
+      "intermediate": 66,
+      "advanced": 18,
+      "expert": 0
+    },
+    "subreddit": "icecoast"
+  },
+  {
+    "id": "hunter-mountain",
+    "name": "Hunter Mountain",
+    "region": "Catskills",
+    "state": "NY",
+    "coordinates": { "lat": 42.2003, "lon": -74.2303 },
+    "elevation": { "base": 1600, "summit": 3200 },
+    "trailCount": 67,
+    "liftCount": 13,
+    "terrainPct": {
+      "beginner": 25,
+      "intermediate": 30,
+      "advanced": 45,
+      "expert": 0
+    },
+    "subreddit": "icecoast"
   }
 ]
