@@ -241,8 +241,8 @@ export function ResortCard({
   const isGlobalLoading = isLoading || crowdLoading || insightsLoading;
 
   return (
-    <Card className="h-[600px] flex flex-col overflow-hidden">
-      <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2 shrink-0">
+    <Card className="relative min-h-[600px] overflow-hidden">
+      <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
         <div>
           <CardTitle className="text-xl">{resort.name}</CardTitle>
           <div className="text-sm text-muted-foreground">
@@ -277,11 +277,90 @@ export function ResortCard({
           </Button>
         </div>
       </CardHeader>
+      <CardContent className="grid gap-3 pb-6">
+        <div>
+          {error ? (
+            <div className="min-h-[200px] flex flex-col items-center justify-center py-8 text-destructive">
+              <AlertCircle className="h-8 w-8 mb-2" />
+              <p>{error}</p>
+            </div>
+          ) : (
+            <WeatherForecast forecast={forecast} />
+          )}
+        </div>
 
-      {isGlobalLoading ? (
-        <CardContent className="flex-1 flex flex-col items-center justify-center gap-4">
+        {forecast.length > 0 && !error && (
+          <div className="border-2 border-primary rounded-none p-3 bg-muted">
+            <div className="text-sm font-bold uppercase mb-1 font-mono tracking-tight">
+              Snow Forecast
+            </div>
+            <p className="text-sm font-medium">{getSnowSummary(forecast)}</p>
+          </div>
+        )}
+
+        <div>
+          {firstDayCrowd ? (
+            <>
+              <div className="flex items-center justify-between mb-2">
+                <div className="text-sm font-medium">
+                  Crowd Forecast
+                  {firstDayCrowd.holidayName && (
+                    <span className="text-sm font-bold ml-2">
+                      ({firstDayCrowd.holidayName})
+                    </span>
+                  )}
+                </div>
+                <div
+                  className={`text-sm font-bold px-2 py-0.5 rounded-none border-2 border-black text-white ${getCrowdColorClass(firstDayCrowd.overallLevel)}`}
+                >
+                  {getCrowdLabel(firstDayCrowd.overallLevel)}
+                </div>
+              </div>
+              <CrowdChart
+                data={firstDayCrowd.hourlyBreakdown}
+                peakHours={firstDayCrowd.peakHours}
+                bestArrivalTime={firstDayCrowd.bestArrivalTime}
+              />
+            </>
+          ) : null}
+        </div>
+
+        {insightsError ? (
+          <div className="border-2 border-red-500 bg-red-500/10 p-3 rounded-none flex items-center gap-2 text-red-600">
+            <AlertCircle className="h-5 w-5" />
+            <span className="font-bold text-sm uppercase">
+              Insight Check Failed
+            </span>
+          </div>
+        ) : insights && insights.localTips.length > 0 ? (
+          <div className="border-2 border-primary p-0 rounded-none bg-muted">
+            <div className="flex items-center gap-2 p-3 border-b-2 border-primary bg-background">
+              <Lightbulb className="h-5 w-5 text-primary" strokeWidth={2.5} />
+              <span className="font-mono font-bold text-sm uppercase tracking-tight">
+                Resort Insights
+              </span>
+            </div>
+            <ul className="divide-y-2 divide-primary">
+              {insights.localTips.slice(0, 3).map((tip, i) => (
+                <li
+                  key={i}
+                  className="p-3 text-sm font-medium flex gap-3 leading-snug"
+                >
+                  <span className="font-mono font-bold text-primary shrink-0">
+                    {i + 1}.
+                  </span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+      </CardContent>
+
+      {isGlobalLoading && (
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm transition-all duration-200">
           <Loader2 className="h-12 w-12 animate-spin text-primary" />
-          <div className="text-center space-y-1">
+          <div className="text-center space-y-1 mt-4">
             <p className="font-mono text-lg font-bold uppercase tracking-widest">
               Planning Trip
             </p>
@@ -289,87 +368,7 @@ export function ResortCard({
               Fetching weather & intel...
             </p>
           </div>
-        </CardContent>
-      ) : (
-        <CardContent className="grid gap-3 flex-1 overflow-y-auto">
-          <div>
-            {error ? (
-              <div className="min-h-[100px] flex flex-col items-center justify-center py-4 text-destructive border-2 border-destructive border-dashed bg-destructive/5 rounded-none">
-                <AlertCircle className="h-8 w-8 mb-2" />
-                <p className="font-bold text-sm uppercase">{error}</p>
-              </div>
-            ) : (
-              <WeatherForecast forecast={forecast} />
-            )}
-          </div>
-
-          {forecast.length > 0 && !error && (
-            <div className="border-2 border-primary rounded-none p-3 bg-muted shrink-0">
-              <div className="text-sm font-bold uppercase mb-1 font-mono tracking-tight">
-                Snow Forecast
-              </div>
-              <p className="text-sm font-medium">{getSnowSummary(forecast)}</p>
-            </div>
-          )}
-
-          <div>
-            {firstDayCrowd ? (
-              <>
-                <div className="flex items-center justify-between mb-2">
-                  <div className="text-sm font-medium">
-                    Crowd Forecast
-                    {firstDayCrowd.holidayName && (
-                      <span className="text-sm font-bold ml-2">
-                        ({firstDayCrowd.holidayName})
-                      </span>
-                    )}
-                  </div>
-                  <div
-                    className={`text-sm font-bold px-2 py-0.5 rounded-none border-2 border-black text-white ${getCrowdColorClass(firstDayCrowd.overallLevel)}`}
-                  >
-                    {getCrowdLabel(firstDayCrowd.overallLevel)}
-                  </div>
-                </div>
-                <CrowdChart
-                  data={firstDayCrowd.hourlyBreakdown}
-                  peakHours={firstDayCrowd.peakHours}
-                  bestArrivalTime={firstDayCrowd.bestArrivalTime}
-                />
-              </>
-            ) : null}
-          </div>
-
-          {insightsError ? (
-            <div className="border-2 border-red-500 bg-red-500/10 p-3 rounded-none flex items-center gap-2 text-red-600 shrink-0">
-              <AlertCircle className="h-5 w-5" />
-              <span className="font-bold text-sm uppercase">
-                Insight Check Failed
-              </span>
-            </div>
-          ) : insights && insights.localTips.length > 0 ? (
-            <div className="border-2 border-primary p-0 rounded-none bg-muted shrink-0">
-              <div className="flex items-center gap-2 p-3 border-b-2 border-primary bg-background">
-                <Lightbulb className="h-5 w-5 text-primary" strokeWidth={2.5} />
-                <span className="font-mono font-bold text-sm uppercase tracking-tight">
-                  Resort Insights
-                </span>
-              </div>
-              <ul className="divide-y-2 divide-primary">
-                {insights.localTips.slice(0, 3).map((tip, i) => (
-                  <li
-                    key={i}
-                    className="p-3 text-sm font-medium flex gap-3 leading-snug"
-                  >
-                    <span className="font-mono font-bold text-primary shrink-0">
-                      {i + 1}.
-                    </span>
-                    <span>{tip}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-        </CardContent>
+        </div>
       )}
     </Card>
   );
