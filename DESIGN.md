@@ -4,6 +4,12 @@
 
 The design of Snow Bunnies follows a **Brutalist** / **Old School Internet** aesthetic. It prioritizes function, high contrast, and structural clarity over modern softness. The interface is characterized by sharp edges, thick borders, and hard shadows.
 
+## Typography
+
+- **Font Family**: Recursive (Variable)
+- **Style**: Monospace & punchy.
+- **Weights**: Heavier weights (Medium/Semibold) preferred for impact.
+
 ## Design Tokens
 
 ### Radius

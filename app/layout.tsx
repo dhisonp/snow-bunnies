@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono } from "next/font/google";
+import { Recursive } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TemperatureProvider } from "@/components/TemperatureContext";
 
-const ibmPlexMono = IBM_Plex_Mono({
+const recursive = Recursive({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-ibm-plex-mono",
+  variable: "--font-recursive",
 });
 
 export const metadata: Metadata = {
@@ -24,8 +23,8 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          ibmPlexMono.variable
+          "min-h-screen bg-background font-sans antialiased font-medium",
+          recursive.variable
         )}
       >
         <TemperatureProvider>{children}</TemperatureProvider>
