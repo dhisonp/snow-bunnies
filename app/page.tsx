@@ -58,9 +58,11 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       {/* Header */}
       <header className="border-b">
-        <div className="container mx-auto px-3 py-3 flex items-center justify-between">
-          <h1 className="text-2xl font-bold tracking-tight">Snow Bunnies</h1>
-          <div className="flex items-center gap-2">
+        <div className="container mx-auto px-3 py-3 flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-0">
+          <h1 className="text-2xl font-bold tracking-tight text-center md:text-left">
+            Snow Bunnies
+          </h1>
+          <div className="flex items-center gap-2 flex-wrap justify-center md:flex-nowrap md:justify-end">
             <Link href="/upcoming">
               <Button variant="outline" size="sm">
                 <Sparkles className="mr-2 h-4 w-4" /> Upcoming
