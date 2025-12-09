@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { TripForm } from "@/components/TripForm";
 import { ResortCard } from "@/components/ResortCard";
 import { TemperatureToggle } from "@/components/TemperatureToggle";
+import { ModeToggle } from "@/components/mode-toggle";
 import { type TripConfig } from "@/lib/types/trip";
 import { getTrips, deleteTrip } from "@/lib/storage";
 import resortsData from "@/lib/data/resorts.json";
@@ -60,6 +61,7 @@ export default function Home() {
           <h1 className="text-2xl font-bold tracking-tight">Snow Bunnies</h1>
           <div className="flex items-center gap-2">
             <TemperatureToggle />
+            <ModeToggle />
             <Button onClick={handleCreate} size="sm">
               <Plus className="mr-2 h-4 w-4" /> New Trip
             </Button>
@@ -98,10 +100,6 @@ export default function Home() {
           </div>
         )}
       </main>
-
-      <footer className="border-t py-6 text-center text-sm text-muted-foreground">
-        <div>&copy; 2025 Snow Bunnies</div>
-      </footer>
 
       <TripForm
         open={isFormOpen}
