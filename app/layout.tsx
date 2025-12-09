@@ -12,8 +12,8 @@ const recursive = Recursive({
 });
 
 export const metadata: Metadata = {
-  title: "Snow Bunnies - Ski Trip Planner",
-  description: "Plan your ski trip with weather, crowds, and AI insights.",
+  title: "Snow Bunnies",
+  description: "Ski Trips Made Easier, Cooler",
 };
 
 export default function RootLayout({
