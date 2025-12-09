@@ -996,42 +996,42 @@ Each data-fetching component should handle:
 
 ### Phase 1: Core MVP (Days 1-2)
 
-- [ ] Next.js setup with Tailwind + shadcn
-- [ ] Static resorts.json
-- [ ] LocalStorage CRUD for trips
-- [ ] TripForm component
-- [ ] ResortCard layout (no data)
-- [ ] Basic page layout
+- [x] Next.js setup with Tailwind + shadcn
+- [x] Static resorts.json
+- [x] LocalStorage CRUD for trips
+- [x] TripForm component
+- [x] ResortCard layout (no data)
+- [x] Basic page layout
 
 ### Phase 2: Weather Integration (Day 3)
 
-- [ ] Open-Meteo forecast API
+- [x] Open-Meteo forecast API
 - [ ] Open-Meteo historical API
-- [ ] WeatherForecast component
-- [ ] HistoricalComparison component
+- [x] WeatherForecast component
+- [ ] HistoricalComparison component (using simple snow summary instead)
 - [ ] Cache layer
 
 ### Phase 3: Crowd Estimation (Day 4)
 
-- [ ] Holidays.json integration
-- [ ] Heuristic crowd calculator
-- [ ] Google Popular Times integration (optional)
-- [ ] CrowdChart component
-- [ ] CrowdCalendar component
+- [x] Holidays.json integration
+- [x] Heuristic crowd calculator
+- [ ] Google Popular Times integration (optional, post-MVP)
+- [x] CrowdChart component
+- [ ] CrowdCalendar component (post-MVP)
 
 ### Phase 4: AI Insights (Day 5)
 
-- [ ] Reddit scraper script
-- [ ] Claude API integration
-- [ ] Resort insights generation
-- [ ] Trip brief generation
-- [ ] InsightsPanel component
+- [ ] Reddit scraper script (post-MVP)
+- [x] Gemini API integration
+- [x] Resort insights generation
+- [x] Trip brief generation (API ready)
+- [x] InsightsPanel component (integrated into ResortCard)
 
 ### Phase 5: Polish (Day 6)
 
-- [ ] Error states
-- [ ] Loading skeletons
-- [ ] Mobile responsiveness pass
+- [x] Error states
+- [x] Loading skeletons
+- [x] Mobile responsiveness pass
 - [ ] PWA setup (optional)
 - [ ] Deploy to Vercel
 

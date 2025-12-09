@@ -123,13 +123,44 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
     onOpenChange(false);
   };
 
+  const getTodayStr = () => {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  const getMaxDateStr = () => {
+    const d = new Date();
+    d.setDate(d.getDate() + 15);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  const todayStr = getTodayStr();
+  const maxDateStr = getMaxDateStr();
+
+  const handleStartChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setDateStart(val);
+    setError(null);
+    // If end date exists and is before new start date, update it
+    if (dateEnd && val > dateEnd) {
+      setDateEnd(val);
+    }
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{trip ? "Edit Trip" : "Plan a New Trip"}</DialogTitle>
           <DialogDescription>
-            Enter your destination and dates to get started.
+            Enter your destination and dates to get started. Weather forecasts
+            are available for the next 16 days.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="grid gap-4 py-4">
@@ -144,10 +175,9 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
                 id="start"
                 type="date"
                 value={dateStart}
-                onChange={(e) => {
-                  setDateStart(e.target.value);
-                  setError(null);
-                }}
+                min={todayStr}
+                max={maxDateStr}
+                onChange={handleStartChange}
                 required
               />
             </div>
@@ -157,6 +187,8 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
                 id="end"
                 type="date"
                 value={dateEnd}
+                min={dateStart || todayStr}
+                max={maxDateStr}
                 onChange={(e) => {
                   setDateEnd(e.target.value);
                   setError(null);

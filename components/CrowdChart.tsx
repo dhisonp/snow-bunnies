@@ -11,6 +11,14 @@ export function CrowdChart({
   peakHours,
   bestArrivalTime,
 }: CrowdChartProps) {
+  if (!data || data.length === 0) {
+    return (
+      <div className="text-sm text-muted-foreground text-center py-4">
+        No crowd data available
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-2">
       <div className="flex items-end h-24 gap-1">

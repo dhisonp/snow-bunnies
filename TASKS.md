@@ -12,13 +12,13 @@
   - [x] Create layout and main page <!-- id: 9 -->
   - [x] Implement ResortCard <!-- id: 10 -->
   - [x] Implement specific UI components (shadcn wrappers) <!-- id: 11 -->
-- [ ] Data Services <!-- id: 12 -->
+- [x] Data Services <!-- id: 12 -->
   - [x] Open-Meteo integration (wired to ResortCard) <!-- id: 13 -->
-  - [ ] Crowd data service <!-- id: 14 -->
+  - [x] Crowd data service (heuristic-based with holidays.json) <!-- id: 14 -->
   - [x] AI Insights API <!-- id: 15 -->
-  - [ ] AI Insights UI <!-- id: 16 -->
-  - [ ] Implement Scrapers (Reddit/Forums) for community data <!-- id: 20 -->
-- [ ] Features <!-- id: 16 -->
-  - [ ] Trip creation/editing <!-- id: 17 -->
-  - [ ] Dashboard view <!-- id: 18 -->
-  - [ ] Trip detail view <!-- id: 19 -->
+  - [x] AI Insights UI (wired to ResortCard) <!-- id: 16 -->
+  - [ ] Implement Scrapers (Reddit/Forums) for community data <!-- id: 20 --> (post-MVP)
+- [x] Features <!-- id: 16 -->
+  - [x] Trip creation/editing <!-- id: 17 -->
+  - [x] Dashboard view <!-- id: 18 -->
+  - [ ] Trip detail view <!-- id: 19 --> (post-MVP)
