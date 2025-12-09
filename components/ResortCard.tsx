@@ -514,7 +514,7 @@ export function ResortCard({
       </CardContent>
 
       {isGlobalLoading && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-white backdrop-blur-sm transition-all duration-200">
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-white dark:bg-black backdrop-blur-sm transition-all duration-200">
           <Loader2 className="h-12 w-12 animate-spin text-primary" />
           <div className="text-center space-y-1 mt-4">
             <p className="font-mono text-lg font-bold uppercase tracking-widest">
