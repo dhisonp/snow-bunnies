@@ -1,6 +1,7 @@
 import { type TripConfig } from "@/lib/types/trip";
 
 const STORAGE_KEY = "snowbunnies_trips";
+export const MAX_TRIPS = 3;
 
 export const getTrips = (): TripConfig[] => {
   if (typeof window === "undefined") return [];
@@ -20,6 +21,9 @@ export const saveTrip = (trip: TripConfig): void => {
   if (index >= 0) {
     trips[index] = trip;
   } else {
+    if (trips.length >= MAX_TRIPS) {
+      throw new Error(`Maximum of ${MAX_TRIPS} trips allowed`);
+    }
     trips.push(trip);
   }
   localStorage.setItem(STORAGE_KEY, JSON.stringify(trips));

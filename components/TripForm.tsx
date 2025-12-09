@@ -116,9 +116,13 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
       updatedAt: new Date().toISOString(),
     };
 
-    saveTrip(newTrip);
-    onSave();
-    onOpenChange(false);
+    try {
+      saveTrip(newTrip);
+      onSave();
+      onOpenChange(false);
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "Failed to save trip");
+    }
   };
 
   const getTodayStr = () => {
