@@ -457,7 +457,7 @@ export function ResortCard({
             </div>
             <div className="p-2 bg-background">
               <Button
-                variant="outline"
+                variant="ghost"
                 size="sm"
                 className="w-full rounded-none font-bold uppercase tracking-wide gap-2 text-xs h-8 border-2"
                 onClick={() => setShowCommunityInsights(true)}

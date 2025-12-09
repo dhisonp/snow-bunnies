@@ -35,5 +35,7 @@
 
 - [x] Mobile form 'clashing' date fields
 - [x] Review code quality
+- [ ] Remove variant ghost
+- [ ] Set globalized styling?
 - [ ] Allow "per-day" details for crowd, etc.
 - [ ] MANUAL code review
