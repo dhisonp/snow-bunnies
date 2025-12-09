@@ -56,7 +56,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       {/* Header */}
       <header className="border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-3 py-3 flex items-center justify-between">
           <h1 className="text-2xl font-bold tracking-tight">Snow Bunnies</h1>
           <div className="flex items-center gap-2">
             <TemperatureToggle />
@@ -67,21 +67,21 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8 flex-1">
+      <main className="container mx-auto px-3 py-4 flex-1">
         {trips.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center space-y-4">
             <div className="text-6xl">🐰</div>
             <h2 className="text-2xl font-semibold">No trips planned yet</h2>
             <p className="text-muted-foreground max-w-md">
-              Get started by planning your next powder adventure. We'll help you
-              find the best weather and avoid the crowds.
+              Get started by planning your next powder adventure. We&apos;ll
+              help you find the best weather and avoid the crowds.
             </p>
             <Button size="lg" onClick={handleCreate}>
               Plan First Trip
             </Button>
           </div>
         ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {trips.map((trip) => {
               const resort = getResort(trip.resortId);
               if (!resort) return null;

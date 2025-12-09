@@ -68,7 +68,7 @@ export function ResortPicker({ value, onChange }: ResortPickerProps) {
                     )}
                   />
                   {resort.name}
-                  <span className="ml-2 text-xs text-muted-foreground">
+                  <span className="ml-2 text-sm font-medium">
                     {resort.region}, {resort.state}
                   </span>
                 </CommandItem>

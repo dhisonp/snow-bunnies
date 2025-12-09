@@ -9,7 +9,14 @@ import { type ResortInsights } from "@/lib/types/insights";
 import { WeatherForecast } from "./WeatherForecast";
 import { CrowdChart } from "./CrowdChart";
 import { getResortForecast } from "@/lib/services/open-meteo";
-import { Pencil, Trash2, Loader2, AlertCircle, Lightbulb } from "lucide-react";
+import {
+  Pencil,
+  Trash2,
+  Loader2,
+  AlertCircle,
+  Lightbulb,
+  CalendarPlus,
+} from "lucide-react";
 
 interface ResortCardProps {
   trip: TripConfig;
@@ -69,6 +76,18 @@ function getSnowSummary(forecast: DailyWeather[]): string {
     return `Moderate snowfall expected: ${totalSnow.toFixed(0)}cm total over ${forecast.length} days.`;
   }
   return `Light snowfall expected: ${totalSnow.toFixed(0)}cm total over ${forecast.length} days.`;
+}
+
+function formatDateForICS(dateStr: string, addDays = 0): string {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const date = new Date(y, m - 1, d);
+  if (addDays) {
+    date.setDate(date.getDate() + addDays);
+  }
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}${month}${day}`;
 }
 
 export function ResortCard({
@@ -189,9 +208,41 @@ export function ResortCard({
 
   const firstDayCrowd = crowdData[0];
 
+  const handleAddToCalendar = () => {
+    const start = formatDateForICS(trip.dateRange.start);
+    const end = formatDateForICS(trip.dateRange.end, 1);
+
+    const icsContent = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "BEGIN:VEVENT",
+      `DTSTART;VALUE=DATE:${start}`,
+      `DTEND;VALUE=DATE:${end}`,
+      `SUMMARY:Ski Trip to ${resort.name}`,
+      `DESCRIPTION:Skiing at ${resort.name} in ${resort.region}, ${resort.state}.`,
+      `LOCATION:${resort.name}, ${resort.state}`,
+      "END:VEVENT",
+      "END:VCALENDAR",
+    ].join("\r\n");
+
+    const blob = new Blob([icsContent], {
+      type: "text/calendar;charset=utf-8",
+    });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url; // Use the blob URL object
+    link.setAttribute("download", "ski-trip.ics");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  };
+
+  const isGlobalLoading = isLoading || crowdLoading || insightsLoading;
+
   return (
-    <Card className="overflow-hidden">
-      <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
+    <Card className="h-[600px] flex flex-col overflow-hidden">
+      <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2 shrink-0">
         <div>
           <CardTitle className="text-xl">{resort.name}</CardTitle>
           <div className="text-sm text-muted-foreground">
@@ -200,11 +251,19 @@ export function ResortCard({
           <div className="text-sm font-medium mt-1">
             {trip.dateRange.start} - {trip.dateRange.end}
           </div>
-          <div className="text-xs text-muted-foreground capitalize">
+          <div className="text-sm font-bold capitalize">
             {trip.userProfile.skillLevel} {trip.userProfile.discipline}
           </div>
         </div>
         <div className="flex gap-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleAddToCalendar}
+            title="Add to Apple Calendar"
+          >
+            <CalendarPlus className="h-4 w-4" />
+          </Button>
           <Button variant="ghost" size="icon" onClick={onEdit}>
             <Pencil className="h-4 w-4" />
           </Button>
@@ -218,97 +277,100 @@ export function ResortCard({
           </Button>
         </div>
       </CardHeader>
-      <CardContent className="grid gap-4">
-        <div className="min-h-[200px]">
-          {isLoading ? (
-            <div className="flex flex-col items-center justify-center h-full py-8 text-muted-foreground">
-              <Loader2 className="h-8 w-8 animate-spin mb-2" />
-              <p>Loading forecast...</p>
-            </div>
-          ) : error ? (
-            <div className="flex flex-col items-center justify-center h-full py-8 text-destructive">
-              <AlertCircle className="h-8 w-8 mb-2" />
-              <p>{error}</p>
-            </div>
-          ) : (
-            <WeatherForecast forecast={forecast} />
-          )}
-        </div>
 
-        {forecast.length > 0 && (
-          <div className="border rounded-md p-3 bg-muted/20">
-            <div className="text-sm font-medium mb-1">Snow Forecast</div>
-            <p className="text-xs text-muted-foreground">
-              {getSnowSummary(forecast)}
+      {isGlobalLoading ? (
+        <CardContent className="flex-1 flex flex-col items-center justify-center gap-4">
+          <Loader2 className="h-12 w-12 animate-spin text-primary" />
+          <div className="text-center space-y-1">
+            <p className="font-mono text-lg font-bold uppercase tracking-widest">
+              Planning Trip
+            </p>
+            <p className="text-xs text-muted-foreground font-mono uppercase">
+              Fetching weather & intel...
             </p>
           </div>
-        )}
-
-        <div>
-          {crowdLoading ? (
-            <div className="flex items-center justify-center py-4">
-              <Loader2 className="h-6 w-6 animate-spin" />
-            </div>
-          ) : firstDayCrowd ? (
-            <>
-              <div className="flex items-center justify-between mb-2">
-                <div className="text-sm font-medium">
-                  Crowd Forecast
-                  {firstDayCrowd.holidayName && (
-                    <span className="text-xs text-muted-foreground ml-2">
-                      ({firstDayCrowd.holidayName})
-                    </span>
-                  )}
-                </div>
-                <div
-                  className={`text-xs px-2 py-0.5 rounded-full text-white ${getCrowdColorClass(firstDayCrowd.overallLevel)}`}
-                >
-                  {getCrowdLabel(firstDayCrowd.overallLevel)}
-                </div>
+        </CardContent>
+      ) : (
+        <CardContent className="grid gap-3 flex-1 overflow-y-auto">
+          <div>
+            {error ? (
+              <div className="min-h-[100px] flex flex-col items-center justify-center py-4 text-destructive border-2 border-destructive border-dashed bg-destructive/5 rounded-none">
+                <AlertCircle className="h-8 w-8 mb-2" />
+                <p className="font-bold text-sm uppercase">{error}</p>
               </div>
-              <CrowdChart
-                data={firstDayCrowd.hourlyBreakdown}
-                peakHours={firstDayCrowd.peakHours}
-                bestArrivalTime={firstDayCrowd.bestArrivalTime}
-              />
-            </>
-          ) : null}
-        </div>
-
-        {insightsLoading ? (
-          <div className="bg-blue-50 dark:bg-blue-950/20 p-3 rounded-md">
-            <div className="flex items-center gap-2">
-              <Loader2 className="h-5 w-5 animate-spin" />
-              <span className="font-medium text-sm">Loading insights...</span>
-            </div>
+            ) : (
+              <WeatherForecast forecast={forecast} />
+            )}
           </div>
-        ) : insightsError ? (
-          <div className="bg-red-50 dark:bg-red-950/20 p-3 rounded-md">
-            <div className="flex items-center gap-2">
-              <AlertCircle className="h-5 w-5 text-red-600" />
-              <span className="font-medium text-sm text-red-600">
-                Could not load insights
+
+          {forecast.length > 0 && !error && (
+            <div className="border-2 border-primary rounded-none p-3 bg-muted shrink-0">
+              <div className="text-sm font-bold uppercase mb-1 font-mono tracking-tight">
+                Snow Forecast
+              </div>
+              <p className="text-sm font-medium">{getSnowSummary(forecast)}</p>
+            </div>
+          )}
+
+          <div>
+            {firstDayCrowd ? (
+              <>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-sm font-medium">
+                    Crowd Forecast
+                    {firstDayCrowd.holidayName && (
+                      <span className="text-sm font-bold ml-2">
+                        ({firstDayCrowd.holidayName})
+                      </span>
+                    )}
+                  </div>
+                  <div
+                    className={`text-sm font-bold px-2 py-0.5 rounded-none border-2 border-black text-white ${getCrowdColorClass(firstDayCrowd.overallLevel)}`}
+                  >
+                    {getCrowdLabel(firstDayCrowd.overallLevel)}
+                  </div>
+                </div>
+                <CrowdChart
+                  data={firstDayCrowd.hourlyBreakdown}
+                  peakHours={firstDayCrowd.peakHours}
+                  bestArrivalTime={firstDayCrowd.bestArrivalTime}
+                />
+              </>
+            ) : null}
+          </div>
+
+          {insightsError ? (
+            <div className="border-2 border-red-500 bg-red-500/10 p-3 rounded-none flex items-center gap-2 text-red-600 shrink-0">
+              <AlertCircle className="h-5 w-5" />
+              <span className="font-bold text-sm uppercase">
+                Insight Check Failed
               </span>
             </div>
-          </div>
-        ) : insights && insights.localTips.length > 0 ? (
-          <div className="bg-blue-50 dark:bg-blue-950/20 p-3 rounded-md">
-            <div className="flex items-center gap-2 mb-2">
-              <Lightbulb
-                className="h-5 w-5 text-yellow-600"
-                strokeWidth={2.5}
-                strokeLinecap="square"
-              />
-              <span className="font-medium text-sm">Resort Insights</span>
+          ) : insights && insights.localTips.length > 0 ? (
+            <div className="border-2 border-primary p-0 rounded-none bg-muted shrink-0">
+              <div className="flex items-center gap-2 p-3 border-b-2 border-primary bg-background">
+                <Lightbulb className="h-5 w-5 text-primary" strokeWidth={2.5} />
+                <span className="font-mono font-bold text-sm uppercase tracking-tight">
+                  Resort Insights
+                </span>
+              </div>
+              <ul className="divide-y-2 divide-primary">
+                {insights.localTips.slice(0, 3).map((tip, i) => (
+                  <li
+                    key={i}
+                    className="p-3 text-sm font-medium flex gap-3 leading-snug"
+                  >
+                    <span className="font-mono font-bold text-primary shrink-0">
+                      {i + 1}.
+                    </span>
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="text-sm space-y-1 list-disc list-inside text-muted-foreground">
-              {insights.localTips.slice(0, 3).map((tip, i) => (
-                <li key={i}>{tip}</li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-      </CardContent>
+          ) : null}
+        </CardContent>
+      )}
     </Card>
   );
 }

@@ -31,13 +31,13 @@ export function CrowdChart({
               backgroundColor: `var(--crowd-${hour.crowdLevel})`,
             }}
           >
-            <div className="opacity-0 group-hover:opacity-100 absolute bottom-full mb-1 text-xs bg-popover border p-1 rounded whitespace-nowrap z-10">
+            <div className="opacity-0 group-hover:opacity-100 absolute bottom-full mb-1 text-sm font-bold bg-popover border-2 border-foreground p-1 rounded-none whitespace-nowrap z-10">
               {hour.hour}:00 - Level {hour.crowdLevel}
             </div>
           </div>
         ))}
       </div>
-      <div className="flex justify-between text-xs text-muted-foreground">
+      <div className="flex justify-between text-sm font-bold">
         <span>7am</span>
         <span>12pm</span>
         <span>5pm</span>

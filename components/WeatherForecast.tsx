@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { type DailyWeather } from "@/lib/types/weather";
 import { useTemperature } from "@/components/TemperatureContext";
 import { Sun, CloudSnow } from "lucide-react";
@@ -18,9 +18,9 @@ export function WeatherForecast({ forecast }: WeatherForecastProps) {
   };
 
   return (
-    <div className="grid grid-cols-4 gap-2">
+    <div className="grid grid-cols-4 gap-1">
       {forecast.map((day) => (
-        <Card key={day.date} className="text-center p-2">
+        <Card key={day.date} className="text-center p-1">
           <div className="text-sm font-semibold">
             {new Date(day.date).toLocaleDateString("en-US", {
               weekday: "short",
@@ -41,10 +41,10 @@ export function WeatherForecast({ forecast }: WeatherForecastProps) {
               />
             )}
           </div>
-          <div className="text-xs text-muted-foreground">
+          <div className="text-sm font-bold">
             {formatTemp(day.tempMin)}° / {formatTemp(day.tempMax)}°
           </div>
-          <div className="text-xs text-blue-500 font-medium">
+          <div className="text-sm text-blue-600 font-bold">
             {day.snowfallSum > 0 ? `${day.snowfallSum}cm` : "-"}
           </div>
         </Card>
