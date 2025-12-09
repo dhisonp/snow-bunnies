@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#f0f9ff" rx="100"/>
+  <!-- Ears -->
+  <ellipse cx="180" cy="180" rx="40" ry="120" fill="#fff" stroke="#1e293b" stroke-width="12" transform="rotate(-15 180 180)"/>
+  <ellipse cx="332" cy="180" rx="40" ry="120" fill="#fff" stroke="#1e293b" stroke-width="12" transform="rotate(15 332 180)"/>
+  <!-- Head -->
+  <circle cx="256" cy="320" r="130" fill="#fff" stroke="#1e293b" stroke-width="12"/>
+  <!-- Goggles -->
+  <rect x="156" y="270" width="200" height="80" rx="40" fill="#3b82f6" stroke="#1e293b" stroke-width="12"/>
+  <path d="M180 290 Q220 310 256 290" stroke="rgba(255,255,255,0.4)" stroke-width="10" fill="none"/>
+  <!-- Nose/Mouth -->
+  <path d="M256 380 L246 390 L266 390 Z" fill="#f43f5e"/>
+  <path d="M246 390 Q226 410 206 390" fill="none" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+  <path d="M266 390 Q286 410 306 390" fill="none" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+</svg>
