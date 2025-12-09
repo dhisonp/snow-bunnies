@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🐰 Snow Bunnies
 
-## Getting Started
+**Plan the perfect ski trip with AI-powered insights, weather predictions, and crowd forecasting.**
 
-First, run the development server:
+A brutalist-designed, mobile-first web app that combines real-time weather data, historical analysis, and Claude AI to help you find the best days to hit the slopes.
+
+## ✨ Features
+
+- **🤖 AI Resort Insights** — Claude-powered recommendations tailored to your skill level and trip dates
+- **🌤️ Smart Weather Forecasting** — 16-day forecasts with historical data fallback for long-range planning
+- **👥 Crowd Predictions** — Avoid the lift lines with intelligent crowd level estimates
+- **📱 Mobile-First Design** — Brutalist UI optimized for on-the-go trip planning
+- **🌙 Dark Mode** — Easy on the eyes, whether you're planning at dawn or après-ski
+- **💾 Zero Auth Required** — All data stored locally—no sign-ups, no servers, no hassle
+
+## 🚀 Quick Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) and start planning your next powder day.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Next.js 14** • **TypeScript** • **Tailwind CSS** • **shadcn/ui** • **Anthropic Claude API** • **Open-Meteo API**
 
-## Learn More
+## 📸 Screenshots
 
-To learn more about Next.js, take a look at the following resources:
+_Coming soon_
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with ⛷️ by skiers, for skiers.
