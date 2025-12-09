@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { TripForm } from "@/components/TripForm";
 import { ResortCard } from "@/components/ResortCard";
@@ -10,7 +11,7 @@ import { type TripConfig } from "@/lib/types/trip";
 import { getTrips, deleteTrip } from "@/lib/storage";
 import resortsData from "@/lib/data/resorts.json";
 import { type Resort } from "@/lib/types/resort";
-import { Plus } from "lucide-react";
+import { Plus, Sparkles } from "lucide-react";
 
 export default function Home() {
   const [trips, setTrips] = React.useState<TripConfig[]>([]);
@@ -60,6 +61,11 @@ export default function Home() {
         <div className="container mx-auto px-3 py-3 flex items-center justify-between">
           <h1 className="text-2xl font-bold tracking-tight">Snow Bunnies</h1>
           <div className="flex items-center gap-2">
+            <Link href="/upcoming">
+              <Button variant="outline" size="sm">
+                <Sparkles className="mr-2 h-4 w-4" /> Upcoming
+              </Button>
+            </Link>
             <TemperatureToggle />
             <ModeToggle />
             <Button onClick={handleCreate} size="sm">
