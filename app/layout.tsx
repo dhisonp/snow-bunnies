@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { TemperatureProvider } from "@/components/TemperatureContext";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -27,7 +28,7 @@ export default function RootLayout({
           ibmPlexMono.variable
         )}
       >
-        {children}
+        <TemperatureProvider>{children}</TemperatureProvider>
       </body>
     </html>
   );

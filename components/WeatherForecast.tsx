@@ -1,11 +1,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DailyWeather } from "@/lib/types/weather";
+import { useTemperature } from "@/components/TemperatureContext";
 
 interface WeatherForecastProps {
   forecast: DailyWeather[];
 }
 
 export function WeatherForecast({ forecast }: WeatherForecastProps) {
+  const { unit } = useTemperature();
+
+  const formatTemp = (temp: number) => {
+    if (unit === "fahrenheit") {
+      return Math.round((temp * 9) / 5 + 32);
+    }
+    return Math.round(temp);
+  };
+
   return (
     <div className="grid grid-cols-4 gap-2">
       {forecast.map((day) => (
@@ -17,7 +27,7 @@ export function WeatherForecast({ forecast }: WeatherForecastProps) {
             {day.weatherCode > 50 ? "🌨️" : "☀️"}
           </div>
           <div className="text-xs text-muted-foreground">
-            {day.tempMin}° / {day.tempMax}°
+            {formatTemp(day.tempMin)}° / {formatTemp(day.tempMax)}°
           </div>
           <div className="text-xs text-blue-500 font-medium">
             {day.snowfallSum > 0 ? `${day.snowfallSum}cm` : "-"}

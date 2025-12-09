@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { TripForm } from "@/components/TripForm";
 import { ResortCard } from "@/components/ResortCard";
+import { TemperatureToggle } from "@/components/TemperatureToggle";
 import { TripConfig } from "@/lib/types/trip";
 import { getTrips, deleteTrip } from "@/lib/storage";
 import resortsData from "@/lib/data/resorts.json";
@@ -56,9 +57,12 @@ export default function Home() {
       <header className="border-b">
          <div className="container mx-auto px-4 py-4 flex items-center justify-between">
              <h1 className="text-2xl font-bold tracking-tight">Snow Bunnies</h1>
-             <Button onClick={handleCreate} size="sm">
-                <Plus className="mr-2 h-4 w-4" /> New Trip
-             </Button>
+             <div className="flex items-center gap-2">
+                 <TemperatureToggle />
+                 <Button onClick={handleCreate} size="sm">
+                    <Plus className="mr-2 h-4 w-4" /> New Trip
+                 </Button>
+             </div>
          </div>
       </header>
 
