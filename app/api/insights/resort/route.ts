@@ -94,18 +94,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Resort not found" }, { status: 404 });
     }
 
-    // 3. Get scraped content (Mocked for now as scraper isn't implemented)
-    // In a real implementation, we would read from another cache or separate DB
-    const scrapedContent = `
-    [Mock Scraped Data for ${resort.name}]
-    - Users say the lines at the main gondola are terrible on weekends.
-    - "Hidden Valley" run is great for avoiding crowds.
-    - The cafeteria food is overpriced, better to eat at the base village.
-    - Parking lot fills up by 8:30 AM on powder days.
-    `;
-
-    // 4. Generate AI insights
-    const insights = await generateResortInsights(resort, scrapedContent);
+    // 3. Generate AI insights (using internal knowledge for now)
+    const insights = await generateResortInsights(resort);
 
     // 5. Cache the result
     await startCacheInsights(insights);

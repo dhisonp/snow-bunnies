@@ -1,0 +1,67 @@
+{
+  "heavenly-tahoe": {
+    "resortId": "heavenly-tahoe",
+    "generatedAt": "2025-12-09T04:51:15.547Z",
+    "sources": ["Reddit", "Forums"],
+    "overview": "Heavenly is a massive resort straddling the California and Nevada states, renowned for its breathtaking panoramic views of Lake Tahoe from nearly every run. It boasts an incredibly diverse terrain spanning over 4,800 acres, from wide-open groomers to challenging tree runs and steep canyons, catering to all skill levels with its unique dual-state experience.",
+    "localTips": [
+      "Start on the Nevada side (Boulder or Stagecoach) on busy days to avoid the Gondola crowds and access the more open, faster lifts early.",
+      "Utilize the Sky Express lift early to access prime intermediate terrain and get to the California side efficiently before it gets backed up.",
+      "For fresh tracks on a powder day, head straight to Mott Canyon via the Mott Canyon gate (requires traversing) or Killebrew Canyon via the Comet Express.",
+      "Catch a sunset from the Ridge Run or any run overlooking the lake on the California side; the views are unparalleled, especially as the last light hits.",
+      "On sunny days, explore the tree runs around the Milky Way Bowl for softer snow and fewer crowds than the main groomed trails.",
+      "Avoid eating at the Tamarack Lodge around peak lunch (12-1:30 PM); it gets incredibly crowded. Instead, pack a sandwich or try Stagecoach Lodge or East Peak Lodge for slightly less chaos.",
+      "Keep an eye on the wind; the upper mountain lifts (Sky Express, Dipper Express, Comet Express) are often the first to go on high-wind days, shifting traffic to lower lifts.",
+      "If you're an advanced rider, always check if Mott and Killebrew Canyons are open; they offer some of Heavenly's most challenging and rewarding terrain."
+    ],
+    "bestRunsByLevel": {
+      "beginner": ["Patsy's", "Maggie's", "Boulder Bowl"],
+      "intermediate": [
+        "California Trail",
+        "Ridge Run",
+        "Orion",
+        "Liz's",
+        "Big Dipper"
+      ],
+      "advanced": [
+        "The Face",
+        "Gunbarrel",
+        "Powderbowl",
+        "Milky Way (trees)",
+        "Mott Canyon (initial entrances)"
+      ],
+      "expert": [
+        "Killebrew Canyon",
+        "Mott Canyon (Steepest sections like Jackpot or Promenade)",
+        "East Bowl (unmarked trees off Stagecoach)"
+      ]
+    },
+    "hiddenGems": [
+      "The unmarked glades off of Stagecoach Express, particularly looker's left near the 'East Bowl' area for surprising powder stashes.",
+      "The views from the top of the Gunbarrel Express, especially on a clear morning, offer a unique perspective of the lake and surrounding peaks.",
+      "The quiet, often overlooked tree runs accessible from the Dipper Express on the Nevada side, especially after a fresh snowfall.",
+      "The small 'Sky Forest' area near the top of Sky Express; often untracked and playful for advanced intermediates."
+    ],
+    "avoidList": [
+      "The Gondola mid-station food court during peak lunch hours; it's incredibly crowded and overpriced.",
+      "The Galaxy Express lift on busy weekends; it can be slow and feeds into already crowded areas.",
+      "Relying solely on the Gondola for uphill travel if you're comfortable driving to a base lodge; the lines can be daunting.",
+      "The main Gondola Base retail shops for serious gear purchases; better deals are often found in independent shops in town."
+    ],
+    "foodRecs": {
+      "onMountain": [
+        "Stagecoach Lodge (Nevada side): Less crowded than Tamarack, solid chili and burgers, great deck.",
+        "California Lodge Cafeteria (California side): Decent breakfast burritos and a good place to warm up, gets crowded but moves fast.",
+        "East Peak Lodge (Nevada side): Good for a quick snack or warm drink, often overlooked."
+      ],
+      "base": [
+        "Basecamp Pizza (Heavenly Village): Lively atmosphere, great wood-fired pizzas, live music.",
+        "Azul Latin Kitchen (Heavenly Village): Excellent tacos and margaritas, good for aprés-ski.",
+        "Cold Water Brewery & Grill (South Lake Tahoe): Local craft beer and elevated pub fare, a bit further but worth the drive.",
+        "Driftwood Cafe (South Lake Tahoe): Excellent breakfast/brunch spot, often a wait but worth it."
+      ]
+    },
+    "parkingStrategy": "Arrive by 8:00 AM on weekends and holidays for the best chance at free parking. The California Lodge lot offers convenient free parking with direct lift access, but fills quickly. Alternatively, head to the Boulder or Stagecoach Lodge lots on the Nevada side for free parking and quicker access to the mountain, though they are a bit further from South Lake Tahoe's main village. The Heavenly Village Gondola parking structure is convenient but paid ($20-30+ per day) and can fill by 9:00 AM on busy days.",
+    "crowdPatterns": "Heavenly experiences significant crowds on weekends, especially during holiday periods and powder days. The Gondola line is typically the first to build by 8:30 AM. On-mountain, areas around Tamarack Lodge, the top of the Gondola, and the California Trail see the most traffic. Weekdays, especially Tuesday-Thursday, are significantly less crowded. Crowds tend to thin out on the far Nevada side (Boulder/Stagecoach areas) and in the advanced terrain of Mott and Killebrew Canyons. Lifts like Sky Express, Comet Express, and Dipper Express often have shorter lines after the initial morning rush."
+  }
+}
