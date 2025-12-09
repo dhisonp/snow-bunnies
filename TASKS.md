@@ -30,4 +30,4 @@
 
 ## Polish
 
-- [ ] Mobile form 'clashing' date fields
+- [x] Mobile form 'clashing' date fields
