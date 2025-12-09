@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Github } from "lucide-react";
 
 interface Feature {
   title: string;
@@ -79,14 +79,23 @@ export default function UpcomingPage() {
               Upcoming Features
             </h1>
           </div>
+          <Link
+            href="https://github.com/dhisonp/snow-bunnies"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline" size="sm" className="border-2">
+              <Github className="h-4 w-4" />
+            </Button>
+          </Link>
         </div>
       </header>
 
-      <main className="container mx-auto px-3 py-6 flex-1">
-        <div className="max-w-4xl mx-auto space-y-6">
+      <main className="container mx-auto px-3 py-4 flex-1">
+        <div className="max-w-2xl mx-auto">
           {/* Intro */}
           <div
-            className="border-2 border-foreground bg-card p-4"
+            className="border-2 border-foreground bg-card p-4 mb-8"
             style={{ boxShadow: "4px 4px 0px 0px var(--foreground)" }}
           >
             <p className="text-base">
@@ -104,7 +113,7 @@ export default function UpcomingPage() {
             if (categoryFeatures.length === 0) return null;
 
             return (
-              <div key={category} className="space-y-3">
+              <div key={category} className="space-y-3 mb-8 mt-8 first:mt-0">
                 <h2 className="text-xl font-bold border-b-2 border-foreground pb-2">
                   {category}
                 </h2>
@@ -127,14 +136,6 @@ export default function UpcomingPage() {
               </div>
             );
           })}
-
-          {/* Footer note */}
-          <div className="border-2 border-foreground bg-muted p-4 text-center">
-            <p className="text-sm">
-              Have a feature request?{" "}
-              <span className="font-bold">Let us know!</span>
-            </p>
-          </div>
         </div>
       </main>
     </div>
