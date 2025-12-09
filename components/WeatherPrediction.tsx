@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { CloudRain, Snowflake, Sun } from "lucide-react";
+import { CloudRain, Snowflake, Sun, Wind, CloudSnow } from "lucide-react";
 
 import { type DailyWeather } from "@/lib/types/weather";
 import { useTemperature } from "@/components/TemperatureContext";
@@ -25,7 +25,7 @@ export function WeatherPrediction({
   if (isHistorical && forecast && forecast.length > 0) {
     return (
       <Card className="border-2 border-primary border-dashed bg-muted/50 rounded-none h-full flex flex-col p-4">
-        <div className="flex items-center gap-2 mb-3 justify-center text-muted-foreground">
+        <div className="flex items-center gap-2 mb-4 justify-center text-muted-foreground">
           <div className="flex gap-1">
             <Snowflake className="h-5 w-5" />
             <Sun className="h-5 w-5" />
@@ -35,30 +35,76 @@ export function WeatherPrediction({
           </span>
         </div>
 
-        <div className="grid grid-cols-4 gap-1">
+        <div className="grid grid-cols-4 gap-2">
           {forecast.map((day) => (
             <div
               key={day.date}
-              className="text-center p-1 border rounded bg-background/50"
+              className="flex flex-col items-center p-2 border rounded bg-background/50 space-y-2 py-3"
             >
-              <div className="text-xs font-semibold mb-1">
+              <div className="text-xs font-semibold uppercase tracking-wide">
                 {new Date(day.date).toLocaleDateString("en-US", {
-                  month: "numeric",
+                  weekday: "short",
                   day: "numeric",
                 })}
               </div>
-              <div className="text-xs font-bold mb-1">
+
+              <div className="flex justify-center">
+                {day.weatherCode > 50 ? (
+                  <CloudSnow
+                    className="h-8 w-8 text-blue-600"
+                    strokeWidth={2}
+                  />
+                ) : day.precipitationProbability > 40 ? (
+                  <CloudRain
+                    className="h-8 w-8 text-blue-400"
+                    strokeWidth={2}
+                  />
+                ) : (
+                  <Sun className="h-8 w-8 text-orange-500" strokeWidth={2} />
+                )}
+              </div>
+
+              <div className="text-sm font-bold">
                 {formatTemp(day.tempMin)}° / {formatTemp(day.tempMax)}°
               </div>
-              <div className="text-xs text-blue-600 font-bold">
-                {day.snowfallSum > 0 ? `${day.snowfallSum}cm` : "-"}
+
+              <div className="w-full space-y-1 pt-1 border-t border-dashed">
+                <div
+                  className="flex items-center justify-between text-xs text-muted-foreground"
+                  title="Wind"
+                >
+                  <div className="flex items-center">
+                    <span className="font-mono">WIND</span>
+                  </div>
+                  <span className="font-medium text-foreground">
+                    {Math.round(day.windSpeedMax)}kph
+                  </span>
+                </div>
+                <div
+                  className="flex items-center justify-between text-xs text-muted-foreground"
+                  title="Snow Chance"
+                >
+                  <span className="font-mono">RISK</span>
+                  <span className="font-medium text-blue-600">
+                    {day.precipitationProbability}%
+                  </span>
+                </div>
+                <div
+                  className="flex items-center justify-between text-xs text-muted-foreground"
+                  title="Snow Amount"
+                >
+                  <span className="font-mono">SNOW</span>
+                  <span className="font-bold text-foreground">
+                    {day.snowfallSum > 0 ? `${day.snowfallSum}cm` : "-"}
+                  </span>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        <p className="text-xs text-center text-muted-foreground mt-3 italic">
-          *Based on observed weather from the past 5 years.
+        <p className="text-[10px] text-center text-muted-foreground mt-auto pt-3 uppercase tracking-widest opacity-70">
+          *Averaged from 2020-2024
         </p>
       </Card>
     );

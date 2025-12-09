@@ -180,6 +180,7 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
                 max={maxDateStr}
                 onChange={handleStartChange}
                 required
+                className="h-9 w-full appearance-none px-4"
               />
             </div>
             <div className="grid gap-2">
@@ -195,6 +196,7 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
                   setError(null);
                 }}
                 required
+                className="h-9 w-full appearance-none px-4"
               />
             </div>
           </div>

@@ -24,10 +24,12 @@
 ## Post MVP
 
 - [ ] Trip detail view
+  - [ ] Extensive AI-generated tips
+  - [ ] Local knowledge
 - [ ] Airbnb/accomodation tips
-- [ ] Detailed AI evaluation
 - [ ] Implement scrapers for community data
 
 ## Polish
 
 - [x] Mobile form 'clashing' date fields
+- [ ] Review code quality
