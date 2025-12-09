@@ -26,6 +26,7 @@
 - [x] Trip detail view
   - [x] Extensive AI-generated tips
   - [x] Local knowledge
+- [ ] Dynamic resorts
 - [ ] Airbnb/accomodation tips
 - [ ] Implement scrapers for community data
 

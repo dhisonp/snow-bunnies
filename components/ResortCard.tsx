@@ -11,6 +11,7 @@ import { WeatherPrediction } from "./WeatherPrediction";
 import { CrowdChart } from "./CrowdChart";
 import { getResortForecast } from "@/lib/services/open-meteo";
 import { getExpandedInsight, saveExpandedInsight } from "@/lib/storage";
+import { useUnits } from "@/components/TemperatureContext";
 import {
   Pencil,
   Trash2,
@@ -70,7 +71,11 @@ function getCrowdColorClass(level: number): string {
   }
 }
 
-function getSnowSummary(forecast: DailyWeather[]): string {
+function getSnowSummary(
+  forecast: DailyWeather[],
+  formatSnow: (cm: number) => number,
+  snowUnit: string
+): string {
   if (forecast.length === 0) return "";
 
   const totalSnow = forecast.reduce((sum, day) => sum + day.snowfallSum, 0);
@@ -79,14 +84,15 @@ function getSnowSummary(forecast: DailyWeather[]): string {
     return "No significant snowfall expected during your trip.";
   }
 
+  const formattedTotal = formatSnow(totalSnow);
   const avgSnow = totalSnow / forecast.length;
   if (avgSnow > 10) {
-    return `Heavy snowfall expected: ${totalSnow.toFixed(0)}cm total over ${forecast.length} days.`;
+    return `Heavy snowfall expected: ${formattedTotal}${snowUnit} total over ${forecast.length} days.`;
   }
   if (avgSnow > 5) {
-    return `Moderate snowfall expected: ${totalSnow.toFixed(0)}cm total over ${forecast.length} days.`;
+    return `Moderate snowfall expected: ${formattedTotal}${snowUnit} total over ${forecast.length} days.`;
   }
-  return `Light snowfall expected: ${totalSnow.toFixed(0)}cm total over ${forecast.length} days.`;
+  return `Light snowfall expected: ${formattedTotal}${snowUnit} total over ${forecast.length} days.`;
 }
 
 function formatDateForICS(dateStr: string, addDays = 0): string {
@@ -107,6 +113,8 @@ export function ResortCard({
   onEdit,
   onDelete,
 }: ResortCardProps) {
+  const { formatSnow, snowUnit } = useUnits();
+
   const [forecast, setForecast] = useState<DailyWeather[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -391,7 +399,9 @@ export function ResortCard({
             <div className="text-sm font-bold uppercase mb-1 font-mono tracking-tight">
               Snow Forecast
             </div>
-            <p className="text-sm font-medium">{getSnowSummary(forecast)}</p>
+            <p className="text-sm font-medium">
+              {getSnowSummary(forecast, formatSnow, snowUnit)}
+            </p>
             {isHistorical && (
               <p className="text-xs font-mono text-muted-foreground mt-2">
                 These are data based on the 5-year historical average.

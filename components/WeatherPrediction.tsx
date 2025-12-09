@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { CloudRain, Snowflake, Sun, CloudSnow } from "lucide-react";
 
 import { type DailyWeather } from "@/lib/types/weather";
-import { useTemperature } from "@/components/TemperatureContext";
+import { useUnits } from "@/components/TemperatureContext";
 
 interface WeatherPredictionProps {
   forecast?: DailyWeather[];
@@ -13,14 +13,7 @@ export function WeatherPrediction({
   forecast,
   isHistorical,
 }: WeatherPredictionProps) {
-  const { unit } = useTemperature();
-
-  const formatTemp = (temp: number) => {
-    if (unit === "fahrenheit") {
-      return Math.round((temp * 9) / 5 + 32);
-    }
-    return Math.round(temp);
-  };
+  const { formatTemp, formatSnow, snowUnit } = useUnits();
 
   if (isHistorical && forecast && forecast.length > 0) {
     return (
@@ -55,7 +48,9 @@ export function WeatherPrediction({
                 {formatTemp(day.tempMin)}° / {formatTemp(day.tempMax)}°
               </div>
               <div className="text-sm text-blue-600 font-bold">
-                {day.snowfallSum > 0 ? `${day.snowfallSum}cm` : "-"}
+                {day.snowfallSum > 0
+                  ? `${formatSnow(day.snowfallSum)}${snowUnit}`
+                  : "-"}
               </div>
             </Card>
           ))}

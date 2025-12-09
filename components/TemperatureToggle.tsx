@@ -1,19 +1,19 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useTemperature } from "@/components/TemperatureContext";
+import { useUnits } from "@/components/TemperatureContext";
 
 export function TemperatureToggle() {
-  const { unit, toggleUnit } = useTemperature();
+  const { system, toggleSystem } = useUnits();
 
   return (
     <Button
       variant="ghost"
       size="sm"
-      onClick={toggleUnit}
-      className="w-12 font-mono"
+      onClick={toggleSystem}
+      className="w-20 font-mono text-xs"
     >
-      °{unit === "celsius" ? "C" : "F"}
+      {system === "metric" ? "METRIC" : "IMPERIAL"}
     </Button>
   );
 }

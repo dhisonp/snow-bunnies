@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Recursive } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { TemperatureProvider } from "@/components/TemperatureContext";
+import { UnitsProvider } from "@/components/TemperatureContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { PasswordProtection } from "@/components/PasswordProtection";
 
@@ -36,7 +36,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TemperatureProvider>{children}</TemperatureProvider>
+          <UnitsProvider>{children}</UnitsProvider>
         </ThemeProvider>
       </body>
     </html>
