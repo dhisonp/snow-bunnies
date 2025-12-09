@@ -392,6 +392,11 @@ export function ResortCard({
               Snow Forecast
             </div>
             <p className="text-sm font-medium">{getSnowSummary(forecast)}</p>
+            {isHistorical && (
+              <p className="text-xs font-mono text-muted-foreground mt-2">
+                These are data based on the 5-year historical average.
+              </p>
+            )}
           </div>
         )}
 
