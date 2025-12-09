@@ -1,4 +1,7 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import {
+  GoogleGenerativeAI,
+  type GenerativeModel,
+} from "@google/generative-ai";
 import { type ResortInsights, type TripBrief } from "@/lib/types/insights";
 import { type Resort } from "@/lib/types/resort";
 import { type TripConfig } from "@/lib/types/trip";
@@ -8,18 +11,24 @@ import {
 } from "@/lib/types/weather";
 import { type DailyCrowd } from "@/lib/types/crowd";
 
-const apiKey = process.env.GEMINI_API_KEY;
-if (!apiKey) {
-  console.warn("GEMINI_API_KEY is not set. AI features will not work.");
-}
+let cachedModel: GenerativeModel | null = null;
 
-const genAI = new GoogleGenerativeAI(apiKey || "");
-const model = genAI.getGenerativeModel({
-  model: "gemini-2.5-flash",
-  generationConfig: {
-    responseMimeType: "application/json",
-  },
-});
+function getModel(): GenerativeModel {
+  if (!cachedModel) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      throw new Error("GEMINI_API_KEY is not set. AI features will not work.");
+    }
+    const genAI = new GoogleGenerativeAI(apiKey);
+    cachedModel = genAI.getGenerativeModel({
+      model: "gemini-2.5-flash",
+      generationConfig: {
+        responseMimeType: "application/json",
+      },
+    });
+  }
+  return cachedModel;
+}
 
 export async function generateResortInsights(
   resort: Resort,
@@ -58,7 +67,7 @@ Be specific. Use actual run names, lift names, and locations. Prioritize actiona
 `;
 
   try {
-    const result = await model.generateContent(prompt);
+    const result = await getModel().generateContent(prompt);
     const text = result.response.text();
     const data = JSON.parse(text);
 
@@ -121,7 +130,7 @@ Tailor all recommendations to a ${trip.userProfile.skillLevel} ${trip.userProfil
 `;
 
   try {
-    const result = await model.generateContent(prompt);
+    const result = await getModel().generateContent(prompt);
     const text = result.response.text();
     const data = JSON.parse(text);
 
@@ -158,7 +167,7 @@ Format the response in Markdown. Be conversational, authoritative, and encouragi
 `;
 
   try {
-    const result = await model.generateContent({
+    const result = await getModel().generateContent({
       contents: [{ role: "user", parts: [{ text: prompt }] }],
       generationConfig: {
         responseMimeType: "text/plain",

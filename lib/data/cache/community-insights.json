@@ -123,5 +123,198 @@
     },
     "parkingStrategy": "On weekends and holidays, aim to arrive by 8:00 AM (or even 7:30 AM on powder days) to secure good parking. The Jackson Gore Base (P1, P2 lots) is often the best bet, offering direct access to the Jackson Gore Express Quad and a less congested base lodge. The Clock Tower Base (Main Lot) fills up quickly; if targeting this area, arrive very early or be prepared for shuttle service from outer lots.",
     "crowdPatterns": "Expect significant crowds on weekends and holidays, especially from 9:30 AM to 1:00 PM, with lifts like the Sunburst Six, Quantum Four, and Jackson Gore Express seeing the longest lines. Mid-week offers an uncrowded experience with minimal lift lines. Lunchtime (12:00 PM - 1:30 PM) sees lodges packed and mid-mountain trails getting busy. Crowds typically thin out after 2:30 PM, making for great late-day laps, particularly on the South Face or Glades Peak."
+  },
+  "mount-snow": {
+    "resortId": "mount-snow",
+    "generatedAt": "2025-12-09T07:49:45.633Z",
+    "sources": ["Reddit", "Forums"],
+    "overview": "Mount Snow is a highly accessible, family-friendly resort celebrated for its exceptional grooming, extensive terrain parks in Carinthia, and a wide array of intermediate cruising runs. It offers a classic Southern Vermont ski experience, prioritizing consistent conditions and a welcoming atmosphere over extreme terrain.",
+    "localTips": [
+      "Hit the Bluebird Express right at opening (8:00 AM weekends, 9:00 AM weekdays) to get fresh corduroy on runs like Beeline or Freefall before crowds build.",
+      "For advanced intermediates seeking a challenge without the steeps, explore the Sunbrook side via the Sunbrook Express for consistently good groomers and significantly less traffic.",
+      "If the main mountain glades are tracked out, advanced skiers can find often uncrowded and well-preserved glades like Fallen Timbers off the Challenger lift.",
+      "Always check the snow report for natural versus machine-made snow; Mount Snow excels at snowmaking, ensuring reliable coverage even in lean years.",
+      "Consider skiing the Carinthia Parks on weekdays for more laps and fewer people, allowing for better progression.",
+      "To bypass the Bluebird Express bottleneck mid-morning on busy days, take the Grand Summit Express up and traverse towards the Challenger or Sundance lifts.",
+      "Pack snacks and water to avoid overpriced lodge food and save valuable ski time during peak lunch rushes.",
+      "If conditions are icy, stick to the main groomed trails like Beeline or Snowdance, as Mount Snow's snowmaking creates a durable, consistent surface."
+    ],
+    "bestRunsByLevel": {
+      "beginner": [
+        "Long John",
+        "Cooper's Junction",
+        "Mixing Bowl (early morning only)"
+      ],
+      "intermediate": [
+        "Beeline",
+        "Snowdance",
+        "Freefall",
+        "Crossover",
+        "Ego Alley",
+        "Quantum Leap"
+      ],
+      "advanced": ["Jester", "Canyon", "Ripcord", "River Run", "Challenger"],
+      "expert": [
+        "Fallen Timbers",
+        "Uncles",
+        "The Haul (Carinthia - hike to)",
+        "Freefall Glade",
+        "Exhibition Glades"
+      ]
+    },
+    "hiddenGems": [
+      "Sunbrook Side: Consistently less crowded, offering uninterrupted intermediate cruising with great views and dedicated lifts.",
+      "The Haul: A short but steep, hike-to glade within Carinthia Park, often holding fresh snow longer than main mountain glades.",
+      "Summit Lodge: Accessible from the Bluebird Express, it's a great spot for a quick, quieter break with better views and often less chaos than the base lodges.",
+      "The backside glades off Challenger (e.g., Fallen Timbers, The Abyss) often retain snow quality and see significantly less traffic.",
+      "Grand Summit Hotel's Slopeside Access: If staying there, the direct ski-in/ski-out bypasses the main base lodge entirely, especially helpful for early morning laps."
+    ],
+    "avoidList": [
+      "Bluebird Express Line (peak times): From 10 AM to 1 PM on weekends and holidays, waits can be substantial. Use the Grand Summit Express or Challenger lifts as alternatives.",
+      "Main Base Lodge Cafeteria (lunch rush): Overpriced, crowded, and inefficient. Pack a lunch or plan to eat very early or late.",
+      "The 'Mixing Bowl' area (mid-day): Can become an overwhelming congestion point for beginners, instructors, and cross-traffic, especially after 11 AM.",
+      "Sundance Lift: While it accesses good terrain, it's a slower, fixed-grip quad that can feel tedious for multiple laps if other faster options are available.",
+      "On-mountain rental shops: Generally more expensive and slower than renting in advance from local shops in West Dover or Wilmington."
+    ],
+    "foodRecs": {
+      "onMountain": [
+        "Summit Lodge: Best for a quick bite, decent chili, and a less chaotic bar scene with good views.",
+        "Bullwheel Pub (Carinthia Base Lodge): Good for a sit-down meal, craft beers, and elevated pub fare without leaving Carinthia.",
+        "Sunbrook Base Lodge: Limited but quieter options, ideal if you're skiing the Sunbrook side."
+      ],
+      "base": [
+        "Dot's Restaurant (Wilmington): A classic, no-frills diner perfect for a hearty breakfast or lunch.",
+        "The Dover Forge Restaurant (West Dover): Excellent pub fare, lively atmosphere, and a great dinner spot with a diverse menu.",
+        "Sticky Fingers Bakery & Cafe (West Dover): Perfect for coffee, fresh pastries, and delicious sandwiches for breakfast or lunch.",
+        "1846 Tavern & Grille (Grand Summit Hotel): A more upscale option for dinner, convenient if staying at the hotel."
+      ]
+    },
+    "parkingStrategy": "Arrive early, targeting 8:00 AM on weekends/holidays, to secure a spot in the Main Base Area Lot (A or B) closest to the Bluebird Express. If full, the Carinthia Base Area Lot offers direct access to its own lifts and shuttle service to the main base. The Sunbrook Lot is the furthest but often has space and offers direct access to quieter intermediate terrain; utilize this if your focus is on that side. Shuttles run frequently from all outer lots.",
+    "crowdPatterns": "Weekends, especially Saturday mornings and holiday periods (MLK, Presidents' Day, etc.), experience the heaviest crowds, with Bluebird Express lines peaking between 10 AM and 1 PM. Mid-week (Tuesday-Thursday) is significantly quieter, offering minimal lift lines and wide-open groomers. Friday and Sunday afternoons can be a good balance as many weekenders are arriving or departing. Carinthia can be busy with park riders but its dedicated lifts manage the flow well, while the Sunbrook side consistently has lower traffic throughout the week."
+  },
+  "kirkwood": {
+    "resortId": "kirkwood",
+    "generatedAt": "2025-12-09T07:51:04.000Z",
+    "sources": ["Reddit", "Forums"],
+    "overview": "Kirkwood is a legendary Tahoe resort known for its steep, challenging terrain, deep powder dumps, and authentic mountain culture. With a high base elevation and north-facing aspects, it consistently receives some of the best snow quality in the region, attracting expert skiers and riders seeking ungroomed steeps, chutes, and tree skiing.",
+    "localTips": [
+      "On powder days, head straight to Chair 6 (The Wall) or Chair 2 (Cornice Express) at opening to access the steepest terrain before it gets tracked out.",
+      "The Cirque is Kirkwood's crown jewel for experts—check if it's open and be prepared for mandatory air on some entries; locals often hike the ridge for fresh lines.",
+      "For intermediates, stick to Chairs 4 and 5 on the backside (Timber Creek/Sunrise Bowl) for mellower, less crowded terrain with excellent tree skiing.",
+      "Arrive early on weekends and powder days; parking fills by 8:30 AM, and Chair 6 lines can be 20+ minutes by 9:00 AM.",
+      "Avoid the main lodge at lunch—it's a zoo. Instead, pack snacks or hit the Cornice Grill for faster service.",
+      "If winds close the upper mountain, Chair 10 and the backside remain sheltered and often have great conditions.",
+      "Locals know to ski the trees off Chair 4 (Zachary, Palisades area) for consistent powder stashes that hold snow longer.",
+      "Check the avalanche report and respect closures—Kirkwood's terrain is serious, and out-of-bounds areas can be deadly."
+    ],
+    "bestRunsByLevel": {
+      "beginner": ["Bunny", "Snowkirk", "Graduation"],
+      "intermediate": [
+        "Hully Gully",
+        "Zachary",
+        "Sunrise Bowl",
+        "Timber Creek",
+        "Lower Wagon Trail"
+      ],
+      "advanced": [
+        "The Wall (Chair 6)",
+        "Palisades",
+        "Sentinel Bowl",
+        "Cornice Bowl",
+        "Monte Wolfe"
+      ],
+      "expert": [
+        "The Cirque (all chutes)",
+        "The Fingers",
+        "Palisades Chutes",
+        "Thunder Saddle",
+        "Sisters (hike-to)"
+      ]
+    },
+    "hiddenGems": [
+      "The trees skier's left off Chair 4 (Zachary area) often hold untracked powder days after the main bowls are skied out.",
+      "Sunrise Bowl on the backside is a local favorite for mellow, scenic cruising with far fewer crowds than the front side.",
+      "The Wave (accessed via Chair 2) is a natural halfpipe feature that's incredibly fun on a powder day.",
+      "Chair 10 (Snowkirk) provides access to beginner terrain but also some surprisingly fun, sheltered tree skiing for intermediates.",
+      "The ridge hike above The Cirque offers some of the best expert terrain in Tahoe, but requires avalanche gear and experience."
+    ],
+    "avoidList": [
+      "Main Base Lodge during lunch (12-1:30 PM): Absolute chaos. Pack your own food or eat early/late.",
+      "Chair 6 line after 9:30 AM on weekends: Can exceed 30 minutes. Hit it first thing or wait until after 2 PM.",
+      "The Cornice Express (Chair 2) on icy days: The steep groomers can be unforgiving; stick to the backside or lower mountain.",
+      "Driving up Highway 88 without chains or 4WD in winter: The road is steep and frequently requires chains; be prepared or take the shuttle.",
+      "Buying gear at the resort: Extremely limited selection and high prices. Rent or purchase in South Lake Tahoe before arriving."
+    ],
+    "foodRecs": {
+      "onMountain": [
+        "Cornice Grill: Fastest on-mountain option, decent burgers and chili.",
+        "Main Lodge Cafeteria: Avoid at peak times, but has the most variety if you can beat the rush.",
+        "Red Cliffs Day Lodge: Quieter, smaller menu, good for a quick warm-up."
+      ],
+      "base": [
+        "Kirkwood Inn & Saloon: Classic mountain bar with hearty food, live music, and great après atmosphere.",
+        "The Kirkwood Market: Grab-and-go sandwiches, snacks, and groceries if staying in the area.",
+        "Off the Wall Bar & Grill (Kirkwood Mountain Resort): Solid pub fare, good beer selection, convenient slopeside location.",
+        "For better dining, drive to South Lake Tahoe (45 min) for far more options like Edgewood Restaurant or Riva Grill."
+      ]
+    },
+    "parkingStrategy": "Arrive by 8:00 AM on weekends and powder days to secure parking in the main lot near Chair 6. If full, overflow lots require a shuttle ride. Midweek parking is generally stress-free. Consider carpooling or using the shuttle from South Lake Tahoe to avoid parking hassles entirely. The resort also offers paid reserved parking for guaranteed spots on busy days.",
+    "crowdPatterns": "Kirkwood sees heavy crowds on weekends, holidays, and powder days, especially at Chair 6 (The Wall) and Chair 2 (Cornice Express). Lines peak between 9:30 AM and 1:00 PM. Midweek (Tuesday-Thursday) is significantly quieter with minimal lift lines. The backside (Chairs 4, 5, 10) consistently has lighter traffic. Crowds thin out after 2:30 PM, making for excellent late-day laps if conditions hold."
+  },
+  "hunter-mountain": {
+    "resortId": "hunter-mountain",
+    "generatedAt": "2025-12-09T07:51:04.000Z",
+    "sources": ["Reddit", "Forums"],
+    "overview": "Hunter Mountain is the premier ski destination in the Catskills, known for its challenging terrain, extensive snowmaking, and proximity to New York City. With a vertical drop of 1,600 feet and a reputation for steep, icy groomers, it attracts serious East Coast skiers seeking a no-frills, old-school mountain experience.",
+    "localTips": [
+      "Hit the F lift (Hunter West) first thing on weekends to avoid the main mountain crowds and access some of the best intermediate terrain.",
+      "On icy days, focus on the freshly groomed trails off the A and B lifts early morning before they get scraped off.",
+      "Advanced skiers should prioritize Hellgate, Annapurna, and K-27 early in the day when conditions are firmest and most consistent.",
+      "Avoid the main base lodge at all costs during lunch—it's overcrowded and slow. Pack food or eat at the West Side lodge.",
+      "Weekdays (especially Tuesday-Thursday) offer a completely different experience with minimal crowds and short lift lines.",
+      "Hunter's snowmaking is aggressive; even in marginal conditions, the main trails are usually well-covered and fast.",
+      "The terrain parks are well-maintained and popular with younger crowds; if that's not your scene, stick to the steeper trails.",
+      "Parking fills early on weekends—arrive by 8:00 AM or be prepared for overflow lots and shuttle rides."
+    ],
+    "bestRunsByLevel": {
+      "beginner": ["Racer's Edge", "Snowdance", "Belt Parkway"],
+      "intermediate": ["Hunter One", "Crossover", "Ike", "Westway", "Broadway"],
+      "advanced": ["Hellgate", "Annapurna", "K-27", "Cliffs", "Eisenhower"],
+      "expert": [
+        "Hellgate (bumps)",
+        "K-27 (bumps)",
+        "Cliffs (steep, icy)",
+        "Annapurna (steep, icy)"
+      ]
+    },
+    "hiddenGems": [
+      "Hunter West (F lift) is consistently less crowded and offers excellent intermediate cruising with well-maintained groomers.",
+      "The glades off the D lift (when open) provide surprisingly fun tree skiing for advanced skiers, though they're not always groomed.",
+      "Early morning laps on the A lift before 9:00 AM offer the best snow conditions and shortest lines.",
+      "The view from the summit on a clear day is spectacular, overlooking the entire Catskills range.",
+      "The West Side lodge is far quieter than the main base and has faster food service."
+    ],
+    "avoidList": [
+      "Main Base Lodge during lunch (12-2 PM): Absolute chaos, long lines, overpriced food. Avoid at all costs.",
+      "The D lift on busy weekends: Slow, old double chair that feeds crowded terrain. Use A, B, or F lifts instead.",
+      "Driving up Route 23A in heavy snow without 4WD or chains: The road is steep and can be treacherous.",
+      "Buying lift tickets at the window: Always more expensive than online; purchase in advance to save money.",
+      "Expecting powder days: Hunter is known for hard-packed, icy conditions; adjust expectations accordingly."
+    ],
+    "foodRecs": {
+      "onMountain": [
+        "West Side Lodge: Quieter, faster service, decent burgers and pizza.",
+        "Main Base Lodge Cafeteria: Avoid during peak times, but has the most variety.",
+        "Slope Side Pub: Good for a beer and quick bite, less crowded than main cafeteria."
+      ],
+      "base": [
+        "Scribner Hollow Lodge: Classic mountain lodge with hearty American fare and a cozy atmosphere.",
+        "Pancho Villa's Mexican Restaurant (Tannersville): Great tacos and margaritas, popular après spot.",
+        "Last Chance Antiques & Cheese Cafe (Tannersville): Excellent sandwiches, coffee, and baked goods.",
+        "Deer Mountain Inn (Tannersville): Upscale dining option for a special dinner, farm-to-table menu."
+      ]
+    },
+    "parkingStrategy": "Arrive by 8:00 AM on weekends and holidays to secure parking in the main lot closest to the base lodge. If full, overflow lots require a shuttle ride (5-10 minutes). Midweek parking is generally stress-free. Hunter also offers paid reserved parking for guaranteed spots on busy days. Consider carpooling from NYC to reduce parking stress and environmental impact.",
+    "crowdPatterns": "Hunter sees massive crowds on weekends and holidays, especially from NYC metro area skiers. Lift lines peak between 10:00 AM and 2:00 PM, with the A and B lifts seeing the longest waits. Midweek (Tuesday-Thursday) is dramatically quieter with minimal lines. The F lift (Hunter West) consistently has shorter waits. Crowds thin out after 2:30 PM, making for better late-day skiing if conditions allow."
   }
 }
