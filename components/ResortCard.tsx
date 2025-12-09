@@ -7,7 +7,7 @@ import { TripConfig } from "@/lib/types/trip";
 import { Resort } from "@/lib/types/resort";
 import { WeatherForecast } from "./WeatherForecast";
 import { CrowdChart } from "./CrowdChart";
-import { ChevronDown, Pencil, Trash2, Loader2, AlertCircle } from "lucide-react";
+import { ChevronDown, Pencil, Trash2, Loader2, AlertCircle, Lightbulb } from "lucide-react";
 import { DailyWeather } from "@/lib/types/weather";
 import { HourlyCrowd } from "@/lib/types/crowd";
 import { getResortForecast } from "@/lib/services/open-meteo";
@@ -124,7 +124,7 @@ export function ResortCard({ trip, resort, onEdit, onDelete }: ResortCardProps) 
         
          <div className="bg-blue-50 dark:bg-blue-950/20 p-3 rounded-md">
             <div className="flex items-center gap-2 mb-2">
-                <span className="text-lg">💡</span>
+                <Lightbulb className="h-5 w-5 text-yellow-600" strokeWidth={2.5} strokeLinecap="square" />
                 <span className="font-medium text-sm">Resort Insights</span>
             </div>
             <ul className="text-sm space-y-1 list-disc list-inside text-muted-foreground">

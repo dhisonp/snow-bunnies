@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DailyWeather } from "@/lib/types/weather";
 import { useTemperature } from "@/components/TemperatureContext";
+import { Sun, CloudSnow } from "lucide-react";
 
 interface WeatherForecastProps {
   forecast: DailyWeather[];
@@ -23,8 +24,12 @@ export function WeatherForecast({ forecast }: WeatherForecastProps) {
           <div className="text-sm font-semibold">
             {new Date(day.date).toLocaleDateString("en-US", { weekday: "short" })}
           </div>
-          <div className="text-2xl my-1">
-            {day.weatherCode > 50 ? "🌨️" : "☀️"}
+          <div className="flex justify-center my-1">
+            {day.weatherCode > 50 ? (
+              <CloudSnow className="h-8 w-8 text-blue-600" strokeWidth={2.5} strokeLinecap="square" />
+            ) : (
+              <Sun className="h-8 w-8 text-orange-500" strokeWidth={2.5} strokeLinecap="square" />
+            )}
           </div>
           <div className="text-xs text-muted-foreground">
             {formatTemp(day.tempMin)}° / {formatTemp(day.tempMax)}°
