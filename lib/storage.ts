@@ -3,10 +3,65 @@ import { type TripConfig } from "@/lib/types/trip";
 const STORAGE_KEY = "snowbunnies_trips";
 export const MAX_TRIPS = 3;
 
+const getNextWeekend = (): { start: string; end: string } => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const dayOfWeek = today.getDay();
+  const daysUntilThursday = (4 - dayOfWeek + 7) % 7;
+
+  const thursday = new Date(today);
+  thursday.setDate(today.getDate() + daysUntilThursday);
+
+  const sunday = new Date(thursday);
+  sunday.setDate(thursday.getDate() + 3);
+
+  const formatDate = (date: Date): string => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  return {
+    start: formatDate(thursday),
+    end: formatDate(sunday),
+  };
+};
+
+const createDefaultTrip = (): TripConfig => {
+  const weekend = getNextWeekend();
+  const now = new Date().toISOString();
+
+  return {
+    id: crypto.randomUUID(),
+    resortId: "hunter-mountain",
+    dateRange: {
+      start: weekend.start,
+      end: weekend.end,
+    },
+    userProfile: {
+      discipline: "ski",
+      skillLevel: "beginner",
+    },
+    createdAt: now,
+    updatedAt: now,
+  };
+};
+
+export const initializeDefaultTrip = (): void => {
+  if (typeof window === "undefined") return;
+  if (localStorage.getItem(STORAGE_KEY) !== null) return;
+
+  const defaultTrip = createDefaultTrip();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([defaultTrip]));
+};
+
 export const getTrips = (): TripConfig[] => {
   if (typeof window === "undefined") return [];
   const stored = localStorage.getItem(STORAGE_KEY);
   if (!stored) return [];
+
   try {
     return JSON.parse(stored);
   } catch (e) {

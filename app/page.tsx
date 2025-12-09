@@ -8,7 +8,7 @@ import { ResortCard } from "@/components/ResortCard";
 import { TemperatureToggle } from "@/components/TemperatureToggle";
 import { ModeToggle } from "@/components/ModeToggle";
 import { type TripConfig } from "@/lib/types/trip";
-import { getTrips, deleteTrip } from "@/lib/storage";
+import { getTrips, deleteTrip, initializeDefaultTrip } from "@/lib/storage";
 import resortsData from "@/lib/data/resorts.json";
 import { type Resort } from "@/lib/types/resort";
 import { Plus, Sparkles, Info } from "lucide-react";
@@ -25,6 +25,7 @@ export default function Home() {
   };
 
   useEffect(() => {
+    initializeDefaultTrip();
     loadTrips();
   }, []);
 
