@@ -23,17 +23,16 @@ const model = genAI.getGenerativeModel({
 
 export async function generateResortInsights(
   resort: Resort,
-  scrapedContent: string
+  scrapedContent?: string
 ): Promise<ResortInsights> {
+  const context = scrapedContent
+    ? `Based on the following community discussions and reviews:\n<community_data>\n${scrapedContent}\n</community_data>`
+    : "Using your extensive internal knowledge as a local ski expert and data from reputable sources (e.g., OnTheSnow, PeakRankings, etc.),";
+
   const prompt = `
 You are a local ski expert synthesizing community knowledge about ${resort.name}.
 
-Based on the following community discussions and reviews:
-<community_data>
-${scrapedContent}
-</community_data>
-
-Historical context: This data spans discussions from the past 3 years on Reddit and ski forums.
+${context}
 
 Generate insights in the following JSON structure:
 {

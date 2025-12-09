@@ -15,7 +15,9 @@
 - [ ] Data Services <!-- id: 12 -->
   - [x] Open-Meteo integration (wired to ResortCard) <!-- id: 13 -->
   - [ ] Crowd data service <!-- id: 14 -->
-  - [ ] AI Insights (mock or real) <!-- id: 15 -->
+  - [x] AI Insights API <!-- id: 15 -->
+  - [ ] AI Insights UI <!-- id: 16 -->
+  - [ ] Implement Scrapers (Reddit/Forums) for community data <!-- id: 20 -->
 - [ ] Features <!-- id: 16 -->
   - [ ] Trip creation/editing <!-- id: 17 -->
   - [ ] Dashboard view <!-- id: 18 -->
