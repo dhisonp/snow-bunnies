@@ -1,0 +1,56 @@
+[
+  {
+    "id": "heavenly-tahoe",
+    "name": "Heavenly",
+    "region": "Lake Tahoe",
+    "state": "CA/NV",
+    "coordinates": { "lat": 38.9353, "lon": -119.94 },
+    "elevation": { "base": 6540, "summit": 10067 },
+    "trailCount": 97,
+    "liftCount": 28,
+    "terrainPct": {
+      "beginner": 20,
+      "intermediate": 45,
+      "advanced": 35,
+      "expert": 0
+    },
+    "googlePlaceId": "ChIJ-ZRLfeu5mokRkpGzxwQPKFk",
+    "subreddit": "tahoe"
+  },
+  {
+    "id": "palisades-tahoe",
+    "name": "Palisades Tahoe",
+    "region": "Lake Tahoe",
+    "state": "CA",
+    "coordinates": { "lat": 39.1969, "lon": -120.2358 },
+    "elevation": { "base": 6200, "summit": 9050 },
+    "trailCount": 270,
+    "liftCount": 37,
+    "terrainPct": {
+      "beginner": 25,
+      "intermediate": 45,
+      "advanced": 30,
+      "expert": 0
+    },
+    "googlePlaceId": "ChIJn6YCOWB1mYARGd-4eTMPxuE",
+    "subreddit": "tahoe"
+  },
+  {
+    "id": "vail",
+    "name": "Vail",
+    "region": "Vail Valley",
+    "state": "CO",
+    "coordinates": { "lat": 39.6061, "lon": -106.355 },
+    "elevation": { "base": 8120, "summit": 11570 },
+    "trailCount": 195,
+    "liftCount": 31,
+    "terrainPct": {
+      "beginner": 18,
+      "intermediate": 29,
+      "advanced": 53,
+      "expert": 0
+    },
+    "googlePlaceId": "ChIJz4rt_dJwaocRjM8fG7jXy1g",
+    "subreddit": "vail"
+  }
+]
