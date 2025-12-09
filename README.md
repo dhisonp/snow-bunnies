@@ -4,6 +4,9 @@
 
 A brutalist-designed, mobile-first web app that combines real-time weather data, historical analysis, and Claude AI to help you find the best days to hit the slopes.
 
+<img width="1707" height="1039" alt="Screenshot 2025-12-09 at 2 24 03 AM" src="https://github.com/user-attachments/assets/05bfafde-2448-437d-ace7-4744584df683" />
+
+
 ## ✨ Features
 
 - **🤖 AI Resort Insights** — Claude-powered recommendations tailored to your skill level and trip dates
