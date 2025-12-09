@@ -9,9 +9,15 @@ interface TemperatureContextType {
   toggleUnit: () => void;
 }
 
-const TemperatureContext = createContext<TemperatureContextType | undefined>(undefined);
+const TemperatureContext = createContext<TemperatureContextType | undefined>(
+  undefined
+);
 
-export function TemperatureProvider({ children }: { children: React.ReactNode }) {
+export function TemperatureProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [unit, setUnit] = useState<Unit>("celsius");
 
   useEffect(() => {

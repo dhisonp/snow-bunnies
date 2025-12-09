@@ -57,19 +57,16 @@ Shadows are "hard" implies no blur radius, creating a distinct second layer look
 ### Specific Component Styles
 
 - **Buttons**:
-
   - `border-2`
   - Hard shadow (`2px 2px`)
   - Active state: `translate-x/y-[2px]` and remove shadow to simulate "pressing" a physical button.
 
 - **Inputs / Selects**:
-
   - `h-8` (Compact height)
   - `border-2`
   - Hard shadow (`2px 2px`) on focus or default state depending on prominence.
 
 - **Cards**:
-
   - `border-2`
   - Hard shadow (`4px 4px`)
   - White background on muted page background for "pop".

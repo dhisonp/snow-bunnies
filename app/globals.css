@@ -41,7 +41,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  
+
   /* Custom Crowd Colors */
   --color-crowd-1: var(--crowd-1);
   --color-crowd-2: var(--crowd-2);
@@ -65,15 +65,15 @@
   --secondary-foreground: #000000;
   --muted: #eeeeee;
   --muted-foreground: #666666;
-  --accent: #eeeeee; 
+  --accent: #eeeeee;
   --accent-foreground: #000000;
-  
+
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --border: #000000; /* High contrast border */
   --input: #000000;
   --ring: #000000;
-  
+
   /* Crowd Colors */
   --crowd-1: #22c55e;
   --crowd-2: #84cc16;
@@ -112,7 +112,7 @@
   --secondary-foreground: #ffffff;
   --muted: #1a1a1a;
   --muted-foreground: #a3a3a3;
-  --accent: #1a1a1a; 
+  --accent: #1a1a1a;
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;

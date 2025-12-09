@@ -1,4 +1,4 @@
-import { DailyWeather } from "@/lib/types/weather";
+import { type DailyWeather } from "@/lib/types/weather";
 
 const OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast";
 

@@ -7,7 +7,12 @@ export function TemperatureToggle() {
   const { unit, toggleUnit } = useTemperature();
 
   return (
-    <Button variant="ghost" size="sm" onClick={toggleUnit} className="w-12 font-mono">
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={toggleUnit}
+      className="w-12 font-mono"
+    >
       °{unit === "celsius" ? "C" : "F"}
     </Button>
   );

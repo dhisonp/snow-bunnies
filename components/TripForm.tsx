@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label"; // Need to install label
 import { ResortPicker } from "@/components/ResortPicker";
 import { SkillLevelSelect } from "@/components/SkillLevelSelect";
-import { TripConfig } from "@/lib/types/trip";
+import { type TripConfig } from "@/lib/types/trip";
 import { saveTrip } from "@/lib/storage";
 
 // Simple validation manually for now to save installing zod/hookform overhead if not strictly needed

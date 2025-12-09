@@ -18,7 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"; // Need to install popover
-import { Resort } from "@/lib/types/resort";
+import { type Resort } from "@/lib/types/resort";
 import resortsData from "@/lib/data/resorts.json";
 
 const resorts: Resort[] = resortsData as Resort[];

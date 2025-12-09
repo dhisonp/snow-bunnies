@@ -1,22 +1,22 @@
 # Task Checklist - Snow Bunnies
 
 - [x] Project Initialization <!-- id: 0 -->
-    - [x] Initialize Next.js app <!-- id: 1 -->
-    - [x] Install dependencies (shadcn/ui, lucide-react, etc.) <!-- id: 2 -->
-    - [x] Setup Tailwind CSS configuration <!-- id: 3 -->
+  - [x] Initialize Next.js app <!-- id: 1 -->
+  - [x] Install dependencies (shadcn/ui, lucide-react, etc.) <!-- id: 2 -->
+  - [x] Setup Tailwind CSS configuration <!-- id: 3 -->
 - [x] Core Infrastructure <!-- id: 4 -->
-    - [x] Create directory structure (lib, components, etc.) <!-- id: 5 -->
-    - [x] Define TypeScript interfaces (resort.ts, trip.ts, etc.) <!-- id: 6 -->
-    - [x] Implement storage utilities (LocalStorage) <!-- id: 7 -->
+  - [x] Create directory structure (lib, components, etc.) <!-- id: 5 -->
+  - [x] Define TypeScript interfaces (resort.ts, trip.ts, etc.) <!-- id: 6 -->
+  - [x] Implement storage utilities (LocalStorage) <!-- id: 7 -->
 - [x] Core Components <!-- id: 8 -->
-    - [x] Create layout and main page <!-- id: 9 -->
-    - [x] Implement ResortCard <!-- id: 10 -->
-    - [x] Implement specific UI components (shadcn wrappers) <!-- id: 11 -->
+  - [x] Create layout and main page <!-- id: 9 -->
+  - [x] Implement ResortCard <!-- id: 10 -->
+  - [x] Implement specific UI components (shadcn wrappers) <!-- id: 11 -->
 - [ ] Data Services <!-- id: 12 -->
-    - [x] Open-Meteo integration (wired to ResortCard) <!-- id: 13 -->
-    - [ ] Crowd data service <!-- id: 14 -->
-    - [ ] AI Insights (mock or real) <!-- id: 15 -->
+  - [x] Open-Meteo integration (wired to ResortCard) <!-- id: 13 -->
+  - [ ] Crowd data service <!-- id: 14 -->
+  - [ ] AI Insights (mock or real) <!-- id: 15 -->
 - [ ] Features <!-- id: 16 -->
-    - [ ] Trip creation/editing <!-- id: 17 -->
-    - [ ] Dashboard view <!-- id: 18 -->
-    - [ ] Trip detail view <!-- id: 19 -->
+  - [ ] Trip creation/editing <!-- id: 17 -->
+  - [ ] Dashboard view <!-- id: 18 -->
+  - [ ] Trip detail view <!-- id: 19 -->

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { DailyWeather } from "@/lib/types/weather";
+import { type DailyWeather } from "@/lib/types/weather";
 import { useTemperature } from "@/components/TemperatureContext";
 import { Sun, CloudSnow } from "lucide-react";
 
@@ -22,13 +22,23 @@ export function WeatherForecast({ forecast }: WeatherForecastProps) {
       {forecast.map((day) => (
         <Card key={day.date} className="text-center p-2">
           <div className="text-sm font-semibold">
-            {new Date(day.date).toLocaleDateString("en-US", { weekday: "short" })}
+            {new Date(day.date).toLocaleDateString("en-US", {
+              weekday: "short",
+            })}
           </div>
           <div className="flex justify-center my-1">
             {day.weatherCode > 50 ? (
-              <CloudSnow className="h-8 w-8 text-blue-600" strokeWidth={2.5} strokeLinecap="square" />
+              <CloudSnow
+                className="h-8 w-8 text-blue-600"
+                strokeWidth={2.5}
+                strokeLinecap="square"
+              />
             ) : (
-              <Sun className="h-8 w-8 text-orange-500" strokeWidth={2.5} strokeLinecap="square" />
+              <Sun
+                className="h-8 w-8 text-orange-500"
+                strokeWidth={2.5}
+                strokeLinecap="square"
+              />
             )}
           </div>
           <div className="text-xs text-muted-foreground">

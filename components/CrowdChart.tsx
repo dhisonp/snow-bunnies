@@ -1,4 +1,4 @@
-import { HourlyCrowd } from "@/lib/types/crowd";
+import { type HourlyCrowd } from "@/lib/types/crowd";
 
 interface CrowdChartProps {
   data: HourlyCrowd[];
@@ -6,7 +6,11 @@ interface CrowdChartProps {
   bestArrivalTime: string;
 }
 
-export function CrowdChart({ data, peakHours, bestArrivalTime }: CrowdChartProps) {
+export function CrowdChart({
+  data,
+  peakHours,
+  bestArrivalTime,
+}: CrowdChartProps) {
   return (
     <div className="space-y-2">
       <div className="flex items-end h-24 gap-1">
@@ -19,9 +23,9 @@ export function CrowdChart({ data, peakHours, bestArrivalTime }: CrowdChartProps
               backgroundColor: `var(--crowd-${hour.crowdLevel})`,
             }}
           >
-             <div className="opacity-0 group-hover:opacity-100 absolute bottom-full mb-1 text-xs bg-popover border p-1 rounded whitespace-nowrap z-10">
-                {hour.hour}:00 - Level {hour.crowdLevel}
-             </div>
+            <div className="opacity-0 group-hover:opacity-100 absolute bottom-full mb-1 text-xs bg-popover border p-1 rounded whitespace-nowrap z-10">
+              {hour.hour}:00 - Level {hour.crowdLevel}
+            </div>
           </div>
         ))}
       </div>
@@ -31,8 +35,13 @@ export function CrowdChart({ data, peakHours, bestArrivalTime }: CrowdChartProps
         <span>5pm</span>
       </div>
       <div className="flex gap-4 text-sm">
-        <div>Peak: <span className="font-medium">{peakHours}</span></div>
-        <div>Best: <span className="font-medium text-green-600">{bestArrivalTime}</span></div>
+        <div>
+          Peak: <span className="font-medium">{peakHours}</span>
+        </div>
+        <div>
+          Best:{" "}
+          <span className="font-medium text-green-600">{bestArrivalTime}</span>
+        </div>
       </div>
     </div>
   );

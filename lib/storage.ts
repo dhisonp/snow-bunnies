@@ -1,4 +1,4 @@
-import { TripConfig } from "@/lib/types/trip";
+import { type TripConfig } from "@/lib/types/trip";
 
 const STORAGE_KEY = "snowbunnies_trips";
 

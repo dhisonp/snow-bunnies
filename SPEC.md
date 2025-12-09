@@ -24,7 +24,7 @@ A mobile-first web application for planning ski trips with weather forecasts, cr
 - **Weather:** Open-Meteo API (free, no key required)
 - **Crowd Data:** SerpAPI Google Popular Times OR direct scraping
 - **Community Insights:** Reddit API + forum scraping
-- **AI Synthesis:** Anthropic Claude API (claude-sonnet-4-5-20250929)
+- **AI Synthesis:** Google Gemini API (gemini-2.5-flash)
 
 ### Storage
 
@@ -37,7 +37,7 @@ A mobile-first web application for planning ski trips with weather forecasts, cr
 
 ```env
 # .env.local
-ANTHROPIC_API_KEY=sk-ant-...
+GEMINI_API_KEY=AIza...
 SERPAPI_KEY=...              # Optional: for Google Popular Times
 REDDIT_CLIENT_ID=...         # Optional: for Reddit API
 REDDIT_CLIENT_SECRET=...
@@ -251,7 +251,7 @@ interface TripBrief {
 │   │   ├── open-meteo.ts              # Weather API client
 │   │   ├── crowd-estimator.ts         # Crowd calculation logic
 │   │   ├── popular-times.ts           # Google Popular Times fetcher
-│   │   └── ai-insights.ts             # Claude API integration
+│   │   └── ai-insights.ts             # Gemini API integration
 │   ├── /scrapers
 │   │   ├── reddit.ts                  # Reddit scraper
 │   │   ├── forums.ts                  # TGR and other forums
@@ -420,10 +420,10 @@ Generates or retrieves cached AI insights for a resort.
 **Implementation Notes:**
 
 - Check cache first (`/lib/data/cache/community-insights.json`)
-- If miss or `forceRefresh`, call Claude API with scraped community data
+- If miss or `forceRefresh`, call Gemini API with scraped community data
 - Cache response with 7-day TTL
 
-**Claude Prompt Template:**
+**Gemini Prompt Template:**
 
 ```
 You are a local ski expert synthesizing community knowledge about {resort.name}.
@@ -478,7 +478,7 @@ Generates personalized trip brief based on trip config + weather + crowd data.
 
 **Response:** Full `TripBrief` object
 
-**Claude Prompt Template:**
+**Gemini Prompt Template:**
 
 ```
 Generate a personalized ski trip brief.
