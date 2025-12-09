@@ -75,15 +75,13 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
       return "End date cannot be before start date.";
     }
 
-    // OpenMeteo usually has a 16-day forecast limit.
-    // We check if the end date is within 16 days from today.
-    // 16 days includes today: indices 0 to 15.
-    const maxForecastDate = new Date(today);
-    maxForecastDate.setDate(today.getDate() + 15);
+    // We allow dates > 16 days now, but just warn the user in the UI (or in this case, return null to allow it)
+    // The "validation" helper is strictly for 'blocking' errors.
+    // If we want a warning, we can handle it in the UI rendering based on the date.
 
-    if (endDate > maxForecastDate) {
-      return "Trip dates available only within next 16 days due to weather forecast limits.";
-    }
+    // if (endDate > maxForecastDate) {
+    //   return "Trip dates available only within next 16 days due to weather forecast limits.";
+    // }
 
     return null;
   };
@@ -132,8 +130,10 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
   };
 
   const getMaxDateStr = () => {
+    // Allow booking up to a year in advance? Or just remove max.
+    // For HTML date input purely, let's allow 1 year out.
     const d = new Date();
-    d.setDate(d.getDate() + 15);
+    d.setFullYear(d.getFullYear() + 1);
     const year = d.getFullYear();
     const month = String(d.getMonth() + 1).padStart(2, "0");
     const day = String(d.getDate()).padStart(2, "0");
@@ -159,8 +159,9 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
         <DialogHeader>
           <DialogTitle>{trip ? "Edit Trip" : "Plan a New Trip"}</DialogTitle>
           <DialogDescription>
-            Enter your destination and dates to get started. Weather forecasts
-            are available for the next 16 days.
+            Enter your destination and dates to get started. Live weather
+            forecasts are available for the next 16 days; historical trends
+            shown for later dates.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="grid gap-4 py-4">

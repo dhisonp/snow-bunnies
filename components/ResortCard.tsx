@@ -7,6 +7,7 @@ import { type DailyWeather } from "@/lib/types/weather";
 import { type DailyCrowd } from "@/lib/types/crowd";
 import { type ResortInsights } from "@/lib/types/insights";
 import { WeatherForecast } from "./WeatherForecast";
+import { WeatherPrediction } from "./WeatherPrediction";
 import { CrowdChart } from "./CrowdChart";
 import { getResortForecast } from "@/lib/services/open-meteo";
 import {
@@ -115,11 +116,35 @@ export function ResortCard({
         setIsLoading(true);
         setError(null);
 
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const maxForecastDate = new Date(today);
+        maxForecastDate.setDate(today.getDate() + 15); // 16 days total (0-15)
+
+        const startDate = new Date(trip.dateRange.start);
+        startDate.setHours(0, 0, 0, 0);
+
+        // If trip starts AFTER the max forecast date, we can't show live weather at all
+        if (startDate > maxForecastDate) {
+          if (mounted) setIsLoading(false);
+          return;
+        }
+
+        // Clamp the end date to the max forecast date
+        const endDate = new Date(trip.dateRange.end);
+        let validEndStr = trip.dateRange.end;
+        if (endDate > maxForecastDate) {
+          const y = maxForecastDate.getFullYear();
+          const m = String(maxForecastDate.getMonth() + 1).padStart(2, "0");
+          const d = String(maxForecastDate.getDate()).padStart(2, "0");
+          validEndStr = `${y}-${m}-${d}`;
+        }
+
         const weatherData = await getResortForecast(
           resort.coordinates.lat,
           resort.coordinates.lon,
           trip.dateRange.start,
-          trip.dateRange.end
+          validEndStr
         );
 
         if (!mounted) return;
@@ -284,8 +309,10 @@ export function ResortCard({
               <AlertCircle className="h-8 w-8 mb-2" />
               <p>{error}</p>
             </div>
-          ) : (
+          ) : forecast.length > 0 ? (
             <WeatherForecast forecast={forecast} />
+          ) : (
+            <WeatherPrediction />
           )}
         </div>
 
@@ -358,7 +385,7 @@ export function ResortCard({
       </CardContent>
 
       {isGlobalLoading && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm transition-all duration-200">
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-white backdrop-blur-sm transition-all duration-200">
           <Loader2 className="h-12 w-12 animate-spin text-primary" />
           <div className="text-center space-y-1 mt-4">
             <p className="font-mono text-lg font-bold uppercase tracking-widest">
