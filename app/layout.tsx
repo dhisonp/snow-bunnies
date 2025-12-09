@@ -4,7 +4,6 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { UnitsProvider } from "@/components/TemperatureContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { PasswordProtection } from "@/components/PasswordProtection";
 
 const recursive = Recursive({
   subsets: ["latin"],
