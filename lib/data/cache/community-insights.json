@@ -63,5 +63,65 @@
     },
     "parkingStrategy": "Arrive by 8:00 AM on weekends and holidays for the best chance at free parking. The California Lodge lot offers convenient free parking with direct lift access, but fills quickly. Alternatively, head to the Boulder or Stagecoach Lodge lots on the Nevada side for free parking and quicker access to the mountain, though they are a bit further from South Lake Tahoe's main village. The Heavenly Village Gondola parking structure is convenient but paid ($20-30+ per day) and can fill by 9:00 AM on busy days.",
     "crowdPatterns": "Heavenly experiences significant crowds on weekends, especially during holiday periods and powder days. The Gondola line is typically the first to build by 8:30 AM. On-mountain, areas around Tamarack Lodge, the top of the Gondola, and the California Trail see the most traffic. Weekdays, especially Tuesday-Thursday, are significantly less crowded. Crowds tend to thin out on the far Nevada side (Boulder/Stagecoach areas) and in the advanced terrain of Mott and Killebrew Canyons. Lifts like Sky Express, Comet Express, and Dipper Express often have shorter lines after the initial morning rush."
+  },
+  "okemo": {
+    "resortId": "okemo",
+    "generatedAt": "2025-12-09T06:04:33.812Z",
+    "sources": ["Reddit", "Forums"],
+    "overview": "Okemo is renowned for its impeccably groomed, wide-open cruisers, making it a paradise for intermediates and families. With a modern high-speed lift system and diverse terrain spread across several distinct faces, it offers a consistent, enjoyable experience for all ability levels, though true experts might seek more extreme challenges elsewhere.",
+    "localTips": [
+      "Start your day at Jackson Gore Peak; its dedicated parking lot, lift access (Jackson Gore Express), and base amenities often mean shorter lines early on compared to the Clock Tower base.",
+      "Head to the South Face via the South Ridge Quad or Sunburst Six for less crowded, excellent intermediate cruising, especially after 11 AM when the Clock Tower crowds spread out.",
+      "For consistent groomers, stick to the main trails off the Sunburst Six, particularly Upper and Lower World Cup, before they get skied off.",
+      "On colder days or for a quick warm-up, utilize the enclosed bubbles of the Sunburst Six or Quantum Four lifts.",
+      "Avoid the Green Ridge Triple on busy days; it's slow and often has long lines. Instead, use the Black Ridge Triple or traverse over from the Sunburst Six.",
+      "The terrain off the Glades Peak Quad tends to be quieter and offers some fun, slightly less trafficked blue runs and accessible glades.",
+      "Check the daily grooming report; Okemo's snowmakers and groomers are top-notch, and even after a lean spell, you can often find fantastic corduroy.",
+      "Consider skiing the Clock Tower side first thing on a powder day; the steep pitches on Spillway and Outrage can offer great early turns before they get bumped out."
+    ],
+    "bestRunsByLevel": {
+      "beginner": ["Sachem", "Coleman Brook", "Suncatcher", "Easy Rider"],
+      "intermediate": [
+        "Upper World Cup",
+        "Lower World Cup",
+        "Sidewinder",
+        "Jack-A-Lope",
+        "Countdown"
+      ],
+      "advanced": ["Spillway", "Outrage", "Defiance", "Sel's Choice", "Chief"],
+      "expert": [
+        "Black Out",
+        "Starship Glades",
+        "White Star Glades",
+        "Wild Thing"
+      ]
+    },
+    "hiddenGems": [
+      "The small glades off the sides of Sidewinder on the South Face – often untracked for a bit longer.",
+      "The 'Rock Garden' off the top of the Glades Peak Quad, a small natural area that can be fun after fresh snow.",
+      "Crazy Train glades, accessible from the top of the Green Ridge Triple, offers a fun, slightly less traveled glade experience compared to the more popular ones.",
+      "The trails off the WayBack Quad, like WayBack and Lower Tomahawk, are often overlooked and can provide quiet, consistent cruising."
+    ],
+    "avoidList": [
+      "Green Ridge Triple: Incredibly slow and prone to long lines on busy days. Use the Sunburst Six or traverse from Glades Peak if possible.",
+      "Sitting Bull Base Lodge at peak lunch hour: Overcrowded, loud, and can be difficult to find a seat. Pack a lunch or aim for an early/late meal.",
+      "Paying full price for food at any on-mountain lodge: Generally overpriced for cafeteria-style fare. Consider bringing snacks and drinks, or utilize local restaurants in Ludlow for better value.",
+      "The initial rush down Giallo after getting off the Sunburst Six: It can get very congested. If you're not in a hurry, consider dropping down to World Cup or traversing right towards the South Face."
+    ],
+    "foodRecs": {
+      "onMountain": [
+        "Sugar House (Jackson Gore side, good chili)",
+        "Summit Lodge (great views, quick break spot)",
+        "Sitting Bull Restaurant (upstairs, better quality than downstairs cafeteria)"
+      ],
+      "base": [
+        "Mojo Cafe (Ludlow, Southwestern/Mexican fusion, popular)",
+        "DJ's Restaurant (Ludlow, classic American fare, reliable)",
+        "Stemwinder (Ludlow, upscale comfort food)",
+        "Goodman's American Pie (Ludlow, excellent pizza)"
+      ]
+    },
+    "parkingStrategy": "On weekends and holidays, aim to arrive by 8:00 AM (or even 7:30 AM on powder days) to secure good parking. The Jackson Gore Base (P1, P2 lots) is often the best bet, offering direct access to the Jackson Gore Express Quad and a less congested base lodge. The Clock Tower Base (Main Lot) fills up quickly; if targeting this area, arrive very early or be prepared for shuttle service from outer lots.",
+    "crowdPatterns": "Expect significant crowds on weekends and holidays, especially from 9:30 AM to 1:00 PM, with lifts like the Sunburst Six, Quantum Four, and Jackson Gore Express seeing the longest lines. Mid-week offers an uncrowded experience with minimal lift lines. Lunchtime (12:00 PM - 1:30 PM) sees lodges packed and mid-mountain trails getting busy. Crowds typically thin out after 2:30 PM, making for great late-day laps, particularly on the South Face or Glades Peak."
   }
 }

@@ -100,6 +100,7 @@ export function ResortCard({
   const [forecast, setForecast] = useState<DailyWeather[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isHistorical, setIsHistorical] = useState(false);
 
   const [crowdData, setCrowdData] = useState<DailyCrowd[]>([]);
   const [crowdLoading, setCrowdLoading] = useState(false);
@@ -124,8 +125,27 @@ export function ResortCard({
         const startDate = new Date(trip.dateRange.start);
         startDate.setHours(0, 0, 0, 0);
 
-        // If trip starts AFTER the max forecast date, we can't show live weather at all
         if (startDate > maxForecastDate) {
+          try {
+            const params = new URLSearchParams({
+              lat: resort.coordinates.lat.toString(),
+              lon: resort.coordinates.lon.toString(),
+              start: trip.dateRange.start,
+              end: trip.dateRange.end,
+            });
+            const res = await fetch(
+              `/api/weather-historical?${params.toString()}`
+            );
+            if (res.ok) {
+              const historicalData = await res.json();
+              if (mounted) {
+                setForecast(historicalData);
+                setIsHistorical(true);
+              }
+            }
+          } catch (e) {
+            console.error("Failed to fetch historical weather", e);
+          }
           if (mounted) setIsLoading(false);
           return;
         }
@@ -148,7 +168,8 @@ export function ResortCard({
         );
 
         if (!mounted) return;
-        setForecast(weatherData);
+        setForecast(weatherData); // Live forecast
+        setIsHistorical(false);
 
         setCrowdLoading(true);
         try {
@@ -266,7 +287,7 @@ export function ResortCard({
   const isGlobalLoading = isLoading || crowdLoading || insightsLoading;
 
   return (
-    <Card className="relative min-h-[600px] overflow-hidden">
+    <Card className="relative min-h-[600px] overflow-hidden flex flex-col">
       <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
         <div>
           <CardTitle className="text-xl">{resort.name}</CardTitle>
@@ -302,7 +323,7 @@ export function ResortCard({
           </Button>
         </div>
       </CardHeader>
-      <CardContent className="grid gap-3 pb-6">
+      <CardContent className="flex flex-col gap-3 pb-6 flex-1">
         <div>
           {error ? (
             <div className="min-h-[200px] flex flex-col items-center justify-center py-8 text-destructive">
@@ -310,7 +331,11 @@ export function ResortCard({
               <p>{error}</p>
             </div>
           ) : forecast.length > 0 ? (
-            <WeatherForecast forecast={forecast} />
+            isHistorical ? (
+              <WeatherPrediction forecast={forecast} isHistorical={true} />
+            ) : (
+              <WeatherForecast forecast={forecast} />
+            )
           ) : (
             <WeatherPrediction />
           )}
@@ -353,14 +378,14 @@ export function ResortCard({
         </div>
 
         {insightsError ? (
-          <div className="border-2 border-red-500 bg-red-500/10 p-3 rounded-none flex items-center gap-2 text-red-600">
+          <div className="border-2 border-red-500 bg-red-500/10 p-3 rounded-none flex items-center gap-2 text-red-600 mt-auto">
             <AlertCircle className="h-5 w-5" />
             <span className="font-bold text-sm uppercase">
               Insight Check Failed
             </span>
           </div>
         ) : insights && insights.localTips.length > 0 ? (
-          <div className="border-2 border-primary p-0 rounded-none bg-muted">
+          <div className="border-2 border-primary p-0 rounded-none bg-muted mt-auto">
             <div className="flex items-center gap-2 p-3 border-b-2 border-primary bg-background">
               <Lightbulb className="h-5 w-5 text-primary" strokeWidth={2.5} />
               <span className="font-mono font-bold text-sm uppercase tracking-tight">
