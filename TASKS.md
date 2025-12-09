@@ -17,8 +17,17 @@
   - [x] Crowd data service (heuristic-based with holidays.json) <!-- id: 14 -->
   - [x] AI Insights API <!-- id: 15 -->
   - [x] AI Insights UI (wired to ResortCard) <!-- id: 16 -->
-  - [ ] Implement Scrapers (Reddit/Forums) for community data <!-- id: 20 --> (post-MVP)
 - [x] Features <!-- id: 16 -->
   - [x] Trip creation/editing <!-- id: 17 -->
   - [x] Dashboard view <!-- id: 18 -->
-  - [ ] Trip detail view <!-- id: 19 --> (post-MVP)
+
+## Post MVP
+
+- [ ] Trip detail view
+- [ ] Airbnb/accomodation tips
+- [ ] Detailed AI evaluation
+- [ ] Implement scrapers for community data
+
+## Polish
+
+- [ ] Mobile form 'clashing' date fields
