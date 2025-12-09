@@ -64,7 +64,7 @@ export default function Home() {
           </h1>
           <div className="flex items-center gap-2 flex-wrap justify-center md:flex-nowrap md:justify-end">
             <Link href="/upcoming">
-              <Button variant="outline" size="sm">
+              <Button variant="ghost" size="sm">
                 <Sparkles className="mr-2 h-4 w-4" /> Upcoming
               </Button>
             </Link>

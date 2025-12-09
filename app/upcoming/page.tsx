@@ -42,6 +42,12 @@ const upcomingFeatures: Feature[] = [
     category: "AI Insights",
   },
   {
+    title: "Trip Briefs",
+    description:
+      "Personalized AI-generated trip summaries with daily game plans, gear considerations, and warnings tailored to your skill level and trip dates.",
+    category: "AI Insights",
+  },
+  {
     title: "Historical Comparison Component",
     description:
       "Visual comparison charts showing current forecast vs. historical averages with confidence indicators.",
