@@ -1,11 +1,11 @@
-# Ski Trip Planner - Technical Specification
+# Ski Trip Tracker - Technical Specification
 
 ## Project Overview
 
-A mobile-first web application for planning ski trips with weather forecasts, crowd predictions, and AI-generated resort insights. No authentication required. Data persisted via LocalStorage.
+A mobile-first web application for tracking ski trips with weather forecasts, crowd predictions, and AI-generated resort insights. No authentication required. Data persisted via LocalStorage.
 
 **Target Users:** Small friend group planning 2-3 ski trips
-**Core Value:** Consolidated view of weather, crowds, and local knowledge for selected resorts and date ranges
+**Core Value:** Consolidated view of weather, crowds, and local knowledge for tracking selected resorts and date ranges
 
 ---
 
@@ -196,7 +196,7 @@ interface TripBrief {
 ## File Structure
 
 ```
-/ski-trip-planner
+/ski-trip-tracker
 ├── /app
 │   ├── layout.tsx                     # Root layout, fonts, providers
 │   ├── page.tsx                       # Main dashboard

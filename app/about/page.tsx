@@ -11,34 +11,29 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    title: "Easy Access to Local Info",
+    title: "The Local in Your Pocket",
     description:
-      "No research required. Everything you need to plan your trip is in one place—weather, crowds, and local knowledge. Quick decision making without the hassle.",
+      "AI that reads the forums so you don't have to. We scour the corners of the internet for the real alpha—which runs are groomed, where the snow holds up, and which lodge has the best chili. No marketing fluff.",
   },
   {
-    title: "Deeper Local Insight",
+    title: "Zero-Friction Tracking",
     description:
-      "AI-powered recommendations synthesized from community knowledge. Real insider tips about runs, parking, food, and what to avoid. The kind of stuff locals know.",
+      "Your friends are lazy. We get it. That's why there's no login, no download, and no 'create an account to view'. Send them a link, and they're in. It just works.",
   },
   {
-    title: "Community-Scraped Answers",
+    title: "Lift Line Radar",
     description:
-      "Real-time updates from Reddit and forums (actively improving). Local knowledge from actual skiers, not marketing copy. What people actually say about conditions and crowds.",
+      "Nothing ruins a powder day like a 45-minute lift line. Our crowd predictions warn you before you commit, so you can dodge the masses and lap the empty chairs.",
   },
   {
-    title: "Made by a Skier, for Skiers",
+    title: "Weather That Doesn't Lie",
     description:
-      "No frills philosophy. Just works. Nice to use. Built by someone who skis, for people who ski. No sign-ups, no accounts, no BS.",
+      "16-day forecasts with historical truth-serum. If it's gonna be an ice rink, we'll tell you. We'd rather you stay home than ski bad snow.",
   },
   {
-    title: "Prediction Data",
+    title: "Why You Need This",
     description:
-      "16-day weather forecasts with historical comparisons. Working on improving accuracy for further-out trips. No guessing. We'll be honest on what we know and not know!",
-  },
-  {
-    title: "Crowd Predictions",
-    description:
-      "Avoid lift lines. Know when to arrive. Holiday awareness built in. Hourly breakdowns so you can time your day right.",
+      "Because you're the one planning the trip, and you deserve to actually enjoy it. Look like a genius, ski better snow, and never get stuck in a 'where should we go?' loop again.",
   },
 ];
 
@@ -64,11 +59,13 @@ export default function AboutPage() {
             className="border-2 border-foreground bg-card p-4 mb-8"
             style={{ boxShadow: "4px 4px 0px 0px var(--foreground)" }}
           >
-            <h2 className="text-xl font-bold mb-2">WHAT IS THIS?</h2>
+            <h2 className="text-xl font-bold mb-2">YOUR GROUP CHAT'S MVP.</h2>
             <p className="text-base">
-              Snow Bunnies is a ski trip planner. Low commitment, easy access to
-              information. Plan your trip without the hassle. No sign-ups, no
-              accounts—just works.
+              Let's be real: planning a ski trip is usually a nightmare of
+              opened tabs, conflicting weather apps, and "I heard from a guy"
+              rumors. Snow Bunnies kills the noise. We track the stuff that
+              actually matters—weather, crowds, and local secrets—so you can
+              stop guessing and start shredding.
             </p>
           </div>
 
@@ -92,7 +89,7 @@ export default function AboutPage() {
             style={{ boxShadow: "2px 2px 0px 0px var(--foreground)" }}
           >
             <p className="text-sm text-muted-foreground">
-              Ready to plan your trip? Head back and create your first one.
+              Stop checking 5 different apps. Start tracking.
             </p>
           </div>
         </div>
