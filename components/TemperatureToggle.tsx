@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useUnits } from "@/components/TemperatureContext";
+import { Thermometer } from "lucide-react";
 
 export function TemperatureToggle() {
   const { system, toggleSystem } = useUnits();
@@ -11,9 +12,10 @@ export function TemperatureToggle() {
       variant="ghost"
       size="sm"
       onClick={toggleSystem}
-      className="w-20 font-mono text-xs"
+      className="w-24 font-mono text-xs"
     >
-      {system === "metric" ? "METRIC" : "IMPERIAL"}
+      <Thermometer className="mr-2 h-4 w-4" />
+      {system === "metric" ? "°C / cm" : "°F / in"}
     </Button>
   );
 }
