@@ -2,7 +2,8 @@ import { Card } from "@/components/ui/card";
 import { type DailyWeather } from "@/lib/types/weather";
 import { useUnits } from "@/components/TemperatureContext";
 import { SectionHeader } from "./SectionHeader";
-import { Sun, CloudSnow, Wind } from "lucide-react";
+import { Wind } from "lucide-react";
+import { WeatherIcon } from "./WeatherIcon";
 
 interface WeatherForecastProps {
   forecast: DailyWeather[];
@@ -49,19 +50,11 @@ export function WeatherForecast({
                 })}
               </div>
               <div className="flex justify-center my-1">
-                {day.weatherCode > 50 ? (
-                  <CloudSnow
-                    className={`h-8 w-8 ${isSelected ? "text-primary" : "text-blue-600"}`}
-                    strokeWidth={2.5}
-                    strokeLinecap="square"
-                  />
-                ) : (
-                  <Sun
-                    className={`h-8 w-8 ${isSelected ? "text-primary" : "text-orange-500"}`}
-                    strokeWidth={2.5}
-                    strokeLinecap="square"
-                  />
-                )}
+                <WeatherIcon
+                  code={day.weatherCode}
+                  className={`h-8 w-8 ${isSelected ? "text-primary" : ""}`}
+                  strokeWidth={2.5}
+                />
               </div>
               <div className="text-sm font-bold">
                 {formatTemp(day.tempMin)}° / {formatTemp(day.tempMax)}°
