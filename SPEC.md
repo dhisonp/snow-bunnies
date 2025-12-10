@@ -96,6 +96,8 @@ interface TripConfig {
   createdAt: string;
   updatedAt: string;
 }
+
+// Maximum of 3 trips allowed in LocalStorage
 ```
 
 ### Weather Data
@@ -176,6 +178,7 @@ interface ResortInsights {
 interface TripBrief {
   tripId: string;
   generatedAt: string;
+  weatherFingerprint?: string; // Hash of weather data for cache invalidation
   summary: string; // Personalized 3-4 sentence brief
   dailyGamePlan: {
     date: string;
@@ -224,16 +227,34 @@ interface TripBrief {
 │   │   ├── skeleton.tsx
 │   │   ├── tabs.tsx
 │   │   └── collapsible.tsx
-│   ├── ResortCard.tsx                 # Main card component
+│   ├── /ResortCard                    # Refactored modular structure
+│   │   ├── index.tsx                  # Main orchestrator component
+│   │   ├── ResortCardHeader.tsx       # Header with edit/delete
+│   │   ├── WeatherSection.tsx         # Weather display section
+│   │   ├── CrowdSection.tsx           # Crowd predictions section
+│   │   ├── InsightsSection.tsx        # AI insights section
+│   │   ├── TripBriefModal.tsx         # Trip brief modal dialog
+│   │   ├── PredictionModal.tsx        # Long-range trip warning modal
+│   │   ├── CommunityInsightsModal.tsx # Community insights modal
+│   │   └── /hooks                     # Custom hooks for data fetching
+│   │       ├── useWeatherForecast.ts  # Weather data + historical
+│   │       ├── useCrowdData.ts        # Crowd predictions
+│   │       ├── useResortInsights.ts   # Resort AI insights
+│   │       └── useTripBrief.ts        # Trip brief generation
 │   ├── WeatherForecast.tsx            # Daily weather display
+│   ├── WeatherIcon.tsx                # Weather icon renderer
+│   ├── WeatherPrediction.tsx          # Historical prediction view
 │   ├── HistoricalComparison.tsx       # Forecast vs historical
+│   ├── SectionHeader.tsx              # Reusable section header
 │   ├── CrowdChart.tsx                 # Hourly crowd visualization
-│   ├── CrowdCalendar.tsx              # Date range crowd overview
-│   ├── InsightsPanel.tsx              # AI-generated tips display
+│   ├── CrowdDetailPanel.tsx           # Per-day crowd details
+│   ├── DayCrowdCard.tsx               # Individual day crowd card
 │   ├── TripForm.tsx                   # Create/edit trip modal
 │   ├── ResortPicker.tsx               # Resort selection
-│   ├── SkillLevelSelect.tsx           # Skill level dropdown
-│   └── EmptyState.tsx                 # No trips yet
+│   ├── TemperatureContext.tsx         # Temperature unit context
+│   ├── TemperatureToggle.tsx          # Metric/Imperial toggle
+│   ├── ModeToggle.tsx                 # Dark mode toggle
+│   └── ThemeProvider.tsx              # Theme provider
 ├── /lib
 │   ├── /types                         # All TypeScript interfaces
 │   │   ├── resort.ts
@@ -518,7 +539,7 @@ Tailor all recommendations to a {skillLevel} {discipline}er. Be specific and act
 
 ### ResortCard
 
-Primary display component for each saved trip.
+Primary display component for each saved trip. **Refactored into modular architecture** with custom hooks and sub-components.
 
 **Props:**
 
@@ -530,6 +551,21 @@ interface ResortCardProps {
   onDelete: () => void;
 }
 ```
+
+**Architecture:**
+
+- **Main Component** (`/components/ResortCard/index.tsx`): Orchestrates data fetching via hooks and renders sub-components
+- **Custom Hooks** (`/components/ResortCard/hooks/*`):
+  - `useWeatherForecast`: Fetches weather data and historical comparison
+  - `useCrowdData`: Fetches crowd predictions
+  - `useResortInsights`: Fetches AI-generated resort insights
+  - `useTripBrief`: Manages trip brief generation with weather-based cache invalidation
+- **Sub-Components**:
+  - `ResortCardHeader`: Trip metadata and actions
+  - `WeatherSection`: Weather forecast display
+  - `CrowdSection`: Crowd predictions with per-day details
+  - `InsightsSection`: AI insights preview and actions
+  - Modal components for expanded views
 
 **Layout (Mobile-First):**
 
@@ -1024,14 +1060,24 @@ Each data-fetching component should handle:
 - [ ] Reddit scraper script (post-MVP)
 - [x] Gemini API integration
 - [x] Resort insights generation
-- [x] Trip brief generation (API ready)
+- [x] Trip brief generation with weather fingerprinting
 - [x] InsightsPanel component (integrated into ResortCard)
+- [x] Trip brief modal with regeneration capability
+- [x] Community insights expansion modal
 
 ### Phase 5: Polish (Day 6)
 
 - [x] Error states
 - [x] Loading skeletons
 - [x] Mobile responsiveness pass
+- [x] Dark mode support
+- [x] Metric/Imperial temperature toggle
+- [x] Enhanced weather icons (sun, rain, cloudy, snow)
+- [x] Per-day crowd detail panels
+- [x] Section headers with consistent styling
+- [x] Trip limit enforcement (max 3 trips)
+- [x] Historical comparison with AI-generated captions
+- [x] Long-range trip handling (16+ days)
 - [ ] PWA setup (optional)
 - [x] Deploy to Vercel
 
@@ -1049,13 +1095,14 @@ Each data-fetching component should handle:
 
 ---
 
-## Questions for Clarification
+## Implementation Decisions
 
-1. Should historical comparison show specific years or just averages?
-2. Preferred date picker library? (suggest: react-day-picker)
-3. Max number of trips to support in LocalStorage?
-4. Should AI insights regenerate automatically or only on user request?
-5. Preferred error tracking service? (suggest: none for MVP)
+1. Historical comparison shows averages with AI-generated context captions ✓
+2. Using native HTML date inputs for mobile-first design ✓
+3. Max 3 trips in LocalStorage with UI enforcement ✓
+4. AI insights cached for 7 days, trip briefs regenerate on weather changes (via fingerprinting) ✓
+5. No error tracking service for MVP ✓
+6. Trip briefs disabled for trips longer than 16 days (prediction mode) ✓
 
 ---
 
