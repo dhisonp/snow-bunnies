@@ -26,7 +26,8 @@
 - [x] Trip detail view
   - [x] Extensive AI-generated tips
   - [x] Local knowledge
-- [x] Trip briefs (AI-generated personalized trip summaries)
+- [x] Trip briefs
+- [ ] Trip briefs use live forecast data
 - [ ] Dynamic resorts
 - [ ] Airbnb/accomodation tips
 - [ ] Implement scrapers for community data
