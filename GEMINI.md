@@ -7,7 +7,7 @@ Mobile-first web app for planning ski trips with weather forecasts, crowd predic
 - **Framework**: Next.js 14+ (App Router)
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS + shadcn/ui
-- **APIs**: Open-Meteo (weather), Anthropic Claude API (insights)
+- **APIs**: Open-Meteo (weather), Google Gemini API (insights)
 - **Storage**: LocalStorage (trips), JSON file cache (scraped community data)
 
 ## Project Structure
@@ -18,12 +18,14 @@ app/                    # Next.js App Router pages and API routes
   trip/[id]/            # Individual trip detail view
 components/             # React components
   ui/                   # shadcn/ui components
+  ResortCard/           # Complex resort card components (index, sub-components, hooks)
 lib/
   types/                # TypeScript interfaces (resort, trip, weather, crowd, insights)
   data/                 # Static JSON: resorts.json, holidays.json, cache/
   services/             # API clients: open-meteo, crowd-estimator, ai-insights
   scrapers/             # Reddit and forum scrapers
   storage.ts            # LocalStorage helpers
+scripts/                # Utility scripts (generate-insights, etc.)
 ```
 
 ## Development
@@ -39,6 +41,7 @@ npm run lint            # Lint code
 - All API routes return `{ error, code, details? }` on failure
 - Weather data cached 1 hour, crowd data 6 hours, AI insights 7 days
 - Crowd levels use 1-5 scale with color coding (green→red)
+- Use `SectionHeader` for consistent section titling
 - Use `file:line` references when discussing code locations
 - Prioritize code correctness over anything
 - Reduce verbose comments
