@@ -56,7 +56,7 @@ export function WeatherForecast({
                   strokeWidth={2.5}
                 />
               </div>
-              <div className="text-sm font-bold tabular-nums">
+              <div className="text-xs sm:text-sm font-bold tabular-nums">
                 {formatTemp(day.tempMin)}° / {formatTemp(day.tempMax)}°
               </div>
               <div
