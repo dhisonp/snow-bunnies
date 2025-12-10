@@ -2,11 +2,21 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import {
+  ArrowLeft,
+  Brain,
+  Link as LinkIcon,
+  Users,
+  Snowflake,
+  Utensils,
+  Crown,
+} from "lucide-react";
+import { ContactLinks } from "@/components/ContactLinks";
 
 interface Feature {
   title: string;
   description: string;
+  icon: React.ElementType;
 }
 
 const features: Feature[] = [
@@ -14,26 +24,37 @@ const features: Feature[] = [
     title: "The Local in Your Pocket",
     description:
       "AI that reads the forums so you don't have to. We scour the corners of the internet for the real alpha—which runs are groomed, where the snow holds up, and which lodge has the best chili. No marketing fluff.",
+    icon: Brain,
   },
   {
     title: "Zero-Friction Tracking",
     description:
       "Your friends are lazy. We get it. That's why there's no login, no download, and no 'create an account to view'. Send them a link, and they're in. It just works.",
+    icon: LinkIcon,
   },
   {
     title: "Lift Line Radar",
     description:
       "Nothing ruins a powder day like a 45-minute lift line. Our crowd predictions warn you before you commit, so you can dodge the masses and lap the empty chairs.",
+    icon: Users,
   },
   {
     title: "Weather That Doesn't Lie",
     description:
       "16-day forecasts with historical truth-serum. If it's gonna be an ice rink, we'll tell you. We'd rather you stay home than ski bad snow.",
+    icon: Snowflake,
+  },
+  {
+    title: "Slopes & Sustenance",
+    description:
+      "You can't eat powder. We highlight the runs that make you feel like a hero and the slope-side joints that actually serve real food. Don't waste a run on ice or a lunch on sad cafeteria pizza.",
+    icon: Utensils,
   },
   {
     title: "Why You Need This",
     description:
       "Because you're the one planning the trip, and you deserve to actually enjoy it. Look like a genius, ski better snow, and never get stuck in a 'where should we go?' loop again.",
+    icon: Crown,
   },
 ];
 
@@ -50,6 +71,7 @@ export default function AboutPage() {
             </Link>
             <h1 className="text-2xl font-bold tracking-tight">What is this?</h1>
           </div>
+          <ContactLinks />
         </div>
       </header>
 
@@ -59,13 +81,15 @@ export default function AboutPage() {
             className="border-2 border-foreground bg-card p-4 mb-8"
             style={{ boxShadow: "4px 4px 0px 0px var(--foreground)" }}
           >
-            <h2 className="text-xl font-bold mb-2">YOUR GROUP CHAT'S MVP.</h2>
+            <h2 className="text-xl font-bold mb-2">
+              YOUR GROUP CHAT&apos;S MVP.
+            </h2>
             <p className="text-base">
-              Let's be real: planning a ski trip is usually a nightmare of
-              opened tabs, conflicting weather apps, and "I heard from a guy"
-              rumors. Snow Bunnies kills the noise. We track the stuff that
-              actually matters—weather, crowds, and local secrets—so you can
-              stop guessing and start shredding.
+              Let&apos;s be real: planning a ski trip is usually a nightmare of
+              opened tabs, conflicting weather apps, and &quot;I heard from a
+              guy&quot; rumors. Snow Bunnies kills the noise. We track the stuff
+              that actually matters—weather, crowds, and local secrets—so you
+              can stop guessing and start shredding.
             </p>
           </div>
 
@@ -76,7 +100,12 @@ export default function AboutPage() {
                 className="border-2 border-foreground bg-card p-4"
                 style={{ boxShadow: "2px 2px 0px 0px var(--foreground)" }}
               >
-                <h3 className="font-bold text-base mb-1">{feature.title}</h3>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="p-2 border-2 border-foreground bg-background">
+                    <feature.icon className="h-5 w-5" strokeWidth={2.5} />
+                  </div>
+                  <h3 className="font-bold text-base">{feature.title}</h3>
+                </div>
                 <p className="text-sm text-muted-foreground">
                   {feature.description}
                 </p>

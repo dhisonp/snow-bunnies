@@ -2,62 +2,66 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Github } from "lucide-react";
+import {
+  ArrowLeft,
+  Github,
+  Activity,
+  BedDouble,
+  MessageSquareText,
+  Eye,
+  CalendarDays,
+  Mountain,
+} from "lucide-react";
 
 interface Feature {
   title: string;
   description: string;
   category: "Weather" | "Crowds" | "AI Insights" | "UX Polish" | "Resorts";
+  icon: React.ElementType;
 }
 
 const upcomingFeatures: Feature[] = [
   {
-    title: "Open-Meteo Historical API",
+    title: "The Vibe Check",
     description:
-      "Enhanced historical weather data integration showing trends across past 8-10 years for more accurate comparisons.",
-    category: "Weather",
+      "A single, brutal number that tells you if you should call in sick or stay at work. We crunch the snow, crowds, and vibes into one simple score.",
+    category: "AI Insights",
+    icon: Activity,
   },
   {
-    title: "Google Popular Times Integration",
+    title: "The Crash Pad Finder",
     description:
-      "Real-time crowd data from Google to provide more accurate lift line and parking predictions.",
+      "Because sleeping in your car is only fun until you're 25. AI-generated finds for where to crash, from 'dirtbag cheap' to 'boujee cabin'.",
+    category: "AI Insights",
+    icon: BedDouble,
+  },
+  {
+    title: "Forum Diver",
+    description:
+      "We're teaching the AI to read the angry local forums so you don't have to. Real-time updates on which lifts are actually spinning and where the ice patches are hiding.",
+    category: "AI Insights",
+    icon: MessageSquareText,
+  },
+  {
+    title: "Google's All-Seeing Eye",
+    description:
+      "Tapping into the matrix to see exactly how full the parking lot is right now. If there's a line for the bathroom, you'll know.",
     category: "Crowds",
+    icon: Eye,
   },
   {
-    title: "Per-Day Details",
+    title: "The Avoider's Almanac",
     description:
-      "Detailed expandable views for each day showing hourly breakdowns of weather, crowds, and conditions.",
-    category: "UX Polish",
+      "A full-season view of when the Jerry convention is in town. Plan your sick days around the empty slopes, not the holidays.",
+    category: "Crowds",
+    icon: CalendarDays,
   },
   {
-    title: "Dynamic Resorts",
+    title: "Bring Your Own Resort",
     description:
-      "Allow users to add custom resorts beyond the pre-configured list, with automatic coordinate and elevation lookup.",
+      "Skiing somewhere obscure? We'll let you add that hidden gem in the backcountry that no one else knows about (yet).",
     category: "Resorts",
-  },
-  {
-    title: "Airbnb & Accommodation Tips",
-    description:
-      "AI-generated recommendations for nearby lodging, including optimal areas to stay and booking strategies.",
-    category: "AI Insights",
-  },
-  {
-    title: "Trip Briefs",
-    description:
-      "Personalized AI-generated trip summaries with daily game plans, gear considerations, and warnings tailored to your skill level and trip dates.",
-    category: "AI Insights",
-  },
-  {
-    title: "Historical Comparison Component",
-    description:
-      "Visual comparison charts showing current forecast vs. historical averages with confidence indicators.",
-    category: "Weather",
-  },
-  {
-    title: "Crowd Calendar",
-    description:
-      "Multi-day calendar view showing crowd predictions at a glance for easier trip planning.",
-    category: "Crowds",
+    icon: Mountain,
   },
 ];
 
@@ -103,9 +107,9 @@ export default function UpcomingPage() {
             style={{ boxShadow: "4px 4px 0px 0px var(--foreground)" }}
           >
             <p className="text-base">
-              The following features are planned for future releases. These
-              enhancements will improve weather accuracy, crowd predictions, and
-              overall user experience.
+              We&apos;re just getting started. Here is the alpha we are cooking
+              up in the lab. No promises on dates, but when they drop,
+              they&apos;ll be game changers.
             </p>
           </div>
 
@@ -127,9 +131,12 @@ export default function UpcomingPage() {
                       className="border-2 border-foreground bg-card p-4"
                       style={{ boxShadow: "2px 2px 0px 0px var(--foreground)" }}
                     >
-                      <h3 className="font-bold text-base mb-1">
-                        {feature.title}
-                      </h3>
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="p-2 border-2 border-foreground bg-background">
+                          <feature.icon className="h-5 w-5" strokeWidth={2.5} />
+                        </div>
+                        <h3 className="font-bold text-base">{feature.title}</h3>
+                      </div>
                       <p className="text-sm text-muted-foreground">
                         {feature.description}
                       </p>
