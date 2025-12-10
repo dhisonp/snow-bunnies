@@ -2,13 +2,14 @@ import { Button } from "@/components/ui/button";
 import { CardHeader, CardTitle } from "@/components/ui/card";
 import { type Resort } from "@/lib/types/resort";
 import { type TripConfig } from "@/lib/types/trip";
-import { CalendarPlus, Pencil, Trash2 } from "lucide-react";
+import { CalendarPlus, Pencil, Trash2, Share2 } from "lucide-react";
 
 interface ResortCardHeaderProps {
   trip: TripConfig;
   resort: Resort;
   onEdit: () => void;
   onDelete: () => void;
+  onShare?: () => void;
 }
 
 function formatDateForICS(dateStr: string, addDays = 0): string {
@@ -28,6 +29,7 @@ export function ResortCardHeader({
   resort,
   onEdit,
   onDelete,
+  onShare,
 }: ResortCardHeaderProps) {
   const handleAddToCalendar = () => {
     const start = formatDateForICS(trip.dateRange.start);
@@ -82,6 +84,16 @@ export function ResortCardHeader({
         >
           <CalendarPlus className="h-4 w-4" />
         </Button>
+        {onShare && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onShare}
+            title="Share Trip"
+          >
+            <Share2 className="h-4 w-4" />
+          </Button>
+        )}
         <Button variant="ghost" size="icon" onClick={onEdit}>
           <Pencil className="h-4 w-4" />
         </Button>

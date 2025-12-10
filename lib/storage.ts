@@ -1,4 +1,4 @@
-import { type TripConfig } from "@/lib/types/trip";
+import { type TripConfig, type SkillLevel } from "@/lib/types/trip";
 
 const STORAGE_KEY = "snowbunnies_trips";
 export const MAX_TRIPS = 3;
@@ -162,4 +162,50 @@ export const saveTripBrief = (
   }
   briefs[`${tripId}_${resortId}`] = brief;
   localStorage.setItem(BRIEF_KEY, JSON.stringify(briefs));
+};
+
+export type SharedTripData = {
+  resortId: string;
+  dateRange: { start: string; end: string };
+  userProfile: { discipline: "ski" | "snowboard"; skillLevel: SkillLevel };
+};
+
+export const createTripFromShared = (data: SharedTripData): TripConfig => {
+  const now = new Date().toISOString();
+  return {
+    id: crypto.randomUUID(),
+    resortId: data.resortId,
+    dateRange: data.dateRange,
+    userProfile: data.userProfile,
+    createdAt: now,
+    updatedAt: now,
+  };
+};
+
+export const encodeTrip = (trip: TripConfig): string => {
+  const sharedData: SharedTripData = {
+    resortId: trip.resortId,
+    dateRange: trip.dateRange,
+    userProfile: trip.userProfile,
+  };
+  return btoa(JSON.stringify(sharedData));
+};
+
+export const decodeTrip = (encoded: string): SharedTripData | null => {
+  try {
+    const decoded = atob(encoded);
+    const data = JSON.parse(decoded) as SharedTripData;
+
+    if (
+      !data.resortId ||
+      !data.dateRange?.start ||
+      !data.dateRange?.end ||
+      !data.userProfile?.discipline ||
+      !data.userProfile?.skillLevel
+    ) {
+      return;
+    }
+
+    return data;
+  } catch {}
 };

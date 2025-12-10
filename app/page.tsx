@@ -13,10 +13,21 @@ import {
   deleteTrip,
   initializeDefaultTrip,
   MAX_TRIPS,
+  decodeTrip,
+  createTripFromShared,
+  saveTrip,
 } from "@/lib/storage";
 import resortsData from "@/lib/data/resorts.json";
 import { type Resort } from "@/lib/types/resort";
-import { Plus, Sparkles, Info } from "lucide-react";
+import { Plus, Sparkles, Info, AlertCircle } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
 
 export default function Home() {
   const [trips, setTrips] = React.useState<TripConfig[]>([]);
@@ -24,13 +35,31 @@ export default function Home() {
   const [editingTrip, setEditingTrip] = React.useState<TripConfig | undefined>(
     undefined
   );
+  const [showMaxTripsError, setShowMaxTripsError] = React.useState(false);
 
   const loadTrips = () => {
     setTrips(getTrips());
   };
 
   useEffect(() => {
-    initializeDefaultTrip();
+    const params = new URLSearchParams(window.location.search);
+
+    const sharedTrip = params.get("trip");
+    if (sharedTrip) {
+      const tripData = decodeTrip(sharedTrip);
+      if (tripData) {
+        const newTrip = createTripFromShared(tripData);
+        try {
+          saveTrip(newTrip);
+        } catch {
+          setShowMaxTripsError(true);
+        }
+      }
+      window.history.replaceState({}, "", "/");
+    } else {
+      initializeDefaultTrip();
+    }
+
     loadTrips();
   }, []);
 
@@ -138,6 +167,30 @@ export default function Home() {
         trip={editingTrip}
         onSave={handleSave}
       />
+
+      <Dialog open={showMaxTripsError} onOpenChange={setShowMaxTripsError}>
+        <DialogContent className="max-w-md rounded-none border-4 border-destructive bg-background shadow-[8px_8px_0px_0px_var(--foreground)]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 font-mono uppercase tracking-tight text-xl text-destructive">
+              <AlertCircle className="h-5 w-5 fill-current" />
+              Maximum Trips Reached
+            </DialogTitle>
+            <DialogDescription className="text-base pt-2">
+              You already have {MAX_TRIPS} trips planned. to add this shared
+              trip, you need to delete one of your existing trips first.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              onClick={() => setShowMaxTripsError(false)}
+              className="w-full rounded-none font-bold uppercase"
+              variant="default"
+            >
+              Understood
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

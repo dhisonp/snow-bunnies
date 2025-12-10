@@ -11,6 +11,7 @@ import { InsightsSection } from "./InsightsSection";
 import { TripBriefModal } from "./TripBriefModal";
 import { PredictionModal } from "./PredictionModal";
 import { CommunityInsightsModal } from "./CommunityInsightsModal";
+import { ShareModal } from "./ShareModal";
 
 import { useWeatherForecast } from "./hooks/useWeatherForecast";
 import { useCrowdData } from "./hooks/useCrowdData";
@@ -34,6 +35,7 @@ export function ResortCard({
   const [showCommunityInsights, setShowCommunityInsights] = useState(false);
   const [showBrief, setShowBrief] = useState(false);
   const [showPredictionModal, setShowPredictionModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
 
   const {
     forecast,
@@ -86,6 +88,7 @@ export function ResortCard({
         resort={resort}
         onEdit={onEdit}
         onDelete={onDelete}
+        onShare={() => setShowShareModal(true)}
       />
 
       <CardContent className="flex flex-col gap-3 pb-6 flex-1">
@@ -133,6 +136,13 @@ export function ResortCard({
         <PredictionModal
           isOpen={showPredictionModal}
           onClose={setShowPredictionModal}
+        />
+
+        <ShareModal
+          isOpen={showShareModal}
+          onClose={setShowShareModal}
+          trip={trip}
+          resort={resort}
         />
       </CardContent>
 
