@@ -13,6 +13,17 @@ const recursive = Recursive({
 export const metadata: Metadata = {
   title: "Snow Bunnies",
   description: "Ski Trips Made Easier, Cooler",
+  openGraph: {
+    title: "Snow Bunnies",
+    description: "Ski Trips Made Easier, Cooler",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Snow Bunnies",
+    description: "Ski Trips Made Easier, Cooler",
+  },
 };
 
 export default function RootLayout({
