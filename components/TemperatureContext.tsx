@@ -51,9 +51,9 @@ export function UnitsProvider({ children }: { children: React.ReactNode }) {
 
   const formatSnow = (cm: number) => {
     if (system === "imperial") {
-      return Math.round(cm * 0.393701 * 10) / 10;
+      return Math.round(cm * 0.393701 * 100) / 100;
     }
-    return cm;
+    return Math.round(cm * 100) / 100;
   };
 
   const tempUnit = system === "imperial" ? "°F" : "°C";
