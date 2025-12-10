@@ -8,7 +8,12 @@ import { ResortCard } from "@/components/ResortCard";
 import { TemperatureToggle } from "@/components/TemperatureToggle";
 import { ModeToggle } from "@/components/ModeToggle";
 import { type TripConfig } from "@/lib/types/trip";
-import { getTrips, deleteTrip, initializeDefaultTrip } from "@/lib/storage";
+import {
+  getTrips,
+  deleteTrip,
+  initializeDefaultTrip,
+  MAX_TRIPS,
+} from "@/lib/storage";
 import resortsData from "@/lib/data/resorts.json";
 import { type Resort } from "@/lib/types/resort";
 import { Plus, Sparkles, Info } from "lucide-react";
@@ -76,9 +81,21 @@ export default function Home() {
             </Link>
             <TemperatureToggle />
             <ModeToggle />
-            <Button onClick={handleCreate} size="sm">
-              <Plus className="mr-2 h-4 w-4" /> New Trip
-            </Button>
+            {trips.length >= MAX_TRIPS ? (
+              <div className="flex items-center gap-2">
+                <Button
+                  disabled
+                  size="sm"
+                  className="opacity-50 cursor-not-allowed"
+                >
+                  Max {MAX_TRIPS} Trips
+                </Button>
+              </div>
+            ) : (
+              <Button onClick={handleCreate} size="sm">
+                <Plus className="mr-2 h-4 w-4" /> New Trip
+              </Button>
+            )}
           </div>
         </div>
       </header>
