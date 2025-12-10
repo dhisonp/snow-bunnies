@@ -1,4 +1,8 @@
-import { type TripConfig, type SkillLevel } from "@/lib/types/trip";
+import {
+  type TripConfig,
+  type SkillLevel,
+  type Discipline,
+} from "@/lib/types/trip";
 
 const STORAGE_KEY = "snowbunnies_trips";
 export const MAX_TRIPS = 3;
@@ -167,7 +171,7 @@ export const saveTripBrief = (
 export type SharedTripData = {
   resortId: string;
   dateRange: { start: string; end: string };
-  userProfile: { discipline: "ski" | "snowboard"; skillLevel: SkillLevel };
+  userProfile: { discipline: Discipline; skillLevel: SkillLevel };
 };
 
 export const createTripFromShared = (data: SharedTripData): TripConfig => {
@@ -203,9 +207,11 @@ export const decodeTrip = (encoded: string): SharedTripData | null => {
       !data.userProfile?.discipline ||
       !data.userProfile?.skillLevel
     ) {
-      return;
+      return null;
     }
 
     return data;
-  } catch {}
+  } catch {
+    return null;
+  }
 };

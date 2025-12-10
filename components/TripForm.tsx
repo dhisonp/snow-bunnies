@@ -14,7 +14,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ResortPicker } from "@/components/ResortPicker";
 import { SkillLevelSelect } from "@/components/SkillLevelSelect";
-import { type TripConfig, type SkillLevel } from "@/lib/types/trip";
+import {
+  type TripConfig,
+  type SkillLevel,
+  type Discipline,
+} from "@/lib/types/trip";
 import { saveTrip } from "@/lib/storage";
 
 interface TripFormProps {
@@ -28,7 +32,7 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
   const [resortId, setResortId] = React.useState(trip?.resortId || "");
   const [dateStart, setDateStart] = React.useState(trip?.dateRange.start || "");
   const [dateEnd, setDateEnd] = React.useState(trip?.dateRange.end || "");
-  const [discipline, setDiscipline] = React.useState<"ski" | "snowboard">(
+  const [discipline, setDiscipline] = React.useState<Discipline>(
     trip?.userProfile.discipline || "ski"
   );
   const [skillLevel, setSkillLevel] = React.useState<SkillLevel>(

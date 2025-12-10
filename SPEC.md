@@ -2,10 +2,13 @@
 
 ## Project Overview
 
-A mobile-first web application for tracking ski trips with weather forecasts, crowd predictions, and AI-generated resort insights. No authentication required. Data persisted via LocalStorage.
+A mobile-first web application for tracking ski trips with weather forecasts,
+crowd predictions, and AI-generated resort insights. No authentication required.
+Data persisted via LocalStorage.
 
-**Target Users:** Small friend group planning 2-3 ski trips
-**Core Value:** Consolidated view of weather, crowds, and local knowledge for tracking selected resorts and date ranges
+**Target Users:** Small friend group planning 2-3 ski trips **Core Value:**
+Consolidated view of weather, crowds, and local knowledge for tracking selected
+resorts and date ranges
 
 ---
 
@@ -82,6 +85,8 @@ interface Resort {
 
 ```typescript
 // /lib/types/trip.ts
+type Discipline = "ski" | "snowboard";
+
 interface TripConfig {
   id: string; // UUID
   resortId: string;
@@ -90,7 +95,7 @@ interface TripConfig {
     end: string; // ISO date: "2025-12-22"
   };
   userProfile: {
-    discipline: "ski" | "snowboard";
+    discipline: Discipline;
     skillLevel: "beginner" | "intermediate" | "advanced" | "expert";
   };
   createdAt: string;
@@ -336,7 +341,8 @@ Fetches forecast for a resort and date range.
 **Implementation Notes:**
 
 - Use Open-Meteo endpoint: `https://api.open-meteo.com/v1/forecast`
-- Request parameters: `daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,precipitation_probability_max,weather_code,wind_speed_10m_max,uv_index_max`
+- Request parameters:
+  `daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,precipitation_probability_max,weather_code,wind_speed_10m_max,uv_index_max`
 - Set `elevation` parameter for mountain-level accuracy
 
 ---
@@ -539,7 +545,8 @@ Tailor all recommendations to a {skillLevel} {discipline}er. Be specific and act
 
 ### ResortCard
 
-Primary display component for each saved trip. **Refactored into modular architecture** with custom hooks and sub-components.
+Primary display component for each saved trip. **Refactored into modular
+architecture** with custom hooks and sub-components.
 
 **Props:**
 
@@ -554,12 +561,14 @@ interface ResortCardProps {
 
 **Architecture:**
 
-- **Main Component** (`/components/ResortCard/index.tsx`): Orchestrates data fetching via hooks and renders sub-components
+- **Main Component** (`/components/ResortCard/index.tsx`): Orchestrates data
+  fetching via hooks and renders sub-components
 - **Custom Hooks** (`/components/ResortCard/hooks/*`):
   - `useWeatherForecast`: Fetches weather data and historical comparison
   - `useCrowdData`: Fetches crowd predictions
   - `useResortInsights`: Fetches AI-generated resort insights
-  - `useTripBrief`: Manages trip brief generation with weather-based cache invalidation
+  - `useTripBrief`: Manages trip brief generation with weather-based cache
+    invalidation
 - **Sub-Components**:
   - `ResortCardHeader`: Trip metadata and actions
   - `WeatherSection`: Weather forecast display
@@ -1023,8 +1032,7 @@ Each data-fetching component should handle:
 1. Add env vars in Vercel dashboard
 2. Set up cron job for weekly scraping (Vercel Cron or external)
 
-**Build Command:** `next build`
-**Output:** Standalone
+**Build Command:** `next build` **Output:** Standalone
 
 ---
 
@@ -1100,7 +1108,8 @@ Each data-fetching component should handle:
 1. Historical comparison shows averages with AI-generated context captions ✓
 2. Using native HTML date inputs for mobile-first design ✓
 3. Max 3 trips in LocalStorage with UI enforcement ✓
-4. AI insights cached for 7 days, trip briefs regenerate on weather changes (via fingerprinting) ✓
+4. AI insights cached for 7 days, trip briefs regenerate on weather changes (via
+   fingerprinting) ✓
 5. No error tracking service for MVP ✓
 6. Trip briefs disabled for trips longer than 16 days (prediction mode) ✓
 
