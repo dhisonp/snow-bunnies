@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 export function ContactLinks() {
   return (
     <div className="flex flex-col items-end gap-1.5">
-      <span className="text-xs font-bold uppercase tracking-wider hidden sm:inline-block">
+      <span className="text-xs font-bold uppercase tracking-wider">
         Made with love & a skipped dinner - Dhison
       </span>
       <div className="flex gap-2">
