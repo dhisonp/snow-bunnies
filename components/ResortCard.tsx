@@ -57,17 +57,17 @@ function getCrowdLabel(level: number): string {
 function getCrowdColorClass(level: number): string {
   switch (level) {
     case 1:
-      return "bg-green-500";
+      return "bg-crowd-1";
     case 2:
-      return "bg-lime-500";
+      return "bg-crowd-2";
     case 3:
-      return "bg-yellow-500";
+      return "bg-crowd-3";
     case 4:
-      return "bg-orange-500";
+      return "bg-crowd-4";
     case 5:
-      return "bg-red-500";
+      return "bg-crowd-5";
     default:
-      return "bg-gray-500";
+      return "bg-muted";
   }
 }
 
@@ -440,7 +440,7 @@ export function ResortCard({
                   )}
                 </div>
                 <div
-                  className={`text-sm font-bold px-2 py-0.5 rounded-none border-2 border-black text-white ${getCrowdColorClass(firstDayCrowd.overallLevel)}`}
+                  className={`text-sm font-bold px-2 py-0.5 rounded-none border-2 border-primary text-primary-foreground ${getCrowdColorClass(firstDayCrowd.overallLevel)}`}
                 >
                   {getCrowdLabel(firstDayCrowd.overallLevel)}
                 </div>
@@ -811,7 +811,7 @@ export function ResortCard({
       </CardContent>
 
       {isGlobalLoading && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-white dark:bg-black backdrop-blur-sm transition-all duration-200">
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-background backdrop-blur-sm transition-all duration-200">
           <Loader2 className="h-12 w-12 animate-spin text-primary" />
           <div className="text-center space-y-1 mt-4">
             <p className="font-mono text-lg font-bold uppercase tracking-widest">
