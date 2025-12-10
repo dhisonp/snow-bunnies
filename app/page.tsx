@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { TripForm } from "@/components/TripForm";
@@ -28,6 +28,7 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
+import { TripBriefShowcaseDialog } from "@/components/TripBriefShowcaseDialog";
 
 export default function Home() {
   const [trips, setTrips] = React.useState<TripConfig[]>([]);
@@ -36,6 +37,7 @@ export default function Home() {
     undefined
   );
   const [showMaxTripsError, setShowMaxTripsError] = React.useState(false);
+  const [showShowcase, setShowShowcase] = useState(false);
 
   const loadTrips = () => {
     setTrips(getTrips());
@@ -61,6 +63,11 @@ export default function Home() {
     }
 
     loadTrips();
+
+    const hasSeenShowcase = localStorage.getItem("hasSeenTripBriefShowcase");
+    if (!hasSeenShowcase) {
+      setShowShowcase(true);
+    }
   }, []);
 
   const handleCreate = () => {
@@ -89,8 +96,18 @@ export default function Home() {
     return (resortsData as Resort[]).find((r) => r.id === resortId);
   };
 
+  const handleDontShowAgain = () => {
+    localStorage.setItem("hasSeenTripBriefShowcase", "true");
+    setShowShowcase(false);
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <TripBriefShowcaseDialog
+        isOpen={showShowcase}
+        onClose={() => setShowShowcase(false)}
+        onDontShowAgain={handleDontShowAgain}
+      />
       {/* Header */}
       <header className="border-b">
         <div className="container mx-auto px-3 py-3 flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-0">
