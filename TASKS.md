@@ -26,7 +26,7 @@
 - [x] Trip detail view
   - [x] Extensive AI-generated tips
   - [x] Local knowledge
-- [ ] Trip briefs (AI-generated personalized trip summaries)
+- [x] Trip briefs (AI-generated personalized trip summaries)
 - [ ] Dynamic resorts
 - [ ] Airbnb/accomodation tips
 - [ ] Implement scrapers for community data
@@ -35,7 +35,7 @@
 
 - [x] Mobile form 'clashing' date fields
 - [x] Review code quality
-- [ ] Remove variant ghost
-- [ ] Set globalized styling?
+- [x] Set globalized styling?
+- [x] MANUAL code review
 - [ ] Allow "per-day" details for crowd, etc.
-- [ ] MANUAL code review
+- [ ] Snow and cloudy weather icons

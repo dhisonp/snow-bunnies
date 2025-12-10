@@ -8,8 +8,8 @@ import { type DailyCrowd } from "@/lib/types/crowd";
 import { type ResortInsights } from "@/lib/types/insights";
 import { WeatherForecast } from "./WeatherForecast";
 import { WeatherPrediction } from "./WeatherPrediction";
-import { CrowdChart } from "./CrowdChart";
-import { getResortForecast } from "@/lib/services/open-meteo";
+import { CrowdDetailPanel } from "./CrowdDetailPanel";
+
 import { getTripBrief, saveTripBrief } from "@/lib/storage";
 import { type TripBrief } from "@/lib/types/insights";
 import { useUnits } from "@/components/TemperatureContext";
@@ -35,40 +35,6 @@ interface ResortCardProps {
   resort: Resort;
   onEdit: () => void;
   onDelete: () => void;
-}
-
-function getCrowdLabel(level: number): string {
-  switch (level) {
-    case 1:
-      return "Very Light";
-    case 2:
-      return "Light";
-    case 3:
-      return "Moderate";
-    case 4:
-      return "Busy";
-    case 5:
-      return "Very Busy";
-    default:
-      return "Unknown";
-  }
-}
-
-function getCrowdColorClass(level: number): string {
-  switch (level) {
-    case 1:
-      return "bg-crowd-1";
-    case 2:
-      return "bg-crowd-2";
-    case 3:
-      return "bg-crowd-3";
-    case 4:
-      return "bg-crowd-4";
-    case 5:
-      return "bg-crowd-5";
-    default:
-      return "bg-muted";
-  }
 }
 
 function getSnowSummary(
@@ -135,6 +101,8 @@ export function ResortCard({
   const [showBrief, setShowBrief] = useState(false);
   const [showPredictionModal, setShowPredictionModal] = useState(false);
 
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+
   useEffect(() => {
     let mounted = true;
 
@@ -186,12 +154,18 @@ export function ResortCard({
           validEndStr = `${y}-${m}-${d}`;
         }
 
-        const weatherData = await getResortForecast(
-          resort.coordinates.lat,
-          resort.coordinates.lon,
-          trip.dateRange.start,
-          validEndStr
-        );
+        const params = new URLSearchParams({
+          lat: resort.coordinates.lat.toString(),
+          lon: resort.coordinates.lon.toString(),
+          start: trip.dateRange.start,
+          end: validEndStr,
+        });
+
+        const weatherRes = await fetch(`/api/weather?${params.toString()}`);
+        if (!weatherRes.ok) {
+          throw new Error("Failed to fetch weather data");
+        }
+        const weatherData: DailyWeather[] = await weatherRes.json();
 
         if (!mounted) return;
         setForecast(weatherData); // Live forecast
@@ -277,8 +251,6 @@ export function ResortCard({
       mounted = false;
     };
   }, [resort.id]);
-
-  const firstDayCrowd = crowdData[0];
 
   const handleGetTripBrief = async () => {
     if (isHistorical) {
@@ -404,7 +376,11 @@ export function ResortCard({
             isHistorical ? (
               <WeatherPrediction forecast={forecast} isHistorical={true} />
             ) : (
-              <WeatherForecast forecast={forecast} />
+              <WeatherForecast
+                forecast={forecast}
+                selectedDate={selectedDate}
+                onSelectDate={setSelectedDate}
+              />
             )
           ) : (
             <WeatherPrediction />
@@ -427,32 +403,11 @@ export function ResortCard({
           </div>
         )}
 
-        <div>
-          {firstDayCrowd ? (
-            <>
-              <div className="flex items-center justify-between mb-2">
-                <div className="text-sm font-medium">
-                  Crowd Forecast
-                  {firstDayCrowd.holidayName && (
-                    <span className="text-sm font-bold ml-2">
-                      ({firstDayCrowd.holidayName})
-                    </span>
-                  )}
-                </div>
-                <div
-                  className={`text-sm font-bold px-2 py-0.5 rounded-none border-2 border-primary text-primary-foreground ${getCrowdColorClass(firstDayCrowd.overallLevel)}`}
-                >
-                  {getCrowdLabel(firstDayCrowd.overallLevel)}
-                </div>
-              </div>
-              <CrowdChart
-                data={firstDayCrowd.hourlyBreakdown}
-                peakHours={firstDayCrowd.peakHours}
-                bestArrivalTime={firstDayCrowd.bestArrivalTime}
-              />
-            </>
-          ) : null}
-        </div>
+        <CrowdDetailPanel
+          selectedDate={selectedDate}
+          crowdData={crowdData}
+          weatherData={forecast}
+        />
 
         {insightsError ? (
           <div className="border-2 border-red-500 bg-red-500/10 p-3 rounded-none flex items-center gap-2 text-red-600 mt-auto">

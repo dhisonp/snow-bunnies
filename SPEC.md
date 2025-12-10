@@ -1006,7 +1006,7 @@ Each data-fetching component should handle:
 ### Phase 2: Weather Integration (Day 3)
 
 - [x] Open-Meteo forecast API
-- [ ] Open-Meteo historical API
+- [x] Open-Meteo historical API
 - [x] WeatherForecast component
 - [ ] HistoricalComparison component (using simple snow summary instead)
 - [ ] Cache layer
@@ -1033,7 +1033,7 @@ Each data-fetching component should handle:
 - [x] Loading skeletons
 - [x] Mobile responsiveness pass
 - [ ] PWA setup (optional)
-- [ ] Deploy to Vercel
+- [x] Deploy to Vercel
 
 ---
 
