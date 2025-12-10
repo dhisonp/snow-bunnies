@@ -6,8 +6,6 @@ predictions, and AI-powered resort insights.
 <img width="815" height="540" alt="Screenshot 2025-12-09 at 10 44 05 PM" src="https://github.com/user-attachments/assets/563f05ec-d577-438a-8cc2-75ae612fa53b" />
 <img width="815" height="540" alt="Screenshot 2025-12-09 at 10 44 27 PM" src="https://github.com/user-attachments/assets/7358187d-b4a7-4627-91d2-ed6e794af9df" />
 
-
-
 ## Architecture
 
 **Client-Side State Management**  

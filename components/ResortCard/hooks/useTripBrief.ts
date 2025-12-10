@@ -18,16 +18,42 @@ interface UseTripBriefResult {
   tripBrief: TripBrief | null;
   isLoading: boolean;
   error: string | null;
+  canRefresh: boolean;
+  hoursUntilRefresh: number;
   generateBrief: (
     weatherData: DailyWeather[],
     crowdData: DailyCrowd[],
-    insights: ResortInsights | null
+    insights: ResortInsights | null,
+    forceRefresh?: boolean
   ) => Promise<boolean>;
   regenerate: (
     weatherData: DailyWeather[],
     crowdData: DailyCrowd[],
     insights: ResortInsights | null
   ) => Promise<boolean>;
+}
+
+const COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+function getCooldownStatus(brief: TripBrief | null): {
+  canRefresh: boolean;
+  hoursUntilRefresh: number;
+} {
+  if (!brief?.generatedAt) {
+    return { canRefresh: true, hoursUntilRefresh: 0 };
+  }
+
+  const generatedTime = new Date(brief.generatedAt).getTime();
+  const now = Date.now();
+  const elapsed = now - generatedTime;
+  const remaining = COOLDOWN_MS - elapsed;
+
+  if (remaining <= 0) {
+    return { canRefresh: true, hoursUntilRefresh: 0 };
+  }
+
+  const hoursRemaining = Math.ceil(remaining / (60 * 60 * 1000));
+  return { canRefresh: false, hoursUntilRefresh: hoursRemaining };
 }
 
 export function useTripBrief(
@@ -38,10 +64,13 @@ export function useTripBrief(
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const cooldownStatus = getCooldownStatus(tripBrief);
+
   const generateBrief = async (
     weatherData: DailyWeather[],
     crowdData: DailyCrowd[],
-    insights: ResortInsights | null
+    insights: ResortInsights | null,
+    forceRefresh = false
   ) => {
     try {
       setIsLoading(true);
@@ -54,6 +83,15 @@ export function useTripBrief(
         setTripBrief(cached);
         setIsLoading(false);
         return true;
+      }
+
+      if (!forceRefresh && cached) {
+        const status = getCooldownStatus(cached);
+        if (!status.canRefresh) {
+          setTripBrief(cached);
+          setIsLoading(false);
+          return true;
+        }
       }
 
       const res = await fetch("/api/insights/trip", {
@@ -90,8 +128,16 @@ export function useTripBrief(
   ) => {
     localStorage.removeItem(`tripBrief-${trip.id}-${resort.id}`);
     setTripBrief(null);
-    return generateBrief(weatherData, crowdData, insights);
+    return generateBrief(weatherData, crowdData, insights, true);
   };
 
-  return { tripBrief, isLoading, error, generateBrief, regenerate };
+  return {
+    tripBrief,
+    isLoading,
+    error,
+    canRefresh: cooldownStatus.canRefresh,
+    hoursUntilRefresh: cooldownStatus.hoursUntilRefresh,
+    generateBrief,
+    regenerate,
+  };
 }

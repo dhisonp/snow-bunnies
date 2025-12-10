@@ -60,6 +60,8 @@ export function ResortCard({
     tripBrief,
     isLoading: briefLoading,
     error: briefError,
+    canRefresh,
+    hoursUntilRefresh,
     generateBrief,
     regenerate,
   } = useTripBrief(trip, resort);
@@ -131,6 +133,8 @@ export function ResortCard({
           onClose={setShowBrief}
           onRegenerate={handleRegenerate}
           isLoading={briefLoading}
+          canRefresh={canRefresh}
+          hoursUntilRefresh={hoursUntilRefresh}
         />
 
         <PredictionModal

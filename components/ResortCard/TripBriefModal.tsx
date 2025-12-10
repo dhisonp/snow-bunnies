@@ -21,6 +21,8 @@ interface TripBriefModalProps {
   onClose: (open: boolean) => void;
   onRegenerate?: () => void;
   isLoading?: boolean;
+  canRefresh?: boolean;
+  hoursUntilRefresh?: number;
 }
 
 export function TripBriefModal({
@@ -29,6 +31,8 @@ export function TripBriefModal({
   onClose,
   onRegenerate,
   isLoading = false,
+  canRefresh = true,
+  hoursUntilRefresh = 0,
 }: TripBriefModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -45,20 +49,32 @@ export function TripBriefModal({
               </DialogDescription>
             </div>
             {onRegenerate && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={onRegenerate}
-                disabled={isLoading}
-                className="font-mono uppercase text-xs"
-              >
-                {isLoading ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <RefreshCw className="h-4 w-4" />
+              <div className="flex flex-col items-end gap-1">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={onRegenerate}
+                  disabled={isLoading || !canRefresh}
+                  className="font-mono uppercase text-xs"
+                  title={
+                    !canRefresh
+                      ? `Available in ${hoursUntilRefresh} hour${hoursUntilRefresh > 1 ? "s" : ""}`
+                      : undefined
+                  }
+                >
+                  {isLoading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <RefreshCw className="h-4 w-4" />
+                  )}
+                  <span className="ml-1">Refresh</span>
+                </Button>
+                {!canRefresh && (
+                  <span className="text-xs text-muted-foreground">
+                    Available in {hoursUntilRefresh}h
+                  </span>
                 )}
-                <span className="ml-1">Refresh</span>
-              </Button>
+              </div>
             )}
           </div>
         </DialogHeader>
