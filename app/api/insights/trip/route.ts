@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     const tripBrief = await generateTripBrief(
       tripConfig,
       weatherData,
-      historicalComparison || [], // Handle optional historical data
+      historicalComparison || [],
       crowdData,
       resortInsights,
       resortName

@@ -80,7 +80,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Check cache (unless forceRefresh)
     if (!forceRefresh) {
       const cached = await getCachedInsights(resortId);
       if (cached) {
@@ -88,16 +87,13 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 2. Get resort details
     const resort = await getResort(resortId);
     if (!resort) {
       return NextResponse.json({ error: "Resort not found" }, { status: 404 });
     }
 
-    // 3. Generate AI insights (using internal knowledge for now)
     const insights = await generateResortInsights(resort);
 
-    // 5. Cache the result
     await startCacheInsights(insights);
 
     return NextResponse.json(insights);

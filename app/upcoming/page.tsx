@@ -72,7 +72,6 @@ const categories = [
 export default function UpcomingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      {/* Header */}
       <header className="border-b-2 border-foreground">
         <div className="container mx-auto px-3 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -99,7 +98,6 @@ export default function UpcomingPage() {
 
       <main className="container mx-auto px-3 py-4 flex-1">
         <div className="max-w-2xl mx-auto">
-          {/* Intro */}
           <div
             className="border-2 border-foreground bg-card p-4 mb-8"
             style={{ boxShadow: "4px 4px 0px 0px var(--foreground)" }}
@@ -111,7 +109,6 @@ export default function UpcomingPage() {
             </p>
           </div>
 
-          {/* Features by Category */}
           {categories.map((category) => {
             const categoryFeatures = upcomingFeatures.filter(
               (f) => f.category === category

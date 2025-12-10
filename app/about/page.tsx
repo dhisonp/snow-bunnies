@@ -45,7 +45,6 @@ const features: Feature[] = [
 export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      {/* Header */}
       <header className="border-b-2 border-foreground">
         <div className="container mx-auto px-3 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -61,7 +60,6 @@ export default function AboutPage() {
 
       <main className="container mx-auto px-3 py-4 flex-1">
         <div className="max-w-2xl mx-auto">
-          {/* Hero Section */}
           <div
             className="border-2 border-foreground bg-card p-4 mb-8"
             style={{ boxShadow: "4px 4px 0px 0px var(--foreground)" }}
@@ -74,7 +72,6 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Feature Cards */}
           <div className="space-y-3">
             {features.map((feature) => (
               <div
@@ -90,7 +87,6 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* Footer Note */}
           <div
             className="border-2 border-foreground bg-card p-4 mt-8"
             style={{ boxShadow: "2px 2px 0px 0px var(--foreground)" }}

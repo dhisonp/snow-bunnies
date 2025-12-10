@@ -122,7 +122,7 @@ export const saveExpandedInsight = (
   if (stored) {
     try {
       insights = JSON.parse(stored);
-    } catch (e) {}
+    } catch {}
   }
   insights[`${tripId}_${resortId}`] = content;
   localStorage.setItem(INSIGHTS_KEY, JSON.stringify(insights));
@@ -158,7 +158,7 @@ export const saveTripBrief = (
   if (stored) {
     try {
       briefs = JSON.parse(stored);
-    } catch (e) {}
+    } catch {}
   }
   briefs[`${tripId}_${resortId}`] = brief;
   localStorage.setItem(BRIEF_KEY, JSON.stringify(briefs));
