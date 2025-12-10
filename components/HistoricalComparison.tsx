@@ -18,7 +18,6 @@ interface HistoricalComparisonProps {
 export function HistoricalComparison({
   comparison,
   variant = "summary",
-  className,
 }: HistoricalComparisonProps) {
   if (variant === "summary") {
     let snowColor = "text-muted-foreground";
@@ -37,8 +36,8 @@ export function HistoricalComparison({
     }
 
     return (
-      <div className={cn("space-y-4", className)}>
-        <SectionHeader className="mb-4">Historical Context</SectionHeader>
+      <div className="space-y-4 mt-4">
+        <SectionHeader>Historical Context</SectionHeader>
 
         <Card className="rounded-none border-2 border-primary bg-muted p-0 shadow-[4px_4px_0px_0px_var(--foreground)]">
           <div className="space-y-0">

@@ -1,6 +1,7 @@
 import { type DailyCrowd } from "@/lib/types/crowd";
 import { type DailyWeather } from "@/lib/types/weather";
 import { DayCrowdCard } from "./DayCrowdCard";
+import { SectionHeader } from "./SectionHeader";
 
 interface CrowdDetailPanelProps {
   selectedDate: string | null;
@@ -92,17 +93,8 @@ export function CrowdDetailPanel({
   };
 
   return (
-    <div>
-      <div className="mb-2 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="bg-primary text-primary-foreground px-2 py-0.5 text-xs font-bold uppercase tracking-wider">
-            Trip Overview
-          </span>
-          <span className="text-xs text-muted-foreground font-mono">
-            Average Conditions
-          </span>
-        </div>
-      </div>
+    <div className="mt-4">
+      <SectionHeader>Trip Overview</SectionHeader>
 
       <DayCrowdCard
         crowd={overviewCrowd}

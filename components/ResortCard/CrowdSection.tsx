@@ -19,11 +19,7 @@ export function CrowdSection({
   return (
     <>
       {!selectedDate && comparison ? (
-        <HistoricalComparison
-          comparison={comparison}
-          variant="summary"
-          className="mt-4"
-        />
+        <HistoricalComparison comparison={comparison} variant="summary" />
       ) : (
         <CrowdDetailPanel
           selectedDate={selectedDate}
