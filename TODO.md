@@ -7,9 +7,5 @@
 
 ### Polish / Refinements
 
-- [x] Mobile
-  - [x] Fix about page navbar
-  - [x] 4 top right buttons should not warp the date on the left hand side
-  - [x] Fix imperial mobile layout
-  - [x] Better modal padding
-- [x] Link previews
+- [ ] Reflect unit preference to AI prompts
+- [ ] Modal X button clashes

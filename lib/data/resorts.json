@@ -84,5 +84,107 @@
       "expert": 0
     },
     "subreddit": "icecoast"
+  },
+  {
+    "id": "vail",
+    "name": "Vail",
+    "region": "Colorado",
+    "state": "CO",
+    "coordinates": { "lat": 39.6403, "lon": -106.3742 },
+    "elevation": { "base": 8120, "summit": 11570 },
+    "trailCount": 195,
+    "liftCount": 32,
+    "terrainPct": {
+      "beginner": 18,
+      "intermediate": 29,
+      "advanced": 30,
+      "expert": 23
+    },
+    "subreddit": "skiing"
+  },
+  {
+    "id": "aspen-snowmass",
+    "name": "Aspen Snowmass",
+    "region": "Colorado",
+    "state": "CO",
+    "coordinates": { "lat": 39.2133, "lon": -106.9378 },
+    "elevation": { "base": 8104, "summit": 12510 },
+    "trailCount": 98,
+    "liftCount": 20,
+    "terrainPct": {
+      "beginner": 5,
+      "intermediate": 48,
+      "advanced": 17,
+      "expert": 30
+    },
+    "subreddit": "skiing"
+  },
+  {
+    "id": "park-city",
+    "name": "Park City",
+    "region": "Utah",
+    "state": "UT",
+    "coordinates": { "lat": 40.6514, "lon": -111.508 },
+    "elevation": { "base": 6800, "summit": 10026 },
+    "trailCount": 330,
+    "liftCount": 41,
+    "terrainPct": {
+      "beginner": 8,
+      "intermediate": 42,
+      "advanced": 30,
+      "expert": 20
+    },
+    "subreddit": "skiing"
+  },
+  {
+    "id": "jackson-hole",
+    "name": "Jackson Hole",
+    "region": "Wyoming",
+    "state": "WY",
+    "coordinates": { "lat": 43.5875, "lon": -110.8275 },
+    "elevation": { "base": 6311, "summit": 10450 },
+    "trailCount": 116,
+    "liftCount": 13,
+    "terrainPct": {
+      "beginner": 10,
+      "intermediate": 40,
+      "advanced": 30,
+      "expert": 20
+    },
+    "subreddit": "skiing"
+  },
+  {
+    "id": "mammoth-mountain",
+    "name": "Mammoth Mountain",
+    "region": "Sierra Nevada",
+    "state": "CA",
+    "coordinates": { "lat": 37.6508, "lon": -119.0326 },
+    "elevation": { "base": 7953, "summit": 11053 },
+    "trailCount": 175,
+    "liftCount": 28,
+    "terrainPct": {
+      "beginner": 13,
+      "intermediate": 27,
+      "advanced": 23,
+      "expert": 37
+    },
+    "subreddit": "skiing"
+  },
+  {
+    "id": "valfrejus",
+    "name": "Valfrejus",
+    "region": "French Alps",
+    "state": "Savoie",
+    "coordinates": { "lat": 45.1667, "lon": 6.65 },
+    "elevation": { "base": 5085, "summit": 8990 },
+    "trailCount": 23,
+    "liftCount": 10,
+    "terrainPct": {
+      "beginner": 13,
+      "intermediate": 48,
+      "advanced": 22,
+      "expert": 17
+    },
+    "subreddit": "skiing"
   }
 ]
