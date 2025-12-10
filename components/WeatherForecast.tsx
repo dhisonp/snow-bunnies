@@ -56,11 +56,11 @@ export function WeatherForecast({
                   strokeWidth={2.5}
                 />
               </div>
-              <div className="text-sm font-bold">
+              <div className="text-sm font-bold tabular-nums">
                 {formatTemp(day.tempMin)}° / {formatTemp(day.tempMax)}°
               </div>
               <div
-                className={`text-sm font-bold ${
+                className={`text-sm font-bold tabular-nums ${
                   day.snowfallSum > 0
                     ? isSelected
                       ? "text-primary"
@@ -72,7 +72,7 @@ export function WeatherForecast({
                   ? `${formatSnow(day.snowfallSum)}${snowUnit}`
                   : "-"}
               </div>
-              <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
+              <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground tabular-nums">
                 <Wind className="h-3 w-3" strokeWidth={2.5} />
                 <span>
                   {formatWind(day.windSpeedMax)}
