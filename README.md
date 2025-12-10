@@ -3,7 +3,10 @@
 Ski trip planning application combining real-time weather data, crowd
 predictions, and AI-powered resort insights.
 
-![Snow Bunnies Application Screenshot](https://github.com/user-attachments/assets/05bfafde-2448-437d-ace7-4744584df683)
+<img width="815" height="540" alt="Screenshot 2025-12-09 at 10 44 05 PM" src="https://github.com/user-attachments/assets/563f05ec-d577-438a-8cc2-75ae612fa53b" />
+<img width="815" height="540" alt="Screenshot 2025-12-09 at 10 44 27 PM" src="https://github.com/user-attachments/assets/7358187d-b4a7-4627-91d2-ed6e794af9df" />
+
+
 
 ## Architecture
 
