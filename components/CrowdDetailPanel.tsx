@@ -26,7 +26,7 @@ export function CrowdDetailPanel({
     }
 
     return (
-      <div className="animate-in fade-in slide-in-from-top-2 duration-200">
+      <div>
         <div className="mb-2 flex items-center gap-2">
           <span className="bg-primary text-primary-foreground px-2 py-0.5 text-xs font-bold uppercase tracking-wider">
             Selected Day
@@ -92,7 +92,7 @@ export function CrowdDetailPanel({
   };
 
   return (
-    <div className="animate-in fade-in slide-in-from-top-2 duration-300">
+    <div>
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="bg-primary text-primary-foreground px-2 py-0.5 text-xs font-bold uppercase tracking-wider">

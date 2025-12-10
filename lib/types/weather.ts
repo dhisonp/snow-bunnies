@@ -10,12 +10,34 @@ export interface DailyWeather {
   uvIndexMax: number;
 }
 
-export interface HistoricalComparison {
+export interface ComparisonResult {
   date: string;
-  historicalAvgSnowfall: number; // cm, averaged over 8-10 years
-  historicalAvgTemp: number; // Celsius
-  forecastSnowfall: number;
-  forecastTemp: number;
+  forecast: {
+    snowfall: number;
+    tempAvg: number;
+  };
+  historical: {
+    snowfall: number;
+    tempAvg: number;
+    sampleYears: number;
+  };
+  delta: {
+    snowfall: number; // cm difference
+    snowfallPct: number; // % above/below avg
+    temp: number; // °C difference
+  };
+  verdict: "above_avg" | "average" | "below_avg";
   confidence: "high" | "medium" | "low";
-  caption: string; // AI-generated comparison note
+}
+
+export interface TripComparison {
+  daily: ComparisonResult[];
+  summary: {
+    totalForecastSnow: number;
+    totalHistoricalSnow: number;
+    snowfallVerdict: string; // "25% above average"
+    tempVerdict: string; // "2°C colder than usual"
+    bestDay: string; // "Saturday looks best"
+    caption: string; // AI-friendly summary
+  };
 }

@@ -42,6 +42,7 @@ npm run lint            # Lint code
 - Use `file:line` references when discussing code locations
 - Prioritize code correctness over anything
 - Reduce verbose comments
+- When creating new components, always refer to `DESIGN.md` for UI/UX guidance
 - Run `npm run format` after making final changes
 
 ## Reference

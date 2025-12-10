@@ -37,5 +37,5 @@
 - [x] Review code quality
 - [x] Set globalized styling?
 - [x] MANUAL code review
-- [ ] Allow "per-day" details for crowd, etc.
+- [x] Allow "per-day" details for crowd, etc.
 - [ ] Snow and cloudy weather icons

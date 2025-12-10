@@ -3,6 +3,7 @@ import { CloudRain, Snowflake, Sun, CloudSnow } from "lucide-react";
 
 import { type DailyWeather } from "@/lib/types/weather";
 import { useUnits } from "@/components/TemperatureContext";
+import { SectionHeader } from "./SectionHeader";
 
 interface WeatherPredictionProps {
   forecast?: DailyWeather[];
@@ -18,6 +19,7 @@ export function WeatherPrediction({
   if (isHistorical && forecast && forecast.length > 0) {
     return (
       <div>
+        <SectionHeader>Historical Average</SectionHeader>
         <div className="grid grid-cols-4 gap-1">
           {forecast.map((day) => (
             <Card

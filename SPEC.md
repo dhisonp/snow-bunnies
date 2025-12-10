@@ -1008,7 +1008,7 @@ Each data-fetching component should handle:
 - [x] Open-Meteo forecast API
 - [x] Open-Meteo historical API
 - [x] WeatherForecast component
-- [ ] HistoricalComparison component (using simple snow summary instead)
+- [x] HistoricalComparison component (using simple snow summary instead)
 - [ ] Cache layer
 
 ### Phase 3: Crowd Estimation (Day 4)

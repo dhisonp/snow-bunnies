@@ -12,6 +12,9 @@ import { CrowdDetailPanel } from "./CrowdDetailPanel";
 
 import { getTripBrief, saveTripBrief } from "@/lib/storage";
 import { type TripBrief } from "@/lib/types/insights";
+import { compareWeatherData } from "@/lib/services/weather-comparison";
+import { HistoricalComparison } from "./HistoricalComparison";
+import { type TripComparison } from "@/lib/types/weather";
 import { useUnits } from "@/components/TemperatureContext";
 import {
   Pencil,
@@ -101,6 +104,7 @@ export function ResortCard({
   const [showBrief, setShowBrief] = useState(false);
   const [showPredictionModal, setShowPredictionModal] = useState(false);
 
+  const [comparison, setComparison] = useState<TripComparison | null>(null);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
   useEffect(() => {
@@ -144,7 +148,6 @@ export function ResortCard({
           return;
         }
 
-        // Clamp the end date to the max forecast date
         const endDate = new Date(trip.dateRange.end);
         let validEndStr = trip.dateRange.end;
         if (endDate > maxForecastDate) {
@@ -184,6 +187,23 @@ export function ResortCard({
             const crowdResult = await crowdResponse.json();
             setCrowdData(crowdResult.crowds);
           }
+
+          if (mounted && !isHistorical) {
+            const historicalRes = await fetch(
+              `/api/weather-historical?${params.toString()}`
+            );
+            if (historicalRes.ok) {
+              const historicalData = await historicalRes.json();
+              if (mounted) {
+                const comparisonResult = compareWeatherData(
+                  weatherData,
+                  historicalData,
+                  trip.dateRange.start // Access from prop directly
+                );
+                setComparison(comparisonResult);
+              }
+            }
+          }
         } catch (crowdErr) {
           console.error("Failed to fetch crowd data:", crowdErr);
         } finally {
@@ -209,6 +229,7 @@ export function ResortCard({
     resort.coordinates.lon,
     trip.dateRange.start,
     trip.dateRange.end,
+    isHistorical,
   ]);
 
   useEffect(() => {
@@ -278,7 +299,7 @@ export function ResortCard({
           weatherData: forecast,
           crowdData: crowdData,
           resortInsights: insights,
-          historicalComparison: [], // Pass empty if not available
+          historicalComparison: comparison ? comparison.daily : [],
         }),
       });
 
@@ -403,11 +424,19 @@ export function ResortCard({
           </div>
         )}
 
-        <CrowdDetailPanel
-          selectedDate={selectedDate}
-          crowdData={crowdData}
-          weatherData={forecast}
-        />
+        {!selectedDate && comparison ? (
+          <HistoricalComparison
+            comparison={comparison}
+            variant="summary"
+            className="mt-4"
+          />
+        ) : (
+          <CrowdDetailPanel
+            selectedDate={selectedDate}
+            crowdData={crowdData}
+            weatherData={forecast}
+          />
+        )}
 
         {insightsError ? (
           <div className="border-2 border-red-500 bg-red-500/10 p-3 rounded-none flex items-center gap-2 text-red-600 mt-auto">

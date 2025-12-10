@@ -5,10 +5,7 @@ import {
 import { type ResortInsights, type TripBrief } from "@/lib/types/insights";
 import { type Resort } from "@/lib/types/resort";
 import { type TripConfig } from "@/lib/types/trip";
-import {
-  type DailyWeather,
-  type HistoricalComparison,
-} from "@/lib/types/weather";
+import { type DailyWeather, type ComparisonResult } from "@/lib/types/weather";
 import { type DailyCrowd } from "@/lib/types/crowd";
 
 let cachedModel: GenerativeModel | null = null;
@@ -86,7 +83,7 @@ Be specific. Use actual run names, lift names, and locations. Prioritize actiona
 export async function generateTripBrief(
   trip: TripConfig,
   weatherData: DailyWeather[],
-  historicalComparison: HistoricalComparison[],
+  historicalComparison: ComparisonResult[],
   crowdData: DailyCrowd[],
   resortInsights: ResortInsights,
   resortName: string
