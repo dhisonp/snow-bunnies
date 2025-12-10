@@ -18,7 +18,7 @@ interface UnitsContextType {
 const UnitsContext = createContext<UnitsContextType | undefined>(undefined);
 
 export function UnitsProvider({ children }: { children: React.ReactNode }) {
-  const [system, setSystem] = useState<UnitSystem>("metric");
+  const [system, setSystem] = useState<UnitSystem>("imperial");
 
   useEffect(() => {
     const savedSystem = localStorage.getItem("unitSystem") as UnitSystem;

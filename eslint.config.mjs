@@ -51,6 +51,11 @@ const eslintConfig = defineConfig([
         { props: "never", children: "never" },
       ],
       "react/self-closing-comp": "warn",
+      "react-hooks/exhaustive-deps": ["warn"],
+
+      // At the time of this writing, it's decided that the warnings in regards to client-side
+      // storage is overly cautious. Review when we update storage method.
+      "react-hooks/set-state-in-effect": "off",
 
       "no-console": ["warn", { allow: ["warn", "error"] }],
     },

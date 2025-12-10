@@ -12,12 +12,12 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"; // Note: Command component not installed yet, need to check if shadcn 'command' is needed or if 'popover' + 'cmdk' is enough. Shadcn 'combobox' usually uses 'command'.
+} from "@/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"; // Need to install popover
+} from "@/components/ui/popover";
 import { type Resort } from "@/lib/types/resort";
 import resortsData from "@/lib/data/resorts.json";
 

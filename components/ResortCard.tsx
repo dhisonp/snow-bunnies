@@ -10,12 +10,7 @@ import { WeatherForecast } from "./WeatherForecast";
 import { WeatherPrediction } from "./WeatherPrediction";
 import { CrowdChart } from "./CrowdChart";
 import { getResortForecast } from "@/lib/services/open-meteo";
-import {
-  getExpandedInsight,
-  saveExpandedInsight,
-  getTripBrief,
-  saveTripBrief,
-} from "@/lib/storage";
+import { getTripBrief, saveTripBrief } from "@/lib/storage";
 import { type TripBrief } from "@/lib/types/insights";
 import { useUnits } from "@/components/TemperatureContext";
 import {
@@ -25,7 +20,6 @@ import {
   AlertCircle,
   Lightbulb,
   CalendarPlus,
-  Sparkles,
   Zap,
 } from "lucide-react";
 import {
@@ -35,7 +29,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import ReactMarkdown from "react-markdown";
 
 interface ResortCardProps {
   trip: TripConfig;
@@ -134,9 +127,6 @@ export function ResortCard({
   const [insightsLoading, setInsightsLoading] = useState(false);
   const [insightsError, setInsightsError] = useState<string | null>(null);
 
-  const [expandedInsight, setExpandedInsight] = useState<string | null>(null);
-  const [isExpanding, setIsExpanding] = useState(false);
-  const [expandError, setExpandError] = useState<string | null>(null);
   const [showCommunityInsights, setShowCommunityInsights] = useState(false);
 
   const [tripBrief, setTripBrief] = useState<TripBrief | null>(null);
@@ -289,37 +279,6 @@ export function ResortCard({
   }, [resort.id]);
 
   const firstDayCrowd = crowdData[0];
-
-  const handleExpandInsight = async () => {
-    try {
-      setIsExpanding(true);
-      setExpandError(null);
-
-      const cached = getExpandedInsight(trip.id, resort.id);
-      if (cached) {
-        setExpandedInsight(cached);
-        setIsExpanding(false);
-        return;
-      }
-
-      const res = await fetch("/api/insights/expand", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ resortId: resort.id, tripConfig: trip }),
-      });
-
-      if (!res.ok) throw new Error("Failed to expand insights");
-
-      const data = await res.json();
-      saveExpandedInsight(trip.id, resort.id, data.insight);
-      setExpandedInsight(data.insight);
-    } catch (e) {
-      console.error(e);
-      setExpandError("Failed to generate deep dive.");
-    } finally {
-      setIsExpanding(false);
-    }
-  };
 
   const handleGetTripBrief = async () => {
     if (isHistorical) {
@@ -537,21 +496,6 @@ export function ResortCard({
               ))}
             </ul>
             <div className="p-2 border-t-2 border-primary bg-background grid grid-cols-1 gap-2">
-              {/* <Button
-                variant="default"
-                size="sm"
-                className="w-full rounded-none font-bold uppercase tracking-wide gap-2 text-xs h-8"
-                onClick={handleExpandInsight}
-                disabled={isExpanding}
-              >
-                {isExpanding ? (
-                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                ) : (
-                  <Sparkles className="h-3.5 w-3.5" />
-                )}
-                {isExpanding ? "Analyzing..." : "Get Local's Deep Dive"}
-              </Button> */}
-
               <Button
                 variant="default"
                 size="sm"
@@ -574,27 +518,6 @@ export function ResortCard({
             </div>
           </div>
         ) : null}
-
-        <Dialog
-          open={!!expandedInsight}
-          onOpenChange={(open) => !open && setExpandedInsight(null)}
-        >
-          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto rounded-none border-4 border-primary">
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2 font-mono uppercase tracking-tight text-xl">
-                <Sparkles className="h-5 w-5 text-primary" />
-                Variable Conditions Report
-              </DialogTitle>
-              <DialogDescription className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                Generated exclusively for {trip.userProfile.skillLevel}{" "}
-                {trip.userProfile.discipline}
-              </DialogDescription>
-            </DialogHeader>
-            <div className="mt-4 prose prose-sm prose-slate dark:prose-invert max-w-none">
-              <ReactMarkdown>{expandedInsight || ""}</ReactMarkdown>
-            </div>
-          </DialogContent>
-        </Dialog>
 
         <Dialog
           open={showCommunityInsights}

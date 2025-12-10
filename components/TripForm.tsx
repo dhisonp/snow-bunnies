@@ -1,9 +1,6 @@
 "use client";
 
 import React from "react";
-// import { useForm } from "react-hook-form";
-// import { zodResolver } from "@hookform/resolvers/zod" // shadcn form usually uses zod
-// import * as z from "zod"
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -14,20 +11,16 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label"; // Need to install label
+import { Label } from "@/components/ui/label";
 import { ResortPicker } from "@/components/ResortPicker";
 import { SkillLevelSelect } from "@/components/SkillLevelSelect";
 import { type TripConfig, type SkillLevel } from "@/lib/types/trip";
 import { saveTrip } from "@/lib/storage";
 
-// Simple validation manually for now to save installing zod/hookform overhead if not strictly needed
-// But spec implies "TripForm" which usually suggests typical form handling.
-// I'll stick to controlled inputs for simplicity unless validation gets complex.
-
 interface TripFormProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  trip?: TripConfig; // If present, editing
+  trip?: TripConfig;
   onSave: () => void;
 }
 
@@ -74,14 +67,6 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
     if (endDate < startDate) {
       return "End date cannot be before start date.";
     }
-
-    // We allow dates > 16 days now, but just warn the user in the UI (or in this case, return null to allow it)
-    // The "validation" helper is strictly for 'blocking' errors.
-    // If we want a warning, we can handle it in the UI rendering based on the date.
-
-    // if (endDate > maxForecastDate) {
-    //   return "Trip dates available only within next 16 days due to weather forecast limits.";
-    // }
 
     return null;
   };
@@ -134,8 +119,6 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
   };
 
   const getMaxDateStr = () => {
-    // Allow booking up to a year in advance? Or just remove max.
-    // For HTML date input purely, let's allow 1 year out.
     const d = new Date();
     d.setFullYear(d.getFullYear() + 1);
     const year = d.getFullYear();
@@ -151,6 +134,7 @@ export function TripForm({ open, onOpenChange, trip, onSave }: TripFormProps) {
     const val = e.target.value;
     setDateStart(val);
     setError(null);
+
     // If end date exists and is before new start date, update it
     if (dateEnd && val > dateEnd) {
       setDateEnd(val);
