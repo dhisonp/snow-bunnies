@@ -63,15 +63,15 @@ export function ResortCardHeader({
 
   return (
     <CardHeader className="flex flex-row flex-wrap items-start justify-between gap-2 space-y-0 pb-2">
-      <div className="flex-1 min-w-0">
+      <div className="flex-1">
         <CardTitle className="text-xl">{resort.name}</CardTitle>
         <div className="text-sm text-muted-foreground">
           {resort.region}, {resort.state}
         </div>
-        <div className="text-sm font-medium mt-1">
+        <div className="text-sm font-medium mt-1 whitespace-nowrap">
           {trip.dateRange.start} - {trip.dateRange.end}
         </div>
-        <div className="text-sm font-bold capitalize">
+        <div className="text-sm font-bold capitalize whitespace-nowrap">
           {trip.userProfile.skillLevel} {trip.userProfile.discipline}
         </div>
       </div>
