@@ -5,31 +5,62 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import { type TripBrief } from "@/lib/types/insights";
-import { AlertCircle, CalendarPlus, Zap } from "lucide-react";
+import {
+  AlertCircle,
+  CalendarPlus,
+  Zap,
+  RefreshCw,
+  Loader2,
+} from "lucide-react";
 
 interface TripBriefModalProps {
   tripBrief: TripBrief | null;
   isOpen: boolean;
   onClose: (open: boolean) => void;
+  onRegenerate?: () => void;
+  isLoading?: boolean;
 }
 
 export function TripBriefModal({
   tripBrief,
   isOpen,
   onClose,
+  onRegenerate,
+  isLoading = false,
 }: TripBriefModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto rounded-none border-4 border-primary">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 font-mono uppercase tracking-tight text-xl">
-            <Zap className="h-5 w-5 text-primary fill-current" />
-            Trip Brief
-          </DialogTitle>
-          <DialogDescription className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            Your personalized action plan
-          </DialogDescription>
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <DialogTitle className="flex items-center gap-2 font-mono uppercase tracking-tight text-xl">
+                <Zap className="h-5 w-5 text-primary fill-current" />
+                Trip Brief
+              </DialogTitle>
+              <DialogDescription className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                Your personalized action plan
+              </DialogDescription>
+            </div>
+            {onRegenerate && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onRegenerate}
+                disabled={isLoading}
+                className="font-mono uppercase text-xs"
+              >
+                {isLoading ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <RefreshCw className="h-4 w-4" />
+                )}
+                <span className="ml-1">Refresh</span>
+              </Button>
+            )}
+          </div>
         </DialogHeader>
 
         {tripBrief && (

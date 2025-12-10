@@ -23,6 +23,7 @@ export interface ResortInsights {
 export interface TripBrief {
   tripId: string;
   generatedAt: string;
+  weatherFingerprint?: string;
   summary: string; // Personalized 3-4 sentence brief
   dailyGamePlan: {
     date: string;

@@ -59,6 +59,7 @@ export function ResortCard({
     isLoading: briefLoading,
     error: briefError,
     generateBrief,
+    regenerate,
   } = useTripBrief(trip, resort);
 
   const isGlobalLoading = weatherLoading || crowdLoading || insightsLoading;
@@ -68,15 +69,14 @@ export function ResortCard({
       setShowPredictionModal(true);
       return;
     }
-    const success = await generateBrief(
-      forecast,
-      crowdData,
-      insights,
-      comparison
-    );
+    const success = await generateBrief(forecast, crowdData, insights);
     if (success) {
       setShowBrief(true);
     }
+  };
+
+  const handleRegenerate = async () => {
+    await regenerate(forecast, crowdData, insights);
   };
 
   return (
@@ -126,6 +126,8 @@ export function ResortCard({
           tripBrief={tripBrief}
           isOpen={showBrief}
           onClose={setShowBrief}
+          onRegenerate={handleRegenerate}
+          isLoading={briefLoading}
         />
 
         <PredictionModal

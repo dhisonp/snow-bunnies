@@ -5,7 +5,7 @@ import {
 import { type ResortInsights, type TripBrief } from "@/lib/types/insights";
 import { type Resort } from "@/lib/types/resort";
 import { type TripConfig } from "@/lib/types/trip";
-import { type DailyWeather, type ComparisonResult } from "@/lib/types/weather";
+import { type DailyWeather } from "@/lib/types/weather";
 import { type DailyCrowd } from "@/lib/types/crowd";
 
 let cachedModel: GenerativeModel | null = null;
@@ -83,53 +83,115 @@ Be specific. Use actual run names, lift names, and locations. Prioritize actiona
 export async function generateTripBrief(
   trip: TripConfig,
   weatherData: DailyWeather[],
-  historicalComparison: ComparisonResult[],
   crowdData: DailyCrowd[],
   resortInsights: ResortInsights,
   resortName: string
 ): Promise<TripBrief> {
-  const prompt = `
-Generate a personalized ski trip brief.
+  const tempRange = {
+    min: Math.min(...weatherData.map((d) => d.tempMin)),
+    max: Math.max(...weatherData.map((d) => d.tempMax)),
+  };
+  const totalSnow = weatherData.reduce((sum, d) => sum + d.snowfallSum, 0);
+  const snowDays = weatherData
+    .filter((d) => d.snowfallSum > 0)
+    .map((d) => d.date);
+  const windyDays = weatherData
+    .filter((d) => d.windSpeedMax > 40)
+    .map((d) => d.date);
 
-Trip Details:
+  const weatherByDay = weatherData
+    .map((d) => {
+      const conditions: string[] = [];
+      if (d.snowfallSum > 0) conditions.push(`${d.snowfallSum}cm snow`);
+      if (d.windSpeedMax > 40) conditions.push(`windy (${d.windSpeedMax}km/h)`);
+      if (d.precipitationProbability > 60)
+        conditions.push(`${d.precipitationProbability}% precip`);
+
+      return `${d.date}: ${d.tempMin}°C to ${d.tempMax}°C${conditions.length ? " - " + conditions.join(", ") : ""}`;
+    })
+    .join("\n");
+
+  const crowdByDay = crowdData
+    .map((d) => {
+      const label = [
+        "",
+        "Very Light",
+        "Light",
+        "Moderate",
+        "Busy",
+        "Very Busy",
+      ][d.overallLevel];
+      const note = d.holidayName
+        ? ` (${d.holidayName})`
+        : d.dayType === "weekend"
+          ? " (Weekend)"
+          : "";
+      return `${d.date}: ${label}${note}`;
+    })
+    .join("\n");
+
+  const prompt = `
+You are generating a ski trip brief. You MUST use the exact weather data provided below.
+
+## TRIP INFO
 - Resort: ${resortName}
 - Dates: ${trip.dateRange.start} to ${trip.dateRange.end}
-- Skier Profile: ${trip.userProfile.skillLevel} ${trip.userProfile.discipline}
+- Skier: ${trip.userProfile.skillLevel} ${trip.userProfile.discipline}
 
-Weather Forecast:
-${JSON.stringify(weatherData, null, 2)}
+## WEATHER FORECAST (USE THESE EXACT VALUES)
+Temperature range for trip: ${tempRange.min}°C to ${tempRange.max}°C
+Total snowfall expected: ${totalSnow}cm
+${snowDays.length > 0 ? `Snow days: ${snowDays.join(", ")}` : "No snow expected"}
+${windyDays.length > 0 ? `High wind days: ${windyDays.join(", ")}` : ""}
 
-Historical Comparison:
-${JSON.stringify(historicalComparison, null, 2)}
+Daily breakdown:
+${weatherByDay}
 
-Crowd Predictions:
-${JSON.stringify(crowdData, null, 2)}
+## CROWD FORECAST
+${crowdByDay}
 
-Resort Knowledge:
-${JSON.stringify(resortInsights, null, 2)}
+## RESORT INFO
+Best runs for ${trip.userProfile.skillLevel}: ${resortInsights?.bestRunsByLevel?.[trip.userProfile.skillLevel.toLowerCase() as keyof typeof resortInsights.bestRunsByLevel]?.join(", ") || "See trail map"}
+Local tips: ${resortInsights?.localTips?.slice(0, 3).join("; ") || "None available"}
 
-Generate a trip brief in the following JSON structure:
+---
+
+Generate a JSON response. Your gear recommendations MUST match the temperature range (${tempRange.min}°C to ${tempRange.max}°C).
+
+${tempRange.max > 5 ? "NOTE: This is a WARM trip. Do NOT recommend heavy insulation." : ""}
+${tempRange.min < -10 ? "NOTE: This is a COLD trip. Emphasize warmth and skin protection." : ""}
+${totalSnow > 30 ? "NOTE: Significant snow expected. Mention powder strategy." : ""}
+
 {
-  "summary": "3-4 sentence personalized overview of what to expect",
+  "summary": "3-4 sentences mentioning specific temps (${tempRange.min}°C to ${tempRange.max}°C) and conditions",
   "dailyGamePlan": [
+    // One entry per day: ${weatherData.map((d) => d.date).join(", ")}
     {
-        "date": "YYYY-MM-DD",
-        "recommendation": "What to prioritize that day given weather/crowds",
-        "bestTimeSlot": "Optimal skiing hours",
-        "targetZones": ["Specific areas/lifts to focus on for their skill level"]
+      "date": "YYYY-MM-DD",
+      "weather": "That day's actual conditions from the forecast",
+      "crowdLevel": "From crowd forecast above",
+      "recommendation": "Specific advice for this day",
+      "bestTimeSlot": "When to ski based on crowds",
+      "targetZones": ["Specific runs from resort info"]
     }
   ],
-  "gearConsiderations": ["Based on forecast (goggles, layers, etc.)"],
-  "warningsAndAlerts": ["Any concerns (wind holds, holiday crowds, etc.)"]
+  "gearConsiderations": [
+    // MUST match ${tempRange.min}°C to ${tempRange.max}°C range
+    // If temps > 0°C, mention lighter layers
+    // If temps < -10°C, mention heavy insulation
+  ],
+  "warningsAndAlerts": [
+    // Only include if there are actual concerns from the data
+  ]
 }
-
-Tailor all recommendations to a ${trip.userProfile.skillLevel} ${trip.userProfile.discipline}er. Be specific and actionable.
 `;
 
   try {
     const result = await getModel().generateContent(prompt);
     const text = result.response.text();
-    const data = JSON.parse(text);
+
+    const cleanJson = text.replace(/```json\n?|\n?```/g, "").trim();
+    const data = JSON.parse(cleanJson);
 
     return {
       tripId: trip.id,
@@ -142,6 +204,9 @@ Tailor all recommendations to a ${trip.userProfile.skillLevel} ${trip.userProfil
   }
 }
 
+/**
+ * @deprecated Use generateTripBrief for superior and more accurate insights.
+ */
 export async function generateExpandedInsight(
   resort: Resort,
   trip: TripConfig

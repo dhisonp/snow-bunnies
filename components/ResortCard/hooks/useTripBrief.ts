@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { type TripBrief, type ResortInsights } from "@/lib/types/insights";
-import { type DailyWeather, type TripComparison } from "@/lib/types/weather";
+import { type DailyWeather } from "@/lib/types/weather";
 import { type DailyCrowd } from "@/lib/types/crowd";
 import { type TripConfig } from "@/lib/types/trip";
 import { type Resort } from "@/lib/types/resort";
 import { getTripBrief, saveTripBrief } from "@/lib/storage";
+
+function getWeatherFingerprint(weather: DailyWeather[]): string {
+  return weather
+    .map(
+      (d) => `${d.date}|${Math.round(d.tempMax)}|${Math.round(d.snowfallSum)}`
+    )
+    .join(",");
+}
 
 interface UseTripBriefResult {
   tripBrief: TripBrief | null;
@@ -13,8 +21,12 @@ interface UseTripBriefResult {
   generateBrief: (
     weatherData: DailyWeather[],
     crowdData: DailyCrowd[],
-    insights: ResortInsights | null,
-    comparison: TripComparison | null
+    insights: ResortInsights | null
+  ) => Promise<boolean>;
+  regenerate: (
+    weatherData: DailyWeather[],
+    crowdData: DailyCrowd[],
+    insights: ResortInsights | null
   ) => Promise<boolean>;
 }
 
@@ -29,16 +41,16 @@ export function useTripBrief(
   const generateBrief = async (
     weatherData: DailyWeather[],
     crowdData: DailyCrowd[],
-    insights: ResortInsights | null,
-    comparison: TripComparison | null
+    insights: ResortInsights | null
   ) => {
     try {
       setIsLoading(true);
       setError(null);
 
-      // Check cache first
+      const weatherFingerprint = getWeatherFingerprint(weatherData);
       const cached = getTripBrief(trip.id, resort.id);
-      if (cached) {
+
+      if (cached?.weatherFingerprint === weatherFingerprint) {
         setTripBrief(cached);
         setIsLoading(false);
         return true;
@@ -52,15 +64,15 @@ export function useTripBrief(
           weatherData: weatherData,
           crowdData: crowdData,
           resortInsights: insights,
-          historicalComparison: comparison ? comparison.daily : [],
         }),
       });
 
       if (!res.ok) throw new Error("Failed to generate trip brief");
 
       const data: TripBrief = await res.json();
-      saveTripBrief(trip.id, resort.id, data);
-      setTripBrief(data);
+      const briefWithFingerprint = { ...data, weatherFingerprint };
+      saveTripBrief(trip.id, resort.id, briefWithFingerprint);
+      setTripBrief(briefWithFingerprint);
       return true;
     } catch (e) {
       console.error(e);
@@ -71,5 +83,15 @@ export function useTripBrief(
     }
   };
 
-  return { tripBrief, isLoading, error, generateBrief };
+  const regenerate = async (
+    weatherData: DailyWeather[],
+    crowdData: DailyCrowd[],
+    insights: ResortInsights | null
+  ) => {
+    localStorage.removeItem(`tripBrief-${trip.id}-${resort.id}`);
+    setTripBrief(null);
+    return generateBrief(weatherData, crowdData, insights);
+  };
+
+  return { tripBrief, isLoading, error, generateBrief, regenerate };
 }

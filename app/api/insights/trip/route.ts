@@ -21,13 +21,7 @@ async function getResortName(resortId: string): Promise<string> {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const {
-      tripConfig,
-      weatherData,
-      historicalComparison,
-      crowdData,
-      resortInsights,
-    } = body;
+    const { tripConfig, weatherData, crowdData, resortInsights } = body;
 
     if (!tripConfig || !weatherData || !crowdData || !resortInsights) {
       return NextResponse.json(
@@ -44,7 +38,6 @@ export async function POST(req: NextRequest) {
     const tripBrief = await generateTripBrief(
       tripConfig,
       weatherData,
-      historicalComparison || [],
       crowdData,
       resortInsights,
       resortName
