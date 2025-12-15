@@ -7,5 +7,4 @@
 
 ### Polish / Refinements
 
-- [ ] Reflect unit preference to AI prompts
 - [ ] Modal X button clashes

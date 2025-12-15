@@ -186,5 +186,22 @@
       "expert": 17
     },
     "subreddit": "skiing"
+  },
+  {
+    "id": "northstar-california",
+    "name": "Northstar California",
+    "region": "Lake Tahoe",
+    "state": "CA",
+    "coordinates": { "lat": 39.2746, "lon": -120.1211 },
+    "elevation": { "base": 6330, "summit": 8610 },
+    "trailCount": 100,
+    "liftCount": 20,
+    "terrainPct": {
+      "beginner": 13,
+      "intermediate": 60,
+      "advanced": 27,
+      "expert": 0
+    },
+    "subreddit": "tahoe"
   }
 ]

@@ -741,5 +741,78 @@
     },
     "parkingStrategy": "Arrive before 8:00 AM for the Vail Village or Lionshead Parking Structures, especially on weekends or holidays, to secure a spot. Costs are high ($30-$60+ daily depending on demand). For a slightly cheaper (but still expensive) option or if arriving later, check the East Vail or West Vail parking lots and utilize the free bus system; however, these fill up quickly too. Carpooling is highly encouraged to save on costs and find spots.",
     "crowdPatterns": "Vail's crowds typically build quickly from 9:00 AM, peaking between 10:00 AM and 2:00 PM. Frontside lifts like Gondola One, Eagle Bahn, and Chair 4 (Mountaintop Express) see the longest lines in the morning. On powder days, the Back Bowls are swarmed until late morning. Crowds thin out in the Back Bowls and Blue Sky Basin during lunchtime, as many return to the frontside for food. Weekends and major holidays (Christmas/New Year's, MLK, Presidents' Day) are consistently the busiest, with mid-week often offering noticeable relief, especially outside of peak holiday seasons."
+  },
+  "northstar-california": {
+    "resortId": "northstar-california",
+    "generatedAt": "2025-12-15T01:29:33.178Z",
+    "sources": ["Reddit", "Forums"],
+    "overview": "Northstar California is a premier family-friendly resort renowned for its immaculately groomed slopes, diverse terrain, and a luxurious base village experience. It offers an extensive network of wide-open cruisers, challenging gladed runs, and award-winning terrain parks, catering to skiers and riders of all abilities with a strong emphasis on intermediate enjoyment.",
+    "localTips": [
+      "Hit the Backside (Promised Land, The Burn) first thing in the morning, especially after a fresh snow, for pristine corduroy or powder before it gets tracked.",
+      "Use the Vista Express to quickly access intermediate terrain and avoid the longer Big Springs Gondola queue later in the morning on busy days.",
+      "For advanced terrain and fewer crowds, head to Lookout Mountain via the Lookout Express, particularly to explore runs like Iron Horse and Challenger.",
+      "Lunch early (before 11:30 AM) or late (after 1:30 PM) at Zephyr Lodge or The Lodge at Big Springs to avoid peak congestion.",
+      "If the main village area is too busy, utilize the East Rim chair for a quieter experience on runs like Tonka or to access some less-trafficked glades.",
+      "Always check the Northstar app for real-time lift wait times; it's invaluable for navigating busy periods.",
+      "For a quick and delicious on-mountain treat, grab a waffle from The Waffle Cabin near the top of the Vista Express.",
+      "Explore the trees between runs on The Promised Land or near Comstock for some fun, ungroomed stashes on powder days."
+    ],
+    "bestRunsByLevel": {
+      "beginner": ["Village Run", "Big Dipper", "Lumberjack", "Sidewinder"],
+      "intermediate": [
+        "Logger's Loop",
+        "Pinball",
+        "Main Street",
+        "Springboard",
+        "Orion",
+        "Martis Valley Traverse"
+      ],
+      "advanced": [
+        "Snake Eyes",
+        "Drifter",
+        "Burnout",
+        "Powder Bowl",
+        "Prosser",
+        "The Promised Land",
+        "Challenger",
+        "Iron Horse"
+      ],
+      "expert": [
+        "Boca",
+        "Monument",
+        "Tonka",
+        "Scorpion",
+        "Star Man",
+        "The Cabbage Patch Glades"
+      ]
+    },
+    "hiddenGems": [
+      "The glades between Challenger and Tonka (look for narrower, untracked entrances off the groomed runs).",
+      "The 'golf course' area in Martis Valley on a sunny, spring day; it's wide-open and often overlooked after a fresh snowfall.",
+      "The trees off Orion on Lookout Mountain (skier's left before it flattens out) for some fun, medium-pitch glade skiing.",
+      "The view from the top of Lookout Mountain towards Lake Tahoe and the surrounding peaks on a clear day."
+    ],
+    "avoidList": [
+      "The Big Springs Gondola between 9:30 AM and 10:30 AM on weekends and holidays – opt for alternative lifts or arrive earlier.",
+      "Comstock Express during peak mid-morning hours; it becomes a major choke point for accessing the backside.",
+      "The Lodge at Big Springs for peak lunch (12:00 PM - 1:00 PM) unless you enjoy long lines and crowded seating; prices are generally higher for cafeteria-style food.",
+      "Paying for premium parking if you can arrive early enough to snag a free shuttle lot spot."
+    ],
+    "foodRecs": {
+      "onMountain": [
+        "Zephyr Lodge (higher-end, diverse menu, amazing views from atop the mountain)",
+        "The Waffle Cabin (near the top of Vista Express, quick and delicious treat)",
+        "Comstock Lodge (good for a quick chili or soup, often less crowded than Big Springs)"
+      ],
+      "base": [
+        "Tavern 6330' (Northstar Village, gastropub fare with good beer selection)",
+        "Rubicon Pizza Company (Northstar Village, reliable family-friendly pizza and pasta)",
+        "Manzanita at The Ritz-Carlton, Lake Tahoe (upscale dining experience)",
+        "Jax at the Tracks (Truckee, classic diner food, great for breakfast/lunch outside the resort)",
+        "Highlands Bar at The Ritz-Carlton (excellent après-ski spot with great views and cocktails)"
+      ]
+    },
+    "parkingStrategy": "On weekends and holidays, arrive by 8:00 AM to secure a spot in the free Village Overlook or Castle Peak lots, which offer efficient shuttle service directly to the village. Arriving later often means navigating full lots and potentially paying for premium parking closer to the village. Weekdays are more forgiving, but early arrival is always best.",
+    "crowdPatterns": "Northstar experiences its heaviest crowds on weekends and during holiday periods, particularly at the Big Springs Gondola and Comstock Express between 9:30 AM and 11:00 AM. The village base area can also get very congested during peak arrival and departure times. Weekdays are significantly less crowded. Crowds tend to disperse more towards the Backside and Lookout Mountain, especially after the initial morning rush. Expect heavier traffic on groomed blues mid-day and at the terrain parks."
   }
 }
