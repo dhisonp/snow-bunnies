@@ -8,12 +8,26 @@ import { type SpyDayData } from "@/lib/types/spy";
 import { Skeleton } from "@/components/ui/skeleton";
 import { OPEN_METEO_FORECAST_MAX_DAYS } from "@/lib/constants/open-meteo";
 
+import { Button } from "@/components/ui/button";
+import { Lightbulb, Loader2 } from "lucide-react";
+import { useResortInsights } from "@/components/ResortCard/hooks/useResortInsights";
+import { CommunityInsightsModal } from "@/components/ResortCard/CommunityInsightsModal";
+import resorts from "@/lib/data/resorts.json";
+import { type Resort } from "@/lib/types/resort";
+
 export default function SpyPage() {
   const [selectedResortId, setSelectedResortId] = useState("");
   const [data, setData] = useState<SpyDayData[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showInsightsModal, setShowInsightsModal] = useState(false);
   const days = OPEN_METEO_FORECAST_MAX_DAYS;
+
+  const { insights, isLoading: insightsLoading } =
+    useResortInsights(selectedResortId);
+  const selectedResort = (resorts as Resort[]).find(
+    (r) => r.id === selectedResortId
+  );
 
   useEffect(() => {
     if (!selectedResortId) return;
@@ -66,6 +80,23 @@ export default function SpyPage() {
           </div>
         ) : (
           <>
+            <div className="px-4 pt-4 pb-2 flex justify-end">
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-2 font-bold uppercase tracking-wide text-xs"
+                onClick={() => setShowInsightsModal(true)}
+                disabled={insightsLoading || !insights}
+              >
+                {insightsLoading ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : (
+                  <Lightbulb className="h-3.5 w-3.5" />
+                )}
+                View All Insights
+              </Button>
+            </div>
+
             <SpyOverviewRow
               data={data}
               onDayClick={(date) => {
@@ -88,6 +119,13 @@ export default function SpyPage() {
           </>
         )}
       </main>
+
+      <CommunityInsightsModal
+        insights={insights}
+        isOpen={showInsightsModal}
+        onClose={setShowInsightsModal}
+        resortName={selectedResort?.name || "Resort"}
+      />
     </div>
   );
 }
