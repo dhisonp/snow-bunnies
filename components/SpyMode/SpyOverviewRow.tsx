@@ -1,7 +1,7 @@
 "use client";
 import type { SpyDayData } from "@/lib/types/spy";
 import { Cloud, CloudRain, CloudSnow, Sun } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, parseLocalDate } from "@/lib/utils";
 import { useUnits } from "@/components/TemperatureContext";
 
 interface SpyOverviewRowProps {
@@ -30,7 +30,7 @@ export function SpyOverviewRow({ data, onDayClick }: SpyOverviewRowProps) {
   return (
     <div className="flex overflow-x-auto gap-2 p-4 pb-2 scrollbar-hide">
       {data.map((day) => {
-        const date = new Date(day.date);
+        const date = parseLocalDate(day.date);
         const dayName = date.toLocaleDateString("en-US", { weekday: "short" });
         return (
           <div

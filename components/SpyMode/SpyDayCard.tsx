@@ -1,7 +1,7 @@
 "use client";
 import type { SpyDayData } from "@/lib/types/spy";
 import { Wind, Droplets, Snowflake, Clock, AlertTriangle } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, parseLocalDate } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useUnits } from "@/components/TemperatureContext";
@@ -20,7 +20,7 @@ export function SpyDayCard({ data }: SpyDayCardProps) {
     snowUnit,
     precipUnit,
   } = useUnits();
-  const date = new Date(data.date);
+  const date = parseLocalDate(data.date);
   const dateString = date.toLocaleDateString("en-US", {
     weekday: "long",
     month: "short",

@@ -79,8 +79,10 @@ export async function GET(request: Request) {
     const todayStr = resortDate.toISOString().split("T")[0];
 
     let todayIndex = allWeather.findIndex((w) => w.date === todayStr);
+    let dateMismatch = false;
 
     if (todayIndex === -1 && allWeather.length > 0) {
+      dateMismatch = true;
       // Fallback: If exact match fails, try to find the immediate next day
       // or default to 0 to ensure we return *something*.
       todayIndex = allWeather.findIndex((w) => w.date > todayStr);
@@ -108,12 +110,18 @@ export async function GET(request: Request) {
       const ridability = calculateRidability(dayWeather, contextRecent, "east"); // Hardcoded region for MVP, should come from resort data if available
       const bestWindow = calculateBestWindow(dayWeather, "east");
 
-      spyData.push({
+      const dayData: SpyDayData = {
         date: dayWeather.date,
         weather: dayWeather,
         ridability,
         bestWindow,
-      });
+      };
+
+      if (i === 0 && dateMismatch) {
+        dayData.notes = ["Date mismatch: showing available data"];
+      }
+
+      spyData.push(dayData);
     }
 
     const recentSummary: RecentWeather = {
