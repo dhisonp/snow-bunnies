@@ -30,6 +30,13 @@ interface ResortPickerProps {
 
 export function ResortPicker({ value, onChange }: ResortPickerProps) {
   const [open, setOpen] = React.useState(false);
+  const sortedResorts = React.useMemo(
+    () =>
+      [...resorts].sort(
+        (a, b) => a.state.localeCompare(b.state) || a.name.localeCompare(b.name)
+      ),
+    []
+  );
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -52,10 +59,11 @@ export function ResortPicker({ value, onChange }: ResortPickerProps) {
           <CommandList>
             <CommandEmpty>No resort found.</CommandEmpty>
             <CommandGroup>
-              {resorts.map((resort) => (
+              {sortedResorts.map((resort) => (
                 <CommandItem
                   key={resort.id}
                   value={resort.id}
+                  className="flex items-center"
                   onSelect={(currentValue) => {
                     onChange(currentValue === value ? "" : currentValue);
                     setOpen(false);
@@ -67,8 +75,8 @@ export function ResortPicker({ value, onChange }: ResortPickerProps) {
                       value === resort.id ? "opacity-100" : "opacity-0"
                     )}
                   />
-                  {resort.name}
-                  <span className="ml-2 text-sm font-medium">
+                  <span className="truncate">{resort.name}</span>
+                  <span className="ml-auto text-sm font-medium">
                     {resort.region}, {resort.state}
                   </span>
                 </CommandItem>
