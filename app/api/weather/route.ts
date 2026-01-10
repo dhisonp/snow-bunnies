@@ -16,13 +16,13 @@ export async function GET(request: Request) {
   }
 
   try {
-    const forecast = await getResortForecast(
+    const { weather } = await getResortForecast(
       parseFloat(lat),
       parseFloat(lon),
       start,
       end
     );
-    return NextResponse.json(forecast);
+    return NextResponse.json(weather);
   } catch (error) {
     console.error("Weather API error:", error);
     return NextResponse.json(
