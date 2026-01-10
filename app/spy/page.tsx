@@ -55,6 +55,7 @@ export default function SpyPage() {
       <SpyModeHeader
         selectedResortId={selectedResortId}
         onResortChange={setSelectedResortId}
+        betaOpenByDefault
       />
 
       <main className="max-w-7xl mx-auto w-full">

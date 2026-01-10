@@ -18,13 +18,15 @@ import {
 interface SpyModeHeaderProps {
   selectedResortId: string;
   onResortChange: (id: string) => void;
+  betaOpenByDefault?: boolean;
 }
 
 export function SpyModeHeader({
   selectedResortId,
   onResortChange,
+  betaOpenByDefault = false,
 }: SpyModeHeaderProps) {
-  const [showBetaInfo, setShowBetaInfo] = useState(false);
+  const [showBetaInfo, setShowBetaInfo] = useState(betaOpenByDefault);
 
   return (
     <>
