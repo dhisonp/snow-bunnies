@@ -1,55 +1,61 @@
 # Ski Trip Planner
 
-Mobile-first web app for planning ski trips with weather forecasts, crowd predictions, and AI-generated resort insights. No authentication—data persisted via LocalStorage.
+Mobile-first web app for planning ski trips with weather forecasts, crowd predictions, and
+AI-generated resort insights. No authentication; trips are stored in LocalStorage.
 
-## Tech Stack
+## Stack
 
-- **Framework**: Next.js 14+ (App Router)
-- **Language**: TypeScript (strict mode)
-- **Styling**: Tailwind CSS + shadcn/ui
-- **APIs**: Open-Meteo (weather), Google Gemini API (insights)
-- **Storage**: LocalStorage (trips), JSON file cache (scraped community data)
+- Next.js 14+ (App Router)
+- TypeScript (strict)
+- Tailwind CSS + shadcn/ui
+- Open-Meteo (weather), Google Gemini (insights)
+- LocalStorage + JSON cache files
 
-## Project Structure
+## Repo Map
 
 ```
-app/                    # Next.js App Router pages and API routes
-  api/                  # API routes: /weather, /crowd, /insights/*
-  trip/[id]/            # Individual trip detail view
+app/                    # Routes, layouts, and API handlers
+  api/                  # /weather, /crowd, /insights/*
+  spy/                  # Spy mode UI
+  trip/[id]/            # Trip detail view
+  upcoming/             # Upcoming trips page
 components/             # React components
+  ResortCard/           # Resort card system
+  SpyMode/              # Spy mode components
   ui/                   # shadcn/ui components
-  ResortCard/           # Complex resort card components (index, sub-components, hooks)
 lib/
-  types/                # TypeScript interfaces (resort, trip, weather, crowd, insights)
-  data/                 # Static JSON: resorts.json, holidays.json, cache/
-  services/             # API clients: open-meteo, crowd-estimator, ai-insights
-  scrapers/             # Reddit and forum scrapers
+  data/                 # resorts.json, holidays.json, cache/
+  services/             # open-meteo, crowd estimator, ai insights
+  scrapers/             # Reddit/forum scrapers
+  types/                # domain types
+  constants/            # app constants
+  cache.ts              # cache helpers
   storage.ts            # LocalStorage helpers
-scripts/                # Utility scripts (generate-insights, etc.)
+  utils.ts              # shared utilities
+scripts/                # utility scripts
 ```
 
-## Development
+## How To Work
 
-```bash
-npm run dev             # Start dev server
-npm run build           # Production build
-npm run lint            # Lint code
-```
+Use the npm scripts in `package.json` (dev, build, lint, format) as needed; details live in
+`AGENTS.md`.
 
-## Key Conventions
+## Docs (Progressive Disclosure)
 
-- All API routes return `{ error, code, details? }` on failure
-- Weather data cached 1 hour, crowd data 6 hours, AI insights 7 days
-- Crowd levels use 1-5 scale with color coding (green→red)
-- Use `SectionHeader` for consistent section titling
-- Use `file:line` references when discussing code locations
-- Prioritize code correctness over anything
-- Reduce verbose comments
-- When creating new components, always refer to `DESIGN.md` for UI/UX guidance
-- Run `npm run format` after making final changes
+Read only if relevant:
 
-## Reference
+- `SPEC.md` product behavior, API contracts, caching rules
+- `DESIGN.md` UI and UX guidance for new components
+- `AGENTS.md` coding conventions and agent workflow
+- `SPY.md` spy mode design and scoring
+- `GEMINI.md` Gemini integration notes
+- `TODO.md` current roadmap items
 
-- Full specification: `SPEC.md`
-- Open-Meteo docs: https://open-meteo.com/en/docs
-- shadcn/ui: https://ui.shadcn.com
+## File Metadata
+
+- Last updated: 2026-01-10
+- Previous update: 2025-12-09 (commit 2264aa4)
+- Commit summary since previous update:
+  - Added Spy mode (API aggregation, scoring/types, page/components)
+  - Expanded resort data and refreshed community insights
+  - UI polish for mobile layouts, dialogs, metadata, and branding

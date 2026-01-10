@@ -1,0 +1,1 @@
+export const OPEN_METEO_FORECAST_MAX_DAYS = 16;

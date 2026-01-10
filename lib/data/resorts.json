@@ -203,5 +203,56 @@
       "expert": 0
     },
     "subreddit": "tahoe"
+  },
+  {
+    "id": "stowe",
+    "name": "Stowe",
+    "region": "Vermont",
+    "state": "VT",
+    "coordinates": { "lat": 44.5319, "lon": -72.7875 },
+    "elevation": { "base": 1559, "summit": 4395 },
+    "trailCount": 116,
+    "liftCount": 12,
+    "terrainPct": {
+      "beginner": 16,
+      "intermediate": 55,
+      "advanced": 14,
+      "expert": 15
+    },
+    "subreddit": "icecoast"
+  },
+  {
+    "id": "killington",
+    "name": "Killington",
+    "region": "Vermont",
+    "state": "VT",
+    "coordinates": { "lat": 43.626, "lon": -72.798 },
+    "elevation": { "base": 1165, "summit": 4241 },
+    "trailCount": 155,
+    "liftCount": 22,
+    "terrainPct": {
+      "beginner": 28,
+      "intermediate": 33,
+      "advanced": 24,
+      "expert": 15
+    },
+    "subreddit": "icecoast"
+  },
+  {
+    "id": "windham",
+    "name": "Windham Mountain",
+    "region": "Catskills",
+    "state": "NY",
+    "coordinates": { "lat": 42.2987, "lon": -74.2573 },
+    "elevation": { "base": 1500, "summit": 3100 },
+    "trailCount": 54,
+    "liftCount": 11,
+    "terrainPct": {
+      "beginner": 20,
+      "intermediate": 48,
+      "advanced": 19,
+      "expert": 13
+    },
+    "subreddit": "icecoast"
   }
 ]

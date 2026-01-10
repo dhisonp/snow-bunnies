@@ -170,7 +170,7 @@ export function TripBriefShowcaseDialog({
                 variant="outline"
                 className="border-2 font-bold uppercase shadow-[2px_2px_0px_0px_var(--foreground)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
               >
-                Don't Show Again
+                Don&apos;t Show Again
               </Button>
             </div>
           </div>

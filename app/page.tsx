@@ -19,7 +19,7 @@ import {
 } from "@/lib/storage";
 import resortsData from "@/lib/data/resorts.json";
 import { type Resort } from "@/lib/types/resort";
-import { Plus, Sparkles, Info, AlertCircle } from "lucide-react";
+import { Plus, Sparkles, Info, AlertCircle, Eye } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -123,6 +123,11 @@ export default function Home() {
             <Link href="/upcoming">
               <Button variant="ghost" size="sm">
                 <Sparkles className="mr-2 h-4 w-4" /> Upcoming
+              </Button>
+            </Link>
+            <Link href="/spy">
+              <Button variant="ghost" size="sm">
+                <Eye className="mr-2 h-4 w-4" /> Spy Mode
               </Button>
             </Link>
             <TemperatureToggle />
