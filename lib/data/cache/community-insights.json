@@ -1,161 +1,144 @@
 {
   "heavenly-tahoe": {
     "resortId": "heavenly-tahoe",
-    "generatedAt": "2025-12-21T15:59:22.535Z",
-    "sources": [
-      "Reddit",
-      "Forums"
-    ],
-    "overview": "Heavenly is a massive resort spanning two states, California and Nevada, renowned for its unparalleled views of Lake Tahoe and diverse terrain. It offers an excellent mix of impeccably groomed cruisers, challenging moguls, expansive tree skiing, and steeps in its famed canyons, complemented by a vibrant apres-ski scene.",
+    "generatedAt": "2026-01-09T23:03:32.296Z",
+    "sources": ["Reddit", "Forums"],
+    "overview": "Heavenly offers an expansive ski experience across two states (California and Nevada), renowned for its breathtaking views of Lake Tahoe and diverse terrain. While its sprawling layout can mean more traversing, it delivers an incredible mix of perfectly groomed cruisers, challenging steeps, and excellent tree skiing for all ability levels.",
     "localTips": [
-      "Start your day early, ideally by 8:30 AM on weekends, to secure parking and beat the initial rush at the Gondola, California Lodge, or Stagecoach Express lifts.",
-      "On sunny mornings, head to the Nevada side (Stagecoach or Boulder Lodge access) as the sun hits these slopes earlier and they are often less crowded than the California side initially.",
-      "When traversing the California side, use Patsy's and Powderbowl Express to move around the mid-mountain without having to download the Gondola for lunch or mid-day breaks.",
-      "Don't miss the tree skiing! The glades between Big Dipper and Orion, and the areas off Patsy's lift, often hold untracked powder days after a storm.",
-      "If you're seeking a challenge, Mott Canyon and Killebrew Canyon offer legitimate expert terrain with chutes and steep bowls. Always check opening status and conditions, as they can be variable.",
-      "For iconic views without the longest lines, hit the Ridge Run on the California side early in the morning. Later in the day, it can become a slow-moving parade.",
-      "Consider skiing down to the California Lodge for lunch to avoid the peak Gondola area crowds and enjoy a more relaxed meal, especially if you parked there.",
-      "Explore the Boulder Lodge area for a quieter experience, particularly if you have beginners in your group or prefer less crowded intermediate runs."
+      "On powder days, head straight to Mott Canyon or Killebrew Canyon (if open) for the best expert terrain and deep snow, or Comet Express for excellent intermediate glades.",
+      "Arrive early, especially on weekends and holidays. Aim to be in a parking lot by 8:00 AM to secure a spot and beat the initial rush to the lifts.",
+      "Avoid the Gondola line at its peak (9:30 AM - 10:30 AM). If staying near the Village, take the Gondola before 9 AM or after 10:30 AM. Otherwise, drive to California Lodge or Stagecoach.",
+      "Ski the Nevada side (accessed via Stagecoach or Comet Express) in the morning for fewer crowds and often better snow conditions, then move to the California side later for afternoon sun.",
+      "Pack snacks and water to avoid overpriced on-mountain food and long lines at lodges during peak lunch hours (12 PM - 1:30 PM).",
+      "Utilize the Sky Express and Dipper Express on the California side for efficient laps on intermediate and advanced terrain, often less congested than Tamarack.",
+      "Explore the tree skiing off the Dipper Express (e.g., The Burn, Maggie's trees) after a fresh snowfall – always ski with a buddy and know your limits."
     ],
     "bestRunsByLevel": {
-      "beginner": [
-        "Groove (off Groove lift)",
-        "Maggie's (off Big Easy lift)",
-        "Patsy's (off Patsy's lift)",
-        "East Peak Run (off East Peak Express, upper section)"
-      ],
+      "beginner": ["Patsy's", "Big Easy", "Enchanted Forest", "Boulder Bowl"],
       "intermediate": [
-        "Ridge Run (off Sky Express - iconic views)",
-        "Liz's (off Sky Express)",
-        "Comet (long groomer off Comet Express)",
-        "Orion (off Dipper Express)",
-        "Stagecoach (off Stagecoach Express)",
-        "Waterfall (off Galaxy Express - can be advanced depending on bumps)"
+        "Skyline Trail",
+        "Groove",
+        "Maggie's Run",
+        "Liz's",
+        "Ridge Run",
+        "Olympic Downhill"
       ],
       "advanced": [
-        "Gunbarrel (off Gunbarrel Express - infamous moguls)",
-        "Ponderosa (off Sky Express - steep groomer/moguls)",
-        "Momentum (off Sky Express)",
-        "Upper California Trail (off Gondola, before it flattens)",
-        "Skyline Trail (off Sky Express, connecting to East Peak - can be icy or bumpy)"
+        "Gunbarrel",
+        "East Bowl",
+        "The Burn",
+        "Stagecoach Run (lower sections)",
+        "Waterfall"
       ],
       "expert": [
-        "Mott Canyon (requires gate access, incredibly steep chutes)",
-        "Killebrew Canyon (similar to Mott, slightly longer, less hike)",
-        "The Burn (off Gunbarrel Express - steep trees)",
-        "Olympic Downhill Glades (off Olympic Express - challenging trees, needs good snow)",
-        "Patsy's Tree Runs (behind Patsy's lift line)"
+        "Mott Canyon (accessed via gate)",
+        "Killebrew Canyon (accessed via gate)",
+        "East Peak (unmarked areas)",
+        "The Face"
       ]
     },
     "hiddenGems": [
-      "The glades between Big Dipper and Orion are excellent for finding untracked snow even a day or two after a storm.",
-      "The Boulder Lodge base area and its immediate runs are often significantly quieter, offering a more relaxed atmosphere.",
-      "The 'secret stash' trees off skier's left of Powderbowl Express can be less tracked than the more obvious glades.",
-      "Stagecoach Lodge Deck offers fantastic views and a less crowded spot for a quiet lunch or mid-morning coffee break.",
-      "The short hike into Mott Canyon or Killebrew Canyon (when open) deters many, leaving incredible expert terrain available to those willing to make the effort."
+      "The glades off Big Dipper Express between Maggie's and The Burn, offering fun, less tracked tree skiing.",
+      "The short, steep pitch of Sierra Vista (off Dipper Express) – often overlooked but a great advanced challenge.",
+      "The runs off Comet Express (Nevada side) in the morning – often quieter with excellent corduroy or fresh snow.",
+      "East Peak Lodge for a quiet break and stunning views without the crowds of Tamarack Lodge."
     ],
     "avoidList": [
-      "The Gondola download line at peak lunch (12:30 PM - 1:30 PM) and closing (3:30 PM - 4:30 PM) can be excessively long. Utilize California Lodge for descent or plan accordingly.",
-      "Food options directly at the base of the Gondola in Heavenly Village are often overpriced and very crowded. Better to eat on-mountain or in town.",
-      "The base area of California Lodge on weekend mornings is a chaotic hub of lessons and rentals. Arrive very early or use a different base area like Stagecoach.",
-      "Skiing the Ridge Run during peak times (mid-day weekends) can feel like a crowded highway. Go early or late to enjoy the views and turns.",
-      "Sky Express on a powder day can have very long lines due to its access to popular bowls and advanced terrain."
+      "The Gondola line between 9:30 AM and 10:30 AM on any busy day.",
+      "California Lodge base area for lunch; it's extremely crowded and chaotic.",
+      "Tamarack Lodge for lunch during peak hours; long lines and overpriced, mediocre food.",
+      "Staying exclusively on the California side; you'll miss out on the generally less crowded and often better snow conditions of the Nevada side.",
+      "The Patsy's beginner area after 11 AM, as it becomes swamped with lesson groups."
     ],
     "foodRecs": {
       "onMountain": [
-        "Tamarack Lodge (California side): Best variety of food stalls, lively atmosphere, good views.",
-        "Stagecoach Lodge (Nevada side): Quieter, known for its chili and great patio on sunny days.",
-        "East Peak Lodge (California side): Good sit-down options, often less hectic than Tamarack.",
-        "California Lodge BBQ (California base): Excellent outdoor BBQ on sunny days, good for a casual bite."
+        "East Peak Lodge (best views, less crowded than Tamarack)",
+        "Nevada Lodge (quieter, good spot on the Nevada side)",
+        "Stagecoach Lodge (quick bites and warm-up, Nevada side)"
       ],
       "base": [
-        "Base Camp Pizza Co. (Heavenly Village): Lively spot with good pizza and live music.",
-        "Azul Latin Kitchen (Heavenly Village): Vibrant Mexican restaurant with great margaritas.",
-        "The Loft Theatre-Lounge-Dine (Heavenly Village): Upscale American, great cocktails, and a comfortable atmosphere.",
-        "Burger Lounge (Stateline): Casual spot for excellent burgers and shakes.",
-        "Sidellis Lake Tahoe Brewery (South Lake Tahoe - short drive): Local craft brewery with good food and a relaxed vibe."
+        "Base Camp Pizza Co. (Heavenly Village - lively, great pizza)",
+        "The Loft Bistro (Heavenly Village - more upscale, good cocktails)",
+        "Samurai Restaurant (South Lake Tahoe - excellent sushi, local favorite)",
+        "Lucky Beaver Bar & Burger (Stateline, NV - great burgers, open late)"
       ]
     },
-    "parkingStrategy": "Arrive by 8:00 AM on weekends/holidays and 8:30 AM on weekdays to secure free parking. California Lodge and Stagecoach Lodge offer the largest free lots; California fills first. If California is full, head to Stagecoach or Boulder Lodge for Nevada side access. The Heavenly Village Gondola Parking Garage is convenient but expensive; best for those staying nearby or prioritizing immediate Gondola access. Carpooling is highly recommended.",
-    "crowdPatterns": "Heavenly experiences significant morning rushes at major base lifts (Gondola, California, Stagecoach) from 8:30 AM to 10:00 AM. Crowds then spread out, but central lifts like Sky Express and Tamarack Express remain busy, especially on the California side. Lunchtime (12:00 PM - 2:00 PM) sees on-mountain lodges and the Gondola download line become very congested. Afternoon lines generally shorten, but the Gondola upload/download can surge again closer to closing. Weekends and holidays are markedly busier than weekdays, with powder days drawing the largest crowds to advanced terrain lifts."
+    "parkingStrategy": "Aim to arrive by 8:00 AM - 8:30 AM on weekends/holidays and 8:30 AM - 9:00 AM on weekdays. California Lodge (paid) is convenient but fills fastest. Stagecoach Lodge (paid) offers the best access to the Nevada side and often has spaces slightly longer. Boulder Lodge (paid) is another Nevada option. If these are full, the Heavenly Village Parking Garage (paid) is a reliable but pricier option. Carpooling is highly recommended.",
+    "crowdPatterns": "Mornings (9:00 AM - 10:30 AM) see the longest lines at the Gondola and California Lodge. Mid-day (11:00 AM - 2:00 PM) brings heavy traffic to main lifts like Tamarack, Dipper, and Sky, and on-mountain lodges become packed. Crowds thin out significantly after 2:30 PM, especially on the Nevada side. Weekends and holidays are substantially busier across the entire resort, with powder days drawing the biggest crowds early to expert terrain gates and popular lifts."
   },
   "okemo": {
     "resortId": "okemo",
-    "generatedAt": "2025-12-21T15:59:19.271Z",
-    "sources": [
-      "Reddit",
-      "Forums"
-    ],
-    "overview": "Okemo is renowned for its meticulously groomed, diverse terrain catering heavily to families and intermediates, offering an expansive network of trails spread across five distinct areas. It's a consistently reliable resort with excellent snowmaking and an efficient lift system, providing a premium Vermont ski experience.",
+    "generatedAt": "2026-01-09T23:03:30.192Z",
+    "sources": ["Reddit", "Forums"],
+    "overview": "Okemo is renowned for its immaculately groomed, wide-open cruisers and family-friendly atmosphere, making it a favorite for intermediates and those who appreciate consistent conditions. With a diverse network of high-speed lifts and distinct base areas, it offers a well-rounded New England ski experience focused on comfortable, enjoyable skiing.",
     "localTips": [
-      "Start your day at Jackson Gore Peak; the Gondola at the main base can get busy, and trails off Jackson Gore are often less crowded early.",
-      "Utilize the Sunburst Six chair early on powder days; it accesses excellent groomed and ungroomed terrain quickly.",
-      "For consistent corduroy, aim for trails off the North Star Express or the bubble chairs on the main mountain immediately after opening.",
-      "Download the Okemo app for real-time lift wait times and trail status, invaluable on busy days.",
-      "When the main mountain gets crowded, head to South Face for generally quieter, often sunny runs, especially in the afternoon.",
-      "Pack snacks and drinks; on-mountain food, while decent, can be expensive and crowded during peak lunch hours.",
-      "If exploring glades, Darkside (accessed via the Quantum Four chair) or Glades (off the South Ridge Quad) are excellent choices after fresh snow but can get skied out quickly.",
-      "For a quick pit stop without going to a main lodge, the Summit Lodge offers restrooms and a small grab-and-go option."
+      "Start your day at Jackson Gore on busy weekends to avoid the initial rush at the Sunburst Six base area; the parking garage offers quick access.",
+      "Head to the Glades Peak area (via Glades Peak Quad) for generally quieter intermediate and advanced terrain, especially later in the morning.",
+      "Utilize the Quantum Four lift to lap intermediate terrain like Sidewinder and World Cup if Sunburst Six lines get too long.",
+      "For pristine corduroy, hit the steeper runs off the top of the Sunburst Six first thing in the morning, like World Cup or Upper Tomahawk.",
+      "Explore the tree zones like 'Dark Star' or 'Jackson Gore Glade' on powder days, but be aware Okemo's glades can be dense; check conditions first.",
+      "The Bubble Six is excellent for cold days, offering enclosed comfort, but it can be slower to load due to the bubble mechanism; use Quantum Four if speed is a priority.",
+      "On sunny days, take a break at the Solitude Day Lodge for a more relaxed atmosphere and better food options compared to the main base lodges."
     ],
     "bestRunsByLevel": {
       "beginner": [
+        "Lower Tomahawk",
+        "Coleman Brook",
         "Open Slope",
-        "Learning Zone (near Clock Tower)",
-        "Coleman Brook (from Sunburst Six)"
+        "Learning Zone (off Quantum Four)"
       ],
       "intermediate": [
-        "Upper World Cup into Lower World Cup",
-        "Jackson Gore Express",
-        "Dream Weaver",
-        "Upper Mountain Road to Rimrock"
+        "Sidewinder",
+        "World Cup",
+        "Countdown",
+        "Dream Maker",
+        "Scorpion",
+        "Buckhorn"
       ],
       "advanced": [
-        "Sel's Choice",
-        "Outrage",
-        "Nor'easter",
-        "Chief"
+        "Exhibition",
+        "Outer Limits",
+        "Loose Spruce",
+        "Sel's Choice (often mogul-filled)",
+        "Big Bang (ungroomed/moguls)"
       ],
       "expert": [
-        "Catnap (steep glade)",
-        "Loose Spruce (glade)",
-        "Black Out (often heavily moguled)"
+        "Blind Faith (can be steep and icy)",
+        "Dark Star Glade",
+        "Jackson Gore Glade",
+        "Boom Boom"
       ]
     },
     "hiddenGems": [
-      "Moon Shadow glade (less obvious entrance off top of South Ridge Quad)",
-      "The Summit Lodge (often less crowded than other lodges, great views)",
-      "Blind Faith (off North Star Express, delightful and often overlooked black diamond)",
-      "Fairway (off Sunburst Six, surprisingly quiet blue with great fall line)"
+      "The trails off the Glades Peak Quad (e.g., Upper Rimrock, Coleman Brook) consistently offer less crowded, well-maintained skiing.",
+      "The views from the top of Sel's Choice, overlooking the Ludlow valley, are spectacular and often overlooked by those rushing down.",
+      "Solitude Day Lodge offers a quieter, more upscale dining experience with panoramic views, perfect for escaping the base lodge chaos.",
+      "The 'Upper Chief' glade, when open and snowy, can hold fresh powder longer than other more accessible tree runs."
     ],
     "avoidList": [
-      "Gondola (SnoVentures Express) line between 9:30 AM and 10:30 AM on weekends; it's a huge bottleneck.",
-      "Summit Lodge food at peak lunch (12:00-1:30 PM); can be chaotic and slow.",
-      "Outer Limits; while a classic, it can become incredibly icy and crowded.",
-      "Clock Tower Base Lodge for lunch on a busy day; it's the main hub and gets extremely packed."
+      "The Sunburst Six lift on Saturday mornings (8:30-10:00 AM) due to massive lines; opt for Quantum Four or head to Jackson Gore.",
+      "Base lodge cafeterias for lunch if possible; they can be overpriced, crowded, and chaotic. Pack snacks or seek out Solitude Day Lodge.",
+      "The beginner slopes at the very bottom of Sunburst Six during peak times; they become extremely congested with lessons and slow traffic."
     ],
     "foodRecs": {
       "onMountain": [
-        "Epic (full-service restaurant at Jackson Gore)",
-        "Roundhouse (base of Jackson Gore, good variety)",
-        "Waffle Cabin (multiple locations on mountain for a quick treat)"
+        "Coleman Brook Tavern (Jackson Gore, upscale sit-down)",
+        "Solitude Day Lodge (more refined menu, less chaotic)",
+        "Waffle Cabin (base of Sunburst Six for a quick, delicious treat)"
       ],
       "base": [
-        "Stemwinder Pub (Jackson Gore Base, great aprés-ski vibe)",
-        "Mojo Cafe (Ludlow, excellent Mexican and Southwestern fusion)",
-        "Honeysuckle Provisions (Ludlow, delicious sandwiches and gourmet items)",
-        "The Killarney (Ludlow, classic Irish pub fare and atmosphere)"
+        "The Killarney (Ludlow, classic pub fare, lively atmosphere)",
+        "Mr. Darcy's Bar & Grill (Ludlow, solid pub food, local favorite)",
+        "Stemwinder (Ludlow, for excellent cocktails and upscale casual dinner)"
       ]
     },
-    "parkingStrategy": "Arrive by 8:00-8:15 AM on weekends/holidays, prioritizing Jackson Gore for easier parking and direct lift access. If preferring the main base, aim for B-lot or C-lot off Mountain Road, or use drop-off at Clock Tower before parking in satellite lots with shuttle service.",
-    "crowdPatterns": "Peak crowds on weekends/holidays are from 9:30 AM to 3:00 PM, especially at the SnoVentures Express Gondola, Sunburst Six, and Quantum Four lifts. Weekdays are significantly lighter. Early morning (8:00-9:30 AM) and late afternoon (2:30 PM onwards) offer the best windows for fewer crowds. Jackson Gore lifts generally handle crowds better than the main mountain's primary arteries."
+    "parkingStrategy": "On weekends and holidays, aim to arrive by 8:00 AM for the best spots in the Jackson Gore parking garages for direct base access. If arriving later, utilize the outer lots at Jackson Gore and take the shuttle, or try the Sunburst Six lot which fills very quickly. Weekdays, 8:30-9:00 AM is usually sufficient for convenient parking.",
+    "crowdPatterns": "Weekends typically see peak crowds from 9:30 AM to 12:30 PM, particularly around the Sunburst Six and Quantum Four lifts. Crowds thin out noticeably after 1:00 PM. Jackson Gore generally feels less congested than the Sunburst side, especially in the mornings. Holidays are consistently busy all day, while mid-week skiing offers significantly lighter crowds and open runs."
   },
   "mount-snow": {
     "resortId": "mount-snow",
     "generatedAt": "2025-12-09T07:49:45.633Z",
-    "sources": [
-      "Reddit",
-      "Forums"
-    ],
+    "sources": ["Reddit", "Forums"],
     "overview": "Mount Snow is a highly accessible, family-friendly resort celebrated for its exceptional grooming, extensive terrain parks in Carinthia, and a wide array of intermediate cruising runs. It offers a classic Southern Vermont ski experience, prioritizing consistent conditions and a welcoming atmosphere over extreme terrain.",
     "localTips": [
       "Hit the Bluebird Express right at opening (8:00 AM weekends, 9:00 AM weekdays) to get fresh corduroy on runs like Beeline or Freefall before crowds build.",
@@ -181,13 +164,7 @@
         "Ego Alley",
         "Quantum Leap"
       ],
-      "advanced": [
-        "Jester",
-        "Canyon",
-        "Ripcord",
-        "River Run",
-        "Challenger"
-      ],
+      "advanced": ["Jester", "Canyon", "Ripcord", "River Run", "Challenger"],
       "expert": [
         "Fallen Timbers",
         "Uncles",
@@ -229,10 +206,7 @@
   "kirkwood": {
     "resortId": "kirkwood",
     "generatedAt": "2025-12-09T07:51:04.000Z",
-    "sources": [
-      "Reddit",
-      "Forums"
-    ],
+    "sources": ["Reddit", "Forums"],
     "overview": "Kirkwood is a legendary Tahoe resort known for its steep, challenging terrain, deep powder dumps, and authentic mountain culture. With a high base elevation and north-facing aspects, it consistently receives some of the best snow quality in the region, attracting expert skiers and riders seeking ungroomed steeps, chutes, and tree skiing.",
     "localTips": [
       "On powder days, head straight to Chair 6 (The Wall) or Chair 2 (Cornice Express) at opening to access the steepest terrain before it gets tracked out.",
@@ -245,11 +219,7 @@
       "Check the avalanche report and respect closures—Kirkwood's terrain is serious, and out-of-bounds areas can be deadly."
     ],
     "bestRunsByLevel": {
-      "beginner": [
-        "Bunny",
-        "Snowkirk",
-        "Graduation"
-      ],
+      "beginner": ["Bunny", "Snowkirk", "Graduation"],
       "intermediate": [
         "Hully Gully",
         "Zachary",
@@ -305,10 +275,7 @@
   "hunter-mountain": {
     "resortId": "hunter-mountain",
     "generatedAt": "2025-12-09T07:51:04.000Z",
-    "sources": [
-      "Reddit",
-      "Forums"
-    ],
+    "sources": ["Reddit", "Forums"],
     "overview": "Hunter Mountain is the premier ski destination in the Catskills, known for its challenging terrain, extensive snowmaking, and proximity to New York City. With a vertical drop of 1,600 feet and a reputation for steep, icy groomers, it attracts serious East Coast skiers seeking a no-frills, old-school mountain experience.",
     "localTips": [
       "Hit the F lift (Hunter West) first thing on weekends to avoid the main mountain crowds and access some of the best intermediate terrain.",
@@ -321,25 +288,9 @@
       "Parking fills early on weekends—arrive by 8:00 AM or be prepared for overflow lots and shuttle rides."
     ],
     "bestRunsByLevel": {
-      "beginner": [
-        "Racer's Edge",
-        "Snowdance",
-        "Belt Parkway"
-      ],
-      "intermediate": [
-        "Hunter One",
-        "Crossover",
-        "Ike",
-        "Westway",
-        "Broadway"
-      ],
-      "advanced": [
-        "Hellgate",
-        "Annapurna",
-        "K-27",
-        "Cliffs",
-        "Eisenhower"
-      ],
+      "beginner": ["Racer's Edge", "Snowdance", "Belt Parkway"],
+      "intermediate": ["Hunter One", "Crossover", "Ike", "Westway", "Broadway"],
+      "advanced": ["Hellgate", "Annapurna", "K-27", "Cliffs", "Eisenhower"],
       "expert": [
         "Hellgate (bumps)",
         "K-27 (bumps)",
@@ -380,10 +331,7 @@
   "valfrejus": {
     "resortId": "valfrejus",
     "generatedAt": "2025-12-10T17:28:33.294Z",
-    "sources": [
-      "Reddit",
-      "Forums"
-    ],
+    "sources": ["Reddit", "Forums"],
     "overview": "Valfrejus is a charming and unpretentious French resort in the Maurienne Valley, celebrated for its excellent value, relaxed atmosphere, and typically uncrowded slopes. It's a fantastic choice for families and those seeking a less bustling experience, offering diverse terrain with particularly good tree skiing opportunities for all levels.",
     "localTips": [
       "Head straight to the Punta Bagna or L'Armera lifts on powder mornings to find the best fresh tracks before the crowds.",
@@ -446,10 +394,7 @@
   "aspen-snowmass": {
     "resortId": "aspen-snowmass",
     "generatedAt": "2025-12-10T17:30:06.600Z",
-    "sources": [
-      "Reddit",
-      "Forums"
-    ],
+    "sources": ["Reddit", "Forums"],
     "overview": "Aspen Snowmass is a world-renowned ski destination comprising four distinct mountains (Snowmass, Aspen Mountain, Aspen Highlands, Buttermilk), offering unparalleled diversity from luxurious groomers to extreme steeps. It blends a sophisticated, vibrant atmosphere with vast, high-altitude terrain suitable for every level, all accessible via a highly efficient lift system and free inter-mountain transport.",
     "localTips": [
       "Leverage the free RFTA bus system; it connects all four mountains and towns efficiently, making parking unnecessary and saving money.",
@@ -526,10 +471,7 @@
   "park-city": {
     "resortId": "park-city",
     "generatedAt": "2025-12-10T17:30:33.052Z",
-    "sources": [
-      "Reddit",
-      "Forums"
-    ],
+    "sources": ["Reddit", "Forums"],
     "overview": "Park City Mountain Resort, the largest ski resort in the U.S., offers an expansive and diverse terrain perfect for all skill levels. It features two distinct base areas – Park City Mountain Village and Canyons Village – connected by the Quicksilver Gondola, providing a vast interconnected experience.",
     "localTips": [
       "On powder mornings, head straight to Jupiter Lift from the Park City side, or 9990 Lift from the Canyons side, for the best ungroomed snow before the crowds arrive.",
@@ -601,10 +543,7 @@
   "jackson-hole": {
     "resortId": "jackson-hole",
     "generatedAt": "2025-12-10T17:30:54.065Z",
-    "sources": [
-      "Reddit",
-      "Forums"
-    ],
+    "sources": ["Reddit", "Forums"],
     "overview": "Jackson Hole is renowned for its steep and deep terrain, offering an unparalleled big mountain experience with iconic features like Corbet's Couloir and vast backcountry access. It combines world-class expert skiing with expansive intermediate grooming and improved beginner zones, making it a challenging yet rewarding destination for all levels.",
     "localTips": [
       "On a powder day, prioritize getting in the Tram line by 8:30 AM at the latest. If you miss the first few trams, head straight to the Bridger Gondola or Sweetwater Gondola for early laps.",
@@ -679,10 +618,7 @@
   "mammoth-mountain": {
     "resortId": "mammoth-mountain",
     "generatedAt": "2025-12-10T17:31:19.191Z",
-    "sources": [
-      "Reddit",
-      "Forums"
-    ],
+    "sources": ["Reddit", "Forums"],
     "overview": "Mammoth Mountain is a vast, high-altitude resort renowned for its abundant snowfall, diverse terrain ranging from gentle cruisers to expert chutes, and a consistently long ski season. Its towering summit offers breathtaking views and a comprehensive network of lifts connecting multiple base areas, providing an endless playground for all skill levels.",
     "localTips": [
       "On powder days or busy weekends, park at Canyon Lodge or Eagle Lodge before 8 AM to secure a spot and beat the initial rush for lifts.",
@@ -750,10 +686,7 @@
   "vail": {
     "resortId": "vail",
     "generatedAt": "2025-12-10T17:31:48.977Z",
-    "sources": [
-      "Reddit",
-      "Forums"
-    ],
+    "sources": ["Reddit", "Forums"],
     "overview": "Vail offers an expansive and diverse skiing experience, renowned for its legendary Back Bowls and vast frontside groomers, all within a high-end resort setting. Its sheer size allows for endless exploration, catering to every skill level despite often feeling bustling.",
     "localTips": [
       "Hit the Back Bowls early on powder days: Head straight to Gondola One or Riva Bahn Express (Chair 6) to access Sun Up/Sun Down Bowls before they get tracked out. Chair 5 (High Noon Express) will be your best friend.",
@@ -823,10 +756,7 @@
   "northstar-california": {
     "resortId": "northstar-california",
     "generatedAt": "2025-12-15T01:29:33.178Z",
-    "sources": [
-      "Reddit",
-      "Forums"
-    ],
+    "sources": ["Reddit", "Forums"],
     "overview": "Northstar California is a premier family-friendly resort renowned for its immaculately groomed slopes, diverse terrain, and a luxurious base village experience. It offers an extensive network of wide-open cruisers, challenging gladed runs, and award-winning terrain parks, catering to skiers and riders of all abilities with a strong emphasis on intermediate enjoyment.",
     "localTips": [
       "Hit the Backside (Promised Land, The Burn) first thing in the morning, especially after a fresh snow, for pristine corduroy or powder before it gets tracked.",
@@ -839,12 +769,7 @@
       "Explore the trees between runs on The Promised Land or near Comstock for some fun, ungroomed stashes on powder days."
     ],
     "bestRunsByLevel": {
-      "beginner": [
-        "Village Run",
-        "Big Dipper",
-        "Lumberjack",
-        "Sidewinder"
-      ],
+      "beginner": ["Village Run", "Big Dipper", "Lumberjack", "Sidewinder"],
       "intermediate": [
         "Logger's Loop",
         "Pinball",
