@@ -302,17 +302,18 @@
   },
   "hunter-mountain": {
     "resortId": "hunter-mountain",
-    "generatedAt": "2026-01-10T00:55:47.406Z",
+    "generatedAt": "2026-01-10T01:19:17.000Z",
     "sources": [
       "Reddit",
       "Forums"
     ],
-    "overview": "Hunter Mountain is a bustling Catskill resort, renowned for its extensive snowmaking and diverse terrain spread across three distinct peaks. Its proximity to the NYC metro area makes it a magnet for weekend warriors, offering everything from gentle learning slopes to challenging glades and steep groomers. Expect a lively atmosphere, especially on peak days, balanced by efficient operations and a variety of trail options.",
+    "overview": "Hunter Mountain is a bustling Catskill resort with heavy snowmaking and three distinct peaks, drawing big NYC-area weekend crowds. The easiest routes from the summit (like Belt Parkway and Broadway) can bottleneck quickly, while advanced pods on Hunter West or Hunter North sometimes feel calmer for confident skiers. Conditions and traffic shift fast here, so plan to move with the crowd rather than fight it.",
     "localTips": [
       "Arrive Early: Especially on weekends, be in the main parking lot by 7:30 AM to secure a good spot and beat initial lift lines.",
-      "Hunter North First: On busy days, head straight to Hunter North via the Z-Lift. The terrain often holds snow better, and it can be less crowded early on.",
-      "Utilize the West Side: If the Main Mountain is packed, explore the West Side via the E-Lift for more challenging intermediate and advanced runs that often have shorter lines.",
-      "Ski the Edges: When navigating popular runs like Kennedy Drive or Broadway, stick to the sides for fewer traffic jams, especially at merge points.",
+      "Go West/North When It\u2019s Busy: Hunter West and Hunter North can stay quieter than Broadway/Belt Parkway on peak days. If you\u2019re solid on blacks, these runs can feel easier than crowded blues.",
+      "Hellgate for Consistent Pitch: Hellgate is a sustained-pitch black that\u2019s useful for steady fall-line laps when open.",
+      "Treat Claire\u2019s Way as Expert Terrain: It\u2019s a double black on Hunter West and gets sketchy when crowded\u2014save it for confident days.",
+      "Belt Parkway Timing: Belt Parkway funnels a lot of traffic and gets narrow near the North/West split. Use it early/late or choose White Cloud/Overlook to access other zones.",
       "Lift Strategy: Prioritize the Kaatskill Flyer (F-Lift) or Z-Lift (North) over the D-Lift (gondola) on weekends unless you specifically need access to Hunter One.",
       "Check Conditions for Glades: Hunter North's glades (Northern Exposure, Mossy Brook) are excellent after fresh snow but can get scraped quickly. Check the snow report carefully.",
       "Mid-Week is Gold: If possible, visit Monday-Thursday for significantly reduced crowds and often pristine conditions."
@@ -327,8 +328,7 @@
         "Kennedy Drive",
         "Way Out",
         "Crossover",
-        "Racer's Edge",
-        "Clair's Way"
+        "White Cloud"
       ],
       "advanced": [
         "Minya Konka",
@@ -339,6 +339,8 @@
       ],
       "expert": [
         "Jimmie Heuga's Edge",
+        "Racer's Edge",
+        "Claire's Way",
         "Westway Glades",
         "Northern Exposure Glades",
         "Mossy Brook"
@@ -347,12 +349,13 @@
     "hiddenGems": [
       "Lower Broadway in the AM: Before the crowds thin out the snow, the lower section of Broadway can be a surprisingly fun, wide cruiser.",
       "The West Side Traverse: A less-used path that connects the West Side to the Main Mountain, offering a quiet, scenic route away from the main thoroughfares.",
-      "Early Morning Groomers on the North Side: Z-Lift (Hunter North) provides access to beautifully groomed black diamonds like Claire's Way (a steep blue/easy black) and runs like K2 before they get too tracked.",
+      "Early Hunter West Laps: Hellgate and Racer's Edge can be fast and fall-line early in the day before bumps build.",
       "Scenic Overlook on Broadway: Just before the turn towards the D-Lift, there's a small flat spot on Broadway with expansive views of the Catskills."
     ],
     "avoidList": [
       "D-Lift (Gondola) on Weekends: Unless you are strictly going to Hunter One, this lift often has the longest lines and doesn't access the best terrain efficiently.",
       "Main Base Lodge Cafeteria at Peak Lunch Hours: Overpriced, crowded, and basic food. Pack a lunch or eat early/late.",
+      "Belt Parkway late morning to mid-afternoon: This funnel from the summit gets congested and unpredictable; it\u2019s better early or late.",
       "Broadway during Mid-Day: This main thoroughfare becomes extremely congested with all levels of skiers, leading to slow traffic and potential collisions.",
       "Buying Gear at the Resort Shop: Expect inflated prices; buy essentials off-mountain or beforehand."
     ],
@@ -369,7 +372,7 @@
       ]
     },
     "parkingStrategy": "Arrive by 7:30 AM on weekends and holidays to secure a spot in the Main Lot, which offers the easiest access to the lodge and lifts. If you arrive later, you'll likely be directed to the North Lot (good for Hunter North access) or overflow lots with shuttle service. Parking fills up rapidly, so punctuality is key. Consider carpooling to save space and potentially time.",
-    "crowdPatterns": "Hunter experiences significant crowds on weekends, especially during peak season (mid-January to mid-March) and holidays. Saturday mornings and early afternoons are the busiest. Sundays typically start busy but often thin out after 2 PM as day-trippers head home. Weekdays are generally much lighter, offering the best conditions and minimal lift lines. Lifts like the D-Lift (gondola) and the bottom of Kaatskill Flyer (F-Lift) see the longest lines during peak times. The North Side and West Side can offer some respite from the main mountain crowds."
+    "crowdPatterns": "Hunter experiences significant crowds on weekends, especially during peak season (mid-January to mid-March) and holidays. Saturday mornings and early afternoons are the busiest. Sundays typically start busy but often thin out after 2 PM as day-trippers head home. Belt Parkway and Broadway become the main congestion points from late morning onward. Hunter West and Hunter North can feel quieter for confident skiers, so some black runs may ski easier than crowded blues, but conditions vary and traffic can shift quickly. Lifts like the D-Lift (gondola) and the bottom of Kaatskill Flyer (F-Lift) see the longest lines during peak times."
   },
   "valfrejus": {
     "resortId": "valfrejus",
