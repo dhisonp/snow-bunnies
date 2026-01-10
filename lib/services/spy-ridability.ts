@@ -23,10 +23,8 @@ export function calculateRidability(
   }
 
   // Rain / Mixed Precip
-  const estimatedRainMm = Math.max(
-    0,
-    forecast.precipitationSum - forecast.snowfallSum
-  );
+  const snowfallMm = forecast.snowfallSum * 10;
+  const estimatedRainMm = Math.max(0, forecast.precipitationSum - snowfallMm);
   const isRainy = [51, 53, 55, 61, 63, 65, 80, 81, 82].includes(
     forecast.weatherCode
   );
