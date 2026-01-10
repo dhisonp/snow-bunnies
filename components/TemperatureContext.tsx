@@ -10,9 +10,11 @@ interface UnitsContextType {
   formatTemp: (celsius: number) => number;
   formatWind: (kmh: number) => number;
   formatSnow: (cm: number) => number;
+  formatPrecip: (mm: number) => number;
   tempUnit: string;
   windUnit: string;
   snowUnit: string;
+  precipUnit: string;
 }
 
 const UnitsContext = createContext<UnitsContextType | undefined>(undefined);
@@ -56,9 +58,17 @@ export function UnitsProvider({ children }: { children: React.ReactNode }) {
     return Math.round(cm * 100) / 100;
   };
 
+  const formatPrecip = (mm: number) => {
+    if (system === "imperial") {
+      return Math.round(mm * 0.0393701 * 100) / 100;
+    }
+    return Math.round(mm * 100) / 100;
+  };
+
   const tempUnit = system === "imperial" ? "°F" : "°C";
   const windUnit = system === "imperial" ? "mph" : "km/h";
   const snowUnit = system === "imperial" ? "in" : "cm";
+  const precipUnit = system === "imperial" ? "in" : "mm";
 
   return (
     <UnitsContext.Provider
@@ -68,9 +78,11 @@ export function UnitsProvider({ children }: { children: React.ReactNode }) {
         formatTemp,
         formatWind,
         formatSnow,
+        formatPrecip,
         tempUnit,
         windUnit,
         snowUnit,
+        precipUnit,
       }}
     >
       {children}
